@@ -1,0 +1,9 @@
+"1","
+"
+"1",""
+"1","plot> ## Discrete Distribution Plot:
+plot> plot(table(rpois(100, 5)), type = ""h"", col = ""red"", lwd = 10,
+plot+      main = ""rpois(100, lambda = 5)"")"
+"1",""
+"1","
+"

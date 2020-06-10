@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R basics on Geochemistry programming</title>
+    <link>/tags/r-basics/</link>
+    <description>Recent content in R basics on Geochemistry programming</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Jun 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/r-basics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>R Syntax in a Nutshell</title>
+      <link>/2020/06/10/r-basics/</link>
+      <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/06/10/r-basics/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#seeking-help&#34;&gt;Seeking help&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;seeking-help&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Seeking help&lt;/h3&gt;
+&lt;p&gt;Here demonstrate how to seek help in R programing. These keywords include: help(), ?, apropos and example.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;help(plot)
+?plot
+apropos(&amp;quot;plot&amp;quot;) #Commands related to &amp;quot;plot&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;assocplot&amp;quot;           &amp;quot;barplot&amp;quot;             &amp;quot;barplot.default&amp;quot;    
+##  [4] &amp;quot;biplot&amp;quot;              &amp;quot;boxplot&amp;quot;             &amp;quot;boxplot.default&amp;quot;    
+##  [7] &amp;quot;boxplot.matrix&amp;quot;      &amp;quot;boxplot.stats&amp;quot;       &amp;quot;cdplot&amp;quot;             
+## [10] &amp;quot;coplot&amp;quot;              &amp;quot;fourfoldplot&amp;quot;        &amp;quot;interaction.plot&amp;quot;   
+## [13] &amp;quot;lag.plot&amp;quot;            &amp;quot;matplot&amp;quot;             &amp;quot;monthplot&amp;quot;          
+## [16] &amp;quot;mosaicplot&amp;quot;          &amp;quot;plot&amp;quot;                &amp;quot;plot.default&amp;quot;       
+## [19] &amp;quot;plot.design&amp;quot;         &amp;quot;plot.ecdf&amp;quot;           &amp;quot;plot.function&amp;quot;      
+## [22] &amp;quot;plot.new&amp;quot;            &amp;quot;plot.spec.coherency&amp;quot; &amp;quot;plot.spec.phase&amp;quot;    
+## [25] &amp;quot;plot.stepfun&amp;quot;        &amp;quot;plot.ts&amp;quot;             &amp;quot;plot.window&amp;quot;        
+## [28] &amp;quot;plot.xy&amp;quot;             &amp;quot;preplot&amp;quot;             &amp;quot;qqplot&amp;quot;             
+## [31] &amp;quot;recordPlot&amp;quot;          &amp;quot;replayPlot&amp;quot;          &amp;quot;savePlot&amp;quot;           
+## [34] &amp;quot;screeplot&amp;quot;           &amp;quot;spineplot&amp;quot;           &amp;quot;sunflowerplot&amp;quot;      
+## [37] &amp;quot;termplot&amp;quot;            &amp;quot;ts.plot&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;example(plot)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## plot&amp;gt; require(stats) # for lowess, rpois, rnorm
+## 
+## plot&amp;gt; plot(cars)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/r-basics_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## plot&amp;gt; lines(lowess(cars))
+## 
+## plot&amp;gt; plot(sin, -pi, 2*pi) # see ?plot.function&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/r-basics_files/figure-html/unnamed-chunk-1-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## plot&amp;gt; ## Discrete Distribution Plot:
+## plot&amp;gt; plot(table(rpois(100, 5)), type = &amp;quot;h&amp;quot;, col = &amp;quot;red&amp;quot;, lwd = 10,
+## plot+      main = &amp;quot;rpois(100, lambda = 5)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/r-basics_files/figure-html/unnamed-chunk-1-3.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## plot&amp;gt; ## Simple quantiles/ECDF, see ecdf() {library(stats)} for a better one:
+## plot&amp;gt; plot(x &amp;lt;- sort(rnorm(47)), type = &amp;quot;s&amp;quot;, main = &amp;quot;plot(x, type = \&amp;quot;s\&amp;quot;)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/r-basics_files/figure-html/unnamed-chunk-1-4.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## plot&amp;gt; points(x, cex = .5, col = &amp;quot;dark red&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,11 @@
+---
+title: "Appendix A: R Syntax in a Nutshell"
+output: html_document
+---
+### Seeking help
+```{r}
+help(plot)
+?plot
+apropos("plot") #Commands related to "plot"
+example(plot)
+```

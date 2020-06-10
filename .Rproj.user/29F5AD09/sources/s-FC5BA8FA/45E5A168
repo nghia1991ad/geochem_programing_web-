@@ -1,0 +1,24 @@
+{
+    "id": "45E5A168",
+    "path": "~/R_learn/Modeling_book/Appendix/appendixA.Rmd",
+    "project_path": null,
+    "type": "r_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1591777427893.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "cursorPosition": "10,3",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1591688240,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1591688240,
+    "read_only": false,
+    "read_only_alternatives": []
+}

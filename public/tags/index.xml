@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Geochemistry programming</title>
+    <link>/tags/</link>
+    <description>Recent content in Tags on Geochemistry programming</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Jun 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>geochemical modeling</title>
+      <link>/tags/geochemical-modeling/</link>
+      <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/geochemical-modeling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Igneous processes</title>
+      <link>/tags/igneous-processes/</link>
+      <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/igneous-processes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R basics</title>
+      <link>/tags/r-basics/</link>
+      <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/r-basics/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

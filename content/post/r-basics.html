@@ -1,0 +1,64 @@
+---
+title: R Syntax in a Nutshell
+author: Nguyen Cong Nghia
+date: '2020-06-10'
+slug: r-basics
+categories:
+  - R
+tags:
+  - R basics
+output:
+  blogdown::html_page:
+    toc: true
+
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#seeking-help">Seeking help</a></li>
+</ul>
+</div>
+
+<div id="seeking-help" class="section level3">
+<h3>Seeking help</h3>
+<p>Here demonstrate how to seek help in R programing. These keywords include: help(), ?, apropos and example.</p>
+<pre class="r"><code>help(plot)
+?plot
+apropos(&quot;plot&quot;) #Commands related to &quot;plot&quot;</code></pre>
+<pre><code>##  [1] &quot;assocplot&quot;           &quot;barplot&quot;             &quot;barplot.default&quot;    
+##  [4] &quot;biplot&quot;              &quot;boxplot&quot;             &quot;boxplot.default&quot;    
+##  [7] &quot;boxplot.matrix&quot;      &quot;boxplot.stats&quot;       &quot;cdplot&quot;             
+## [10] &quot;coplot&quot;              &quot;fourfoldplot&quot;        &quot;interaction.plot&quot;   
+## [13] &quot;lag.plot&quot;            &quot;matplot&quot;             &quot;monthplot&quot;          
+## [16] &quot;mosaicplot&quot;          &quot;plot&quot;                &quot;plot.default&quot;       
+## [19] &quot;plot.design&quot;         &quot;plot.ecdf&quot;           &quot;plot.function&quot;      
+## [22] &quot;plot.new&quot;            &quot;plot.spec.coherency&quot; &quot;plot.spec.phase&quot;    
+## [25] &quot;plot.stepfun&quot;        &quot;plot.ts&quot;             &quot;plot.window&quot;        
+## [28] &quot;plot.xy&quot;             &quot;preplot&quot;             &quot;qqplot&quot;             
+## [31] &quot;recordPlot&quot;          &quot;replayPlot&quot;          &quot;savePlot&quot;           
+## [34] &quot;screeplot&quot;           &quot;spineplot&quot;           &quot;sunflowerplot&quot;      
+## [37] &quot;termplot&quot;            &quot;ts.plot&quot;</code></pre>
+<pre class="r"><code>example(plot)</code></pre>
+<pre><code>## 
+## plot&gt; require(stats) # for lowess, rpois, rnorm
+## 
+## plot&gt; plot(cars)</code></pre>
+<p><img src="/post/r-basics_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre><code>## 
+## plot&gt; lines(lowess(cars))
+## 
+## plot&gt; plot(sin, -pi, 2*pi) # see ?plot.function</code></pre>
+<p><img src="/post/r-basics_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+<pre><code>## 
+## plot&gt; ## Discrete Distribution Plot:
+## plot&gt; plot(table(rpois(100, 5)), type = &quot;h&quot;, col = &quot;red&quot;, lwd = 10,
+## plot+      main = &quot;rpois(100, lambda = 5)&quot;)</code></pre>
+<p><img src="/post/r-basics_files/figure-html/unnamed-chunk-1-3.png" width="672" /></p>
+<pre><code>## 
+## plot&gt; ## Simple quantiles/ECDF, see ecdf() {library(stats)} for a better one:
+## plot&gt; plot(x &lt;- sort(rnorm(47)), type = &quot;s&quot;, main = &quot;plot(x, type = \&quot;s\&quot;)&quot;)</code></pre>
+<p><img src="/post/r-basics_files/figure-html/unnamed-chunk-1-4.png" width="672" /></p>
+<pre><code>## 
+## plot&gt; points(x, cex = .5, col = &quot;dark red&quot;)</code></pre>
+</div>

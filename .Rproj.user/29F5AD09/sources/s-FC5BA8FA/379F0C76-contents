@@ -1,0 +1,252 @@
+---
+title: Geochem modeling of Ig. Processes - Chapter 2
+author: Nguyen Cong Nghia
+date: '2020-06-10'
+slug: geochem-modeling-of-ig-processes-chapter-2
+categories:
+  - R
+tags:
+  - geochemical modeling
+  - Igneous processes
+---
+
+### First, load the library
+
+```{r}
+sink("/dev/null"); suppressPackageStartupMessages(library(GCDkit)); sink();
+```
+
+## 2.1. Loading and Manipulating Data
+### Exercise 2.1: Subsetting a numeric vector, vector operations
+
+GCDkit contains several built-in datasets, normally needed just for correct system functioning. One of these is atomic weights, stored in the named vector mw. We will use it to show some simple vector operations.
+
+a) Display the whole vector. 
+```{r}
+mw
+```
+What is the atomic weight of Rb?
+```{r}
+mw['Rb']
+
+```
+b) What is the average value of the whole vector?
+```{r}
+mean(mw)
+```
+c) Which atoms have the atomic weight higher than 170?
+```{r}
+names(mw)[mw>170]
+```
+d) Display the names of six lightest and six heaviest elements in the dataset.
+```{r}
+sort(mw)[1:6]
+```
+```{r}
+rev(sort(mw))[1:6]
+```
+
+---
+
+### Excercise 2.2: Loading files, matrix/data frame manipulations
+
+The file sazava.data contains selected major- and trace-element analyses from the ~354 Ma old Sázava suite of the Central Bohemian Plutonic Complex (CBPC; Bohemian Massif, Czech Republic) (Janoušek et al. 2000, 2004).
+
+a) Read analyses stored in the tab-delimited data file into a data frame WR. 
+
+b) Find out the names of available variables (= column names).
+```{r}
+data(sazava)
+sazava
+print(colnames(sazava))
+```
+c) What is the MgO content of sample Sa-1?
+```{r}
+sazava["Sa-1","MgO"]
+```
+d) Show all available numeric data for samples Po-1 and Po-4.
+```{r}
+sazava <- sazava[,-(1:6)]
+sazava[c("Po-1","Po-4"),]
+```
+e) Calculate the total of the column “Na2O”.
+```{r}
+sum(sazava[,"Na2O"])
+```
+
+f) Display names of three samples with the lowest and the highest SiO2 contents.
+```{r}
+silica <- sazava[,"SiO2"]
+names(silica) <- rownames(sazava)
+print("Three samples with the lowest SiO2")
+names(sort(silica))[1:5]
+print("Three samples with the highest SiO2")
+names(rev(sort(silica)))[1:5]
+```
+
+g) Calculate averages of all variables.
+```{r}
+apply(sazava,2,mean,na.rm=TRUE)
+```
+h) Display a table with three columns: SiO2, MgO and Na2O/K2O.
+```{r}
+x <- cbind(sazava[,"SiO2"],sazava[,"MgO"],sazava[,"Na2O"]/sazava[,"K2O"])
+colnames(x) <- c("Sio2","MgO","Na2O/K2O")
+rownames(x) <- rownames(sazava)
+x
+```
+## 2.2. Linking Whole-Rock Chemistry with Mineral Stoichiometry
+Some important link between Whole-Rock chemistry with mineral chemistry:
+
+$FeOt = FeO + 0.89981 * Fe_{2}O_{3}$ [wt.%] 
+
+$mg\# = 100\frac{MgO}{FeO+MgO}$ [mol.%]
+
+$Mg\# = 100\frac{MgO}{FeOt+MgO}$ [mol.%]
+
+$A/CNK=\frac{Al_2O_3}{CaO+Na_2O+K_2O}$[mol.%]
+
+$A/NK=\frac{Al_2O_3}{Na_2O+K_2O}$[mol.%]
+
+If A/CNK > 1, there is excess Al over the amount needed to form feldspars, and is termed peraluminous, while those with A/CNK < 1 and A/NK > 1 are metaluminous and A/CNK ~ 1 subaluminous.
+
+### Exercise 2.3: Calculating simple indexes
+
+*On the Sázava dataset we can demonstrate how to define a function calculating a geochemical index. In this way the system can be enriched, quickly and efficiently.*
+
+a) Given the molecular weights below, design a function to calculate mg number.
+
+FeO | MgO | Al2O3| CaO| Na2O| K2O
+-- | -- | --| --| --| --
+71.85| 40.31| 101.96| 56.08| 61.98| 94.20
+```{r}
+mgno <- function(){
+  mg <- 100*mol["MgO",]/(mol["FeO",]+mol["MgO",]) 
+  return(mg)
+}
+```
+
+b) Write a function returning Shand’s indexes (A/CNK and A/NK). 
+```{r}
+ank <- function(){
+  ANK <- mol["Al2O3",]/(mol["Na2O",]+mol["K2O",])
+  return(ANK)
+}
+acnk <-function(){
+  ACNK <- mol["Al2O3",]/(mol["CaO",]+mol["Na2O",]+mol["K2O",])
+  return(ACNK)
+}
+```
+
+c) Calculate all these values for the Sázava dataset.
+```{r}
+data(sazava)
+MW <- c(71.85,40.31,101.96,56.08,61.98,94.20)
+oxides <- c("FeO","MgO","Al2O3","CaO","Na2O","K2O")
+names(MW) <- oxides
+mol <- t(sazava[,oxides])/MW[oxides]
+x <- cbind(mgno(),acnk(),ank())
+colnames(x) <- c("mgno","A/CNK","A/NK")
+x
+```
+
+d) Recast the major-element oxides on 100% volatile-free basis.
+```{r}
+major <- c("SiO2","TiO2","Al2O3","FeO","Fe2O3","MnO",
+           "MgO","CaO","Na2O","K2O","P2O5")
+sums <- apply(sazava[,major],1,sum)
+anh <- sazava[,major]/sums*100
+anh
+```
+## 2.3. Statistics
+### Exercise 2.4: Simple statistics
+a) Compute means for all columns (variables)in the file sazava.data.
+```{r}
+data(sazava)
+sazava <- sazava[,-(1:6)]
+result <- apply(sazava, 2,mean,na.rm=TRUE)
+round(result,2)
+```
+
+b) Display boxplot for strontium, and find out all the main statistical parameters characterizing its distribution (the range, median, number of observations and not determined cases...).
+```{r}
+boxplot(sazava[,"Sr"],xlab="Sr",ylab="ppm")
+summary(sazava[,"Sr"])
+```
+
+c) Plot all the possible combinations of binary diagrams(a scatter plot matrix) for the following oxides: SiO2, MgO, CaO, Na2O, K2O, and P2O5.
+```{r, fig.width=6, fig.height=6} 
+oxides <- c("SiO2", "MgO", "CaO", "Na2O", "K2O", "P2O5")
+pairs(sazava[,oxides])
+```
+## 2.4. Classification and Grouping - Using Factors
+### Exercise 2.5. Using factors to deal with complex datasets I
+a) For the Sázava dataset define a factor intrusion based on the specification given in the column ‘Intrusion’ that splits the suite into three groups: basic (quartz diorites to Amp gabbros of numerous smaller bodies), Sazava (Sázava intrusion proper: mainly Amp–Bt tonalites to quartz diorites) and Pozary (Požáry trondhjemite).
+```{r}
+data(sazava)
+intrusion <- factor(sazava[,"Intrusion"])
+intrusion
+```
+b) Display all possible values (levels)of this factor.
+```{r}
+levels(intrusion)
+```
+
+c) Using the factor intrusion, calculate the mean SiO2 contents for each of the rock groups in the Sazava dataset.
+```{r}
+tapply(sazava[,"SiO2"],intrusion,mean)
+```
+d) Analogously,calculate the mean concentrations of Ba.
+```{r}
+tapply(sazava[,"Ba"],intrusion,mean,na.rm=TRUE)
+```
+## Exercise 2.6. Using factors to deal with complex datasets II
+a) Utilizing the function summary, calculate basic statistical parameters for SiO2 distribution in each of the rock groups of the Sázava suite (factor intrusion).
+```{r}
+data(sazava)
+intrusion <- factor(sazava[,"Intrusion"])
+tapply(sazava[,"SiO2"],intrusion,summary)
+```
+
+b) What are the means for selected trace elements (Ba, Rb, Sr and Zr) in individual intrusions?
+```{r}
+trace <- c("Rb","Sr","Ba","Zr")
+aggregate(sazava[,trace],list(Rock=intrusion),mean,na.rm=TRUE)
+```
+
+c) Using the function by, print basic statistical summaries for major-element oxides in each of the rock groups.
+```{r}
+by(sazava[,7:17],list(Rock=intrusion),summary)
+```
+### Excercise 2.7: Classification using factors
+Classify samples in the Sázava set according to SiO2 contents (wt. %) in four groups, U (< 45), B (45–52), I (52–63) and A (> 63).
+```{r}
+data(sazava)
+silica <- cut(sazava[,"SiO2"],breaks=c(0,45,52,63,100),
+              labels=c("U","B","I","A"))
+silica
+```
+```{r}
+acidity <- as.vector(silica)
+names(acidity) <- rownames(sazava)
+acidity
+```
+### Exercise 2.8: Frequency tables
+a) Using the factor *intrusion*, count the number of analyses obtained from each of the rock groups in the Sazava dataset.
+
+```{r}
+data(sazava)
+intrusion <- factor(sazava[,"Intrusion"])
+table(intrusion)
+```
+b) Analously, count the number of ultrabasic, basic, intermediate and acid rocks (factor *silica* from the previous exercise)
+```{r}
+table(silica)
+```
+c) Set up a frequency table showing the depencedence of silica on the rock type.
+```{r}
+table(intrusion, silica)
+```
+
+### Note:
+Quite an amazing chapter, onward to chapter 3!
