@@ -1,130 +1,78 @@
 <!DOCTYPE html>
-<html lang="en-us" >
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.72.0" />
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content="Hugo 0.72.0" />
+
+<title>Geochem modeling of Ig. Processes - Chapter 2 - Geochemistry programming</title>
+<meta property="og:title" content="Geochem modeling of Ig. Processes - Chapter 2 - Geochemistry programming">
+
+
+  <link href='/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
     
-    <link rel="canonical" href="/2020/06/10/geochem-modeling-of-ig-processes-chapter-2/" />
-    <meta name="description" content="Geochemistry modeling">
+    <li><a href="/index.html">Article</a></li>
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="/categories/">Categories</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">18 min read</span>
     
 
-    <title>Geochem modeling of Ig. Processes - Chapter 2 &middot; Geochemistry programming</title>
+    <h1 class="article-title">Geochem modeling of Ig. Processes - Chapter 2</h1>
 
-    <link rel="shortcut icon" href="/images/favicon.ico" />
-
-    <link rel="stylesheet" href="/css/main.css" />
     
-        
-        <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/atom-one-light.min.css">
-        
+    <span class="article-date">2020-06-10</span>
     
-    
-    
-</head>
 
-
-<body class="loading light-mode">
-    
-<div class="top">
-    <img class="logo" src="/images/logo.svg" alt="logo" />
-</div>
-<div class="bottom">
-    <img class="logo" src="/images/logo.svg" alt="logo" />
-</div>
-
-    <header class="header">
-    <ul class="menu clearfix control">
-        
-
-<li class="logo-container logo-default">
-    <a href="/" class="btn logo-link">
-        <img class="logo" src="/images/logo.svg" alt="logo" />
-    </a>
-</li>
-
-        
-        
-        
-        <li>
-            <a href="/index.html" class="btn">
-                Article
-            </a>
-        </li>
-        
-        
-        
-        <li>
-            <a href="/about/" class="btn">
-                About
-            </a>
-        </li>
-        
-        
-        
-        <li>
-            <a href="/categories/" class="btn">
-                Categories
-            </a>
-        </li>
-        
-        
-    </ul>
-</header>
-
-    <div class="middle">
-        <nav class="sidebar">
-            <ul class="posts control">
-    
-    <li><a class="no-break btn" href='/2020/06/10/r-basics/'><i class="icon icon-post"></i>R Syntax in a Nutshell</a></li>
-    
-    <li><a class="no-break btn" href='/2020/06/10/geochem-modeling-of-ig-processes-chapter-2/'><i class="icon icon-post"></i>Geochem modeling of Ig. Processes - Chapter 2</a></li>
-    
-</ul>
-
-        </nav>
-        <main class="main">
-            <article class="article">
-    <h2 class="title"><a href='/2020/06/10/geochem-modeling-of-ig-processes-chapter-2/' class="btn">Geochem modeling of Ig. Processes - Chapter 2</a></h2>
-    <div class="article-meta clearfix">
-        <ul class="dates clearfix left control">
-            <li><i class="icon icon-date"></i></li>
-            <li class="publish-date">
-                <time datetime="2020.06.10">2020.06.10</time>
-            </li>
-        </ul>
-        
-        <ul class="article-categories clearfix left control">
-            <li><i class="icon icon-categories"></i></li>
-            
-            <li>
-                <a href="/categories/r/" class="btn">R</a>
-            </li>
-            
-        </ul>
-        
-        
-        <div class="article-meta-splitter clearfix"></div>
-        <ul class="article-tags clearfix control">
-            <li><i class="icon icon-tags"></i></li>
-            
-            <li>
-                <a href="/tags/geochemical-modeling/" class="btn">geochemical modeling</a>
-            </li>
-            
-            <li>
-                <a href="/tags/igneous-processes/" class="btn">Igneous processes</a>
-            </li>
-            
-        </ul>
-        
-    </div>
-    <div class="content">
-        
-        
+    <div class="article-content">
+      
 
 <div id="TOC">
 <ul>
@@ -728,93 +676,46 @@ table(intrusion)</code></pre>
 <p>Quite an amazing chapter, onward to chapter 3!</p>
 </div>
 
-        
     </div>
+  </article>
 
-</article>
-<section class="comment">
-    <p class="local-info">
-        Comment is disabled to avoid unwanted discussions from 'localhost:1313' on your Disqus
-        account...
-    </p>
-    <div id="disqus_thread"></div>
-</section>
-<script type="text/javascript">
-
-    (function () {
-        if (window.location.hostname == "localhost") {
-            return
-        }
-        document.querySelector('.local-info').classList.add('hide')
-
-        let dsq = document.createElement('script')
-        dsq.type = 'text/javascript'
-        dsq.async = true
-        let disqus_shortname = ''
-        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq)
-    })()
-</script>
+  
 
 
-        </main>
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
     </div>
-    <footer class="footer clearfix">
-    <ul class="control social clearfix">
-        <li><a class="author btn" href="#"></a></li>
-        
-        <li>
-            <a class="icon-link btn" href="/index.xml" type="application/rss+xml" title="rss">
-                <i class="rss icon"></i></a>
-        </li>
-    </ul>
-
-    <ul class="control status clearfix">
-        <li><a href="#" class="btn">Posts:
-                0</a>
-        </li>
-        <li><a href="#" class="btn">Pages:
-                0</a></li>
-        <li><a href="#" class="btn">en</a></li>
-        <li><a href="https://gohugo.io" class="btn">Hugo, 0.72.0</a></li>
-        <li><a href="https://github.com/jacobsun/edidor" class="btn">Theme: Edidor</a></li>
-        <li>
-            
-        </li>
-    </ul>
-</footer>
-<div class="dialog">
-    <div class="wrapper">
-        <div class="clearfix"><button class="btn close-dialog">X</button></div>
-        <header>
-            <h1 class="title">Theme Name</h1>
-        </header>
-        <main>
-            <div class="clearfix">
-                <label for="theme-name">
-                    <p>Only English Character, space, hyphen are allowed!</p>
-                    <p>Valid name examples: "custom", "fantastic theme", "my-theme"</p>
-                    <p>Invalid name examles: "我的主题", ":)", "123"</p>
-                </label>
-                <input type="text" name="theme-name" id="theme-name">
-            </div>
-            <div class="clearfix">
-                <button class="btn export">Export</button>
-            </div>
-
-        </main>
-        <footer></footer>
-    </div>
-</div>
-
-    <script src="/js/main.js"></script>
+    
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 
-<script>hljs.initHighlightingOnLoad();</script>
 
-</body>
 
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
 </html>
+
