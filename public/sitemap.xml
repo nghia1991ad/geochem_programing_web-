@@ -3,13 +3,48 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/about/</loc>
-    <lastmod>2020-06-10T15:48:51-07:00</lastmod>
+    <loc>/categories/</loc>
+    <lastmod>2020-06-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/</loc>
-    <lastmod>2020-06-10T00:00:00+00:00</lastmod>
+    <loc>/2020/06/11/exploring-adakite-using-python/</loc>
+    <lastmod>2020-06-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/geochemistry/</loc>
+    <lastmod>2020-06-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2020-06-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/georoc/</loc>
+    <lastmod>2020-06-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-06-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/python/</loc>
+    <lastmod>2020-06-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-06-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/about/</loc>
+    <lastmod>2020-06-10T15:48:51-07:00</lastmod>
   </url>
   
   <url>
@@ -23,17 +58,7 @@
   </url>
   
   <url>
-    <loc>/</loc>
-    <lastmod>2020-06-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/igneous-processes/</loc>
-    <lastmod>2020-06-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
     <lastmod>2020-06-10T00:00:00+00:00</lastmod>
   </url>
   
@@ -49,11 +74,6 @@
   
   <url>
     <loc>/2020/06/10/r-basics/</loc>
-    <lastmod>2020-06-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-06-10T00:00:00+00:00</lastmod>
   </url>
   

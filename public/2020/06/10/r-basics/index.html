@@ -6,8 +6,8 @@
 <meta name="generator" content="Hugo 0.72.0" />
 
 
-<title>R Syntax in a Nutshell - Geochemistry programming</title>
-<meta property="og:title" content="R Syntax in a Nutshell - Geochemistry programming">
+<title>R Syntax in a Nutshell Part I - Geochemistry programming</title>
+<meta property="og:title" content="R Syntax in a Nutshell Part I - Geochemistry programming">
 
 
   <link href='/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -62,10 +62,10 @@
 
   <article class="article">
     
-    <span class="article-duration">2 min read</span>
+    <span class="article-duration">5 min read</span>
     
 
-    <h1 class="article-title">R Syntax in a Nutshell</h1>
+    <h1 class="article-title">R Syntax in a Nutshell Part I</h1>
 
     
     <span class="article-date">2020-06-10</span>
@@ -77,7 +77,11 @@
 <div id="TOC">
 <ul>
 <li><a href="#seeking-help">Seeking help</a></li>
+<li><a href="#object-types">Object types</a></li>
 <li><a href="#numeric-vectors">Numeric Vectors</a></li>
+<li><a href="#character-vectors">Character Vectors</a></li>
+<li><a href="#arrays-matrices-data-frames">Arrays, Matrices, Data Frames</a></li>
+<li><a href="#indexingsubsetting-of-vectors-arrays-and-data-frames">Indexing/subsetting of Vectors, Arrays and Data Frames</a></li>
 </ul>
 </div>
 
@@ -123,6 +127,10 @@ apropos(&quot;plot&quot;) #Commands related to &quot;plot&quot;</code></pre>
 <pre><code>## 
 ## plot&gt; points(x, cex = .5, col = &quot;dark red&quot;)</code></pre>
 </div>
+<div id="object-types" class="section level3">
+<h3>Object types</h3>
+<p><img src="/post/r-basics_files/Screen%20Shot%202020-06-11%20at%204.33.21%20PM.png" /></p>
+</div>
 <div id="numeric-vectors" class="section level3">
 <h3>Numeric Vectors</h3>
 <div id="assignment" class="section level4">
@@ -136,16 +144,16 @@ y</code></pre>
 <div id="vector-arithmetic" class="section level4">
 <h4>Vector Arithmetic</h4>
 <p>For vectors, calculations are made using basic arithmetic operators: + - * / ^. The use of these operators for two vectors of the same length is intuitive. In other cases, the elements of the shorter vector are recycled.</p>
-<pre class="r"><code>print(&quot;Intuitive operators of same length vectors&quot;)</code></pre>
-<pre><code>## [1] &quot;Intuitive operators of same length vectors&quot;</code></pre>
-<pre class="r"><code>x*2</code></pre>
+<pre class="r"><code>x*2 #Intuitive operators of same length vectors</code></pre>
 <pre><code>## [1] 20.8 11.2  6.2 12.8 43.4</code></pre>
-<pre class="r"><code>print(&quot;Multiply is recycled, i.e. *1 *2 *1 *2 *1&quot;)</code></pre>
-<pre><code>## [1] &quot;Multiply is recycled, i.e. *1 *2 *1 *2 *1&quot;</code></pre>
-<pre class="r"><code>x*c(1,2) </code></pre>
+<pre class="r"><code>x*c(1,2) #Multiply is recycled, i.e. *1 *2 *1 *2 *1</code></pre>
 <pre><code>## Warning in x * c(1, 2): longer object length is not a multiple of shorter object
 ## length</code></pre>
 <pre><code>## [1] 10.4 11.2  3.1 12.8 21.7</code></pre>
+</div>
+<div id="functions-to-manipulate-numeric-vectors" class="section level4">
+<h4>Functions to Manipulate Numeric Vectors</h4>
+<p><img src="/post/r-basics_files/Screen%20Shot%202020-06-11%20at%204.29.55%20PM.png" /></p>
 </div>
 <div id="names" class="section level4">
 <h4>Names</h4>
@@ -155,6 +163,121 @@ names(x) &lt;- c(&quot;Opx&quot;,&quot;Cpx&quot;,&quot;Pl&quot;)
 x</code></pre>
 <pre><code>## Opx Cpx  Pl 
 ##   3  15  27</code></pre>
+</div>
+<div id="generating-regular-sequences" class="section level4">
+<h4>Generating Regular Sequences</h4>
+<p>Using <em>colon</em>, <em>seq</em>, <em>rep</em></p>
+<pre class="r"><code>1:9</code></pre>
+<pre><code>## [1] 1 2 3 4 5 6 7 8 9</code></pre>
+<pre class="r"><code>seq(30,22,-2)</code></pre>
+<pre><code>## [1] 30 28 26 24 22</code></pre>
+<pre class="r"><code>x &lt;- c(0,1)
+rep(x,5)</code></pre>
+<pre><code>##  [1] 0 1 0 1 0 1 0 1 0 1</code></pre>
+<pre class="r"><code>seq(0,5,length.out = 30) #linspace equivalent</code></pre>
+<pre><code>##  [1] 0.0000000 0.1724138 0.3448276 0.5172414 0.6896552 0.8620690 1.0344828
+##  [8] 1.2068966 1.3793103 1.5517241 1.7241379 1.8965517 2.0689655 2.2413793
+## [15] 2.4137931 2.5862069 2.7586207 2.9310345 3.1034483 3.2758621 3.4482759
+## [22] 3.6206897 3.7931034 3.9655172 4.1379310 4.3103448 4.4827586 4.6551724
+## [29] 4.8275862 5.0000000</code></pre>
+</div>
+</div>
+<div id="character-vectors" class="section level3">
+<h3>Character Vectors</h3>
+<pre class="r"><code>paste(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,sep=&quot;;&quot;)</code></pre>
+<pre><code>## [1] &quot;A;B;C&quot;</code></pre>
+<pre class="r"><code>x &lt;- c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;)
+substring(x,1,4)</code></pre>
+<pre><code>## [1] &quot;A&quot; &quot;B&quot; &quot;C&quot;</code></pre>
+<pre class="r"><code>x &lt;- c(&quot;Plagioclase&quot;,&quot;K-feldspar&quot;)
+strsplit(x,&quot;a&quot;)</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;Pl&quot;    &quot;giocl&quot; &quot;se&quot;   
+## 
+## [[2]]
+## [1] &quot;K-feldsp&quot; &quot;r&quot;</code></pre>
+</div>
+<div id="arrays-matrices-data-frames" class="section level3">
+<h3>Arrays, Matrices, Data Frames</h3>
+<p>Data frames are data objects with observation as columns and cases in rows, and they can contain of any mode. Matrix is a table-like object with single mode (numeric, most commonly). Arrays are generalized matrices: single mode with any number of dimensions.</p>
+<pre class="r"><code>x &lt;- matrix(1:12,3,4)
+x</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    4    7   10
+## [2,]    2    5    8   11
+## [3,]    3    6    9   12</code></pre>
+<pre class="r"><code>y &lt;- matrix(1:12,3,4,byrow=TRUE)
+y</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    2    3    4
+## [2,]    5    6    7    8
+## [3,]    9   10   11   12</code></pre>
+<pre class="r"><code>z &lt;- array(c(x,y), dim = c(3,4,2))
+z</code></pre>
+<pre><code>## , , 1
+## 
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    4    7   10
+## [2,]    2    5    8   11
+## [3,]    3    6    9   12
+## 
+## , , 2
+## 
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    2    3    4
+## [2,]    5    6    7    8
+## [3,]    9   10   11   12</code></pre>
+<p><img src="/post/r-basics_files/Screen%20Shot%202020-06-11%20at%204.34.55%20PM.png" /></p>
+<pre class="r"><code>x</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    4    7   10
+## [2,]    2    5    8   11
+## [3,]    3    6    9   12</code></pre>
+<pre class="r"><code>cat(&quot;Number of rows&quot;,nrow(x),&quot;\n&quot;)</code></pre>
+<pre><code>## Number of rows 3</code></pre>
+<pre class="r"><code>cat(&quot;Number of columns&quot;, ncol(x),&quot;\n&quot;)</code></pre>
+<pre><code>## Number of columns 4</code></pre>
+<pre class="r"><code>t(x) # transpose of x</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6
+## [3,]    7    8    9
+## [4,]   10   11   12</code></pre>
+<pre class="r"><code>x%*%t(x) #Multiplication of matrix x with transposition of x</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]  166  188  210
+## [2,]  188  214  240
+## [3,]  210  240  270</code></pre>
+<pre class="r"><code>apply(x,1,sum) #Sum of each row</code></pre>
+<pre><code>## [1] 22 26 30</code></pre>
+<pre class="r"><code>apply(x,2,sum) #Sum of each column</code></pre>
+<pre><code>## [1]  6 15 24 33</code></pre>
+</div>
+<div id="indexingsubsetting-of-vectors-arrays-and-data-frames" class="section level3">
+<h3>Indexing/subsetting of Vectors, Arrays and Data Frames</h3>
+<p>This might be one of the most important part because manipulating and selecting data needs addition criteria.
+#### Vectors</p>
+<pre class="r"><code>x &lt;- c(1,12,15,NA,16,13,0,NA,NA)
+names(x) &lt;- c(&quot;Pl&quot;,&quot;Bt&quot;,&quot;Mu&quot;,&quot;Q&quot;,&quot;Kfs&quot;,&quot;Ky&quot;,&quot;Ol&quot;,&quot;Px&quot;,&quot;C&quot;)
+x</code></pre>
+<pre><code>##  Pl  Bt  Mu   Q Kfs  Ky  Ol  Px   C 
+##   1  12  15  NA  16  13   0  NA  NA</code></pre>
+<p>Logical vector</p>
+<pre class="r"><code>x[x&gt;10] #all elements &gt; 10 or NA</code></pre>
+<pre><code>##   Bt   Mu &lt;NA&gt;  Kfs   Ky &lt;NA&gt; &lt;NA&gt; 
+##   12   15   NA   16   13   NA   NA</code></pre>
+<pre class="r"><code>x[!is.na(x)] #all available elements</code></pre>
+<pre><code>##  Pl  Bt  Mu Kfs  Ky  Ol 
+##   1  12  15  16  13   0</code></pre>
+<p>Numeric vetor with positive values</p>
+<pre class="r"><code>x[1:5] #the first to five elements</code></pre>
+<pre><code>##  Pl  Bt  Mu   Q Kfs 
+##   1  12  15  NA  16</code></pre>
+<pre class="r"><code>x[c(1,5,6)] #1st, 5th and 7th elements</code></pre>
+<pre><code>##  Pl Kfs  Ky 
+##   1  16  13</code></pre>
+<div id="matricesdata-frames" class="section level4">
+<h4>Matrices/Data Frames</h4>
 </div>
 </div>
 

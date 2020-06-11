@@ -1,5 +1,5 @@
 ---
-title: R Syntax in a Nutshell
+title: R Syntax in a Nutshell Part I
 author: Nguyen Cong Nghia
 date: '2020-06-10'
 slug: r-basics
@@ -21,6 +21,9 @@ help(plot)
 apropos("plot") #Commands related to "plot"
 example(plot)
 ```
+### Object types
+![](/post/r-basics_files/Screen Shot 2020-06-11 at 4.33.21 PM.png)
+
 ### Numeric Vectors
 #### Assignment
 Assignment of several items to a vector is done using the combine function c:
@@ -32,11 +35,11 @@ y
 #### Vector Arithmetic
 For vectors, calculations are made using basic arithmetic operators: + - * / ^. The use of these operators for two vectors of the same length is intuitive. In other cases, the elements of the shorter vector are recycled.
 ```{r}
-print("Intuitive operators of same length vectors")
-x*2
-print("Multiply is recycled, i.e. *1 *2 *1 *2 *1")
-x*c(1,2) 
+x*2 #Intuitive operators of same length vectors
+x*c(1,2) #Multiply is recycled, i.e. *1 *2 *1 *2 *1
 ```
+#### Functions to Manipulate Numeric Vectors
+![](/post/r-basics_files/Screen Shot 2020-06-11 at 4.29.55 PM.png)
 
 #### Names
 Each vector may have an attribute *names* (the length of the vector and names must be matching)
@@ -45,4 +48,61 @@ x <- c(3,15,27)
 names(x) <- c("Opx","Cpx","Pl")
 x
 ```
+#### Generating Regular Sequences
+Using *colon*, *seq*, *rep*
+```{r}
+1:9
+seq(30,22,-2)
+x <- c(0,1)
+rep(x,5)
+seq(0,5,length.out = 30) #linspace equivalent
+```
+### Character Vectors
+```{r}
+paste("A","B","C",sep=";")
+x <- c("A","B","C")
+substring(x,1,4)
+x <- c("Plagioclase","K-feldspar")
+strsplit(x,"a")
+```
+### Arrays, Matrices, Data Frames
+Data frames are data objects with observation as columns and cases in rows, and they can contain of any mode. Matrix is a table-like object with single mode (numeric, most commonly). Arrays are generalized matrices: single mode with any number of dimensions.
+```{r}
+x <- matrix(1:12,3,4)
+x
+y <- matrix(1:12,3,4,byrow=TRUE)
+y
+z <- array(c(x,y), dim = c(3,4,2))
+z
+```
+![](/post/r-basics_files/Screen Shot 2020-06-11 at 4.34.55 PM.png)
+
+```{r}
+x
+cat("Number of rows",nrow(x),"\n")
+cat("Number of columns", ncol(x),"\n")
+t(x) # transpose of x
+x%*%t(x) #Multiplication of matrix x with transposition of x
+apply(x,1,sum) #Sum of each row
+apply(x,2,sum) #Sum of each column
+```
+### Indexing/subsetting of Vectors, Arrays and Data Frames
+This might be one of the most important part because manipulating and selecting data needs addition criteria. 
+#### Vectors
+```{r}
+x <- c(1,12,15,NA,16,13,0,NA,NA)
+names(x) <- c("Pl","Bt","Mu","Q","Kfs","Ky","Ol","Px","C")
+x
+```
+Logical vector
+```{r}
+x[x>10] #all elements > 10 or NA
+x[!is.na(x)] #all available elements
+```
+Numeric vetor with positive values
+```{r}
+x[1:5] #the first to five elements
+x[c(1,5,6)] #1st, 5th and 7th elements
+```
+#### Matrices/Data Frames
 
