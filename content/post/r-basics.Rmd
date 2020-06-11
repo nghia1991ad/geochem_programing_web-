@@ -21,3 +21,28 @@ help(plot)
 apropos("plot") #Commands related to "plot"
 example(plot)
 ```
+### Numeric Vectors
+#### Assignment
+Assignment of several items to a vector is done using the combine function c:
+```{r}
+x <- c(10.4, 5.6, 3.1, 6.4, 21.7)
+y <- c(x,0,x)
+y
+```
+#### Vector Arithmetic
+For vectors, calculations are made using basic arithmetic operators: + - * / ^. The use of these operators for two vectors of the same length is intuitive. In other cases, the elements of the shorter vector are recycled.
+```{r}
+print("Intuitive operators of same length vectors")
+x*2
+print("Multiply is recycled, i.e. *1 *2 *1 *2 *1")
+x*c(1,2) 
+```
+
+#### Names
+Each vector may have an attribute *names* (the length of the vector and names must be matching)
+```{r}
+x <- c(3,15,27)
+names(x) <- c("Opx","Cpx","Pl")
+x
+```
+

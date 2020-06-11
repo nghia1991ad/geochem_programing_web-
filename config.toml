@@ -1,24 +1,37 @@
 baseurl = "/"
 languageCode = "en-us"
 title = "Geochemistry programming"
-theme = "hugo-lithium"
+theme = "edidor"
 googleAnalytics = ""
 disqusShortname = ""
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
+# to have better preview
+buildDrafts = "true"
+# helpful if you want to edit the site or theme code
+disableFastRender = true
+
 [permalinks]
     post = "/:year/:month/:day/:slug/"
 
+[[menu.main]]
+    name = "Article"
+    url = "/index.html"
+    weight = 1
 [[menu.main]]
     name = "Categories"
     url = "/categories/"
 [[menu.main]]
     name = "About"
     url = "/about/"
+    weight = 10
+    
+
 
 [params]
     description = "Geochemistry modeling"
-
+    mode = "light"
+    isHighlightCode = true
     # options for highlight.js (version, additional languages, and theme)
     highlightjsVersion = "9.12.0"
     highlightjsCDN = "//cdnjs.cloudflare.com/ajax/libs"

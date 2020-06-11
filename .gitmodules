@@ -4,3 +4,6 @@
 [submodule "themes/hugo-lithium"]
 	path = themes/hugo-lithium
 	url = https://github.com/yihui/hugo-lithium
+[submodule "themes/edidor"]
+	path = themes/edidor
+	url = https://github.com/jacobsun/edidor

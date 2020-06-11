@@ -17,6 +17,7 @@ output:
 <div id="TOC">
 <ul>
 <li><a href="#seeking-help">Seeking help</a></li>
+<li><a href="#numeric-vectors">Numeric Vectors</a></li>
 </ul>
 </div>
 
@@ -61,4 +62,38 @@ apropos(&quot;plot&quot;) #Commands related to &quot;plot&quot;</code></pre>
 <p><img src="/post/r-basics_files/figure-html/unnamed-chunk-1-4.png" width="672" /></p>
 <pre><code>## 
 ## plot&gt; points(x, cex = .5, col = &quot;dark red&quot;)</code></pre>
+</div>
+<div id="numeric-vectors" class="section level3">
+<h3>Numeric Vectors</h3>
+<div id="assignment" class="section level4">
+<h4>Assignment</h4>
+<p>Assignment of several items to a vector is done using the combine function c:</p>
+<pre class="r"><code>x &lt;- c(10.4, 5.6, 3.1, 6.4, 21.7)
+y &lt;- c(x,0,x)
+y</code></pre>
+<pre><code>##  [1] 10.4  5.6  3.1  6.4 21.7  0.0 10.4  5.6  3.1  6.4 21.7</code></pre>
+</div>
+<div id="vector-arithmetic" class="section level4">
+<h4>Vector Arithmetic</h4>
+<p>For vectors, calculations are made using basic arithmetic operators: + - * / ^. The use of these operators for two vectors of the same length is intuitive. In other cases, the elements of the shorter vector are recycled.</p>
+<pre class="r"><code>print(&quot;Intuitive operators of same length vectors&quot;)</code></pre>
+<pre><code>## [1] &quot;Intuitive operators of same length vectors&quot;</code></pre>
+<pre class="r"><code>x*2</code></pre>
+<pre><code>## [1] 20.8 11.2  6.2 12.8 43.4</code></pre>
+<pre class="r"><code>print(&quot;Multiply is recycled, i.e. *1 *2 *1 *2 *1&quot;)</code></pre>
+<pre><code>## [1] &quot;Multiply is recycled, i.e. *1 *2 *1 *2 *1&quot;</code></pre>
+<pre class="r"><code>x*c(1,2) </code></pre>
+<pre><code>## Warning in x * c(1, 2): longer object length is not a multiple of shorter object
+## length</code></pre>
+<pre><code>## [1] 10.4 11.2  3.1 12.8 21.7</code></pre>
+</div>
+<div id="names" class="section level4">
+<h4>Names</h4>
+<p>Each vector may have an attribute <em>names</em> (the length of the vector and names must be matching)</p>
+<pre class="r"><code>x &lt;- c(3,15,27)
+names(x) &lt;- c(&quot;Opx&quot;,&quot;Cpx&quot;,&quot;Pl&quot;)
+x</code></pre>
+<pre><code>## Opx Cpx  Pl 
+##   3  15  27</code></pre>
+</div>
 </div>

@@ -35,8 +35,8 @@
       <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>/2020/06/10/r-basics/</guid>
-      <description>Seeking help   Seeking help Here demonstrate how to seek help in R programing. These keywords include: help(), ?, apropos and example.
-help(plot) ?plot apropos(&amp;quot;plot&amp;quot;) #Commands related to &amp;quot;plot&amp;quot; ## [1] &amp;quot;assocplot&amp;quot; &amp;quot;barplot&amp;quot; &amp;quot;barplot.default&amp;quot; ## [4] &amp;quot;biplot&amp;quot; &amp;quot;boxplot&amp;quot; &amp;quot;boxplot.default&amp;quot; ## [7] &amp;quot;boxplot.matrix&amp;quot; &amp;quot;boxplot.stats&amp;quot; &amp;quot;cdplot&amp;quot; ## [10] &amp;quot;coplot&amp;quot; &amp;quot;fourfoldplot&amp;quot; &amp;quot;interaction.plot&amp;quot; ## [13] &amp;quot;lag.plot&amp;quot; &amp;quot;matplot&amp;quot; &amp;quot;monthplot&amp;quot; ## [16] &amp;quot;mosaicplot&amp;quot; &amp;quot;plot&amp;quot; &amp;quot;plot.default&amp;quot; ## [19] &amp;quot;plot.design&amp;quot; &amp;quot;plot.ecdf&amp;quot; &amp;quot;plot.function&amp;quot; ## [22] &amp;quot;plot.new&amp;quot; &amp;quot;plot.</description>
+      <description>Seeking help Numeric Vectors   Seeking help Here demonstrate how to seek help in R programing. These keywords include: help(), ?, apropos and example.
+help(plot) ?plot apropos(&amp;quot;plot&amp;quot;) #Commands related to &amp;quot;plot&amp;quot; ## [1] &amp;quot;assocplot&amp;quot; &amp;quot;barplot&amp;quot; &amp;quot;barplot.default&amp;quot; ## [4] &amp;quot;biplot&amp;quot; &amp;quot;boxplot&amp;quot; &amp;quot;boxplot.default&amp;quot; ## [7] &amp;quot;boxplot.matrix&amp;quot; &amp;quot;boxplot.stats&amp;quot; &amp;quot;cdplot&amp;quot; ## [10] &amp;quot;coplot&amp;quot; &amp;quot;fourfoldplot&amp;quot; &amp;quot;interaction.plot&amp;quot; ## [13] &amp;quot;lag.plot&amp;quot; &amp;quot;matplot&amp;quot; &amp;quot;monthplot&amp;quot; ## [16] &amp;quot;mosaicplot&amp;quot; &amp;quot;plot&amp;quot; &amp;quot;plot.default&amp;quot; ## [19] &amp;quot;plot.design&amp;quot; &amp;quot;plot.ecdf&amp;quot; &amp;quot;plot.function&amp;quot; ## [22] &amp;quot;plot.</description>
     </item>
     
   </channel>
