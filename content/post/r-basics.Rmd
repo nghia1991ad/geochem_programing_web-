@@ -14,7 +14,7 @@ output:
 ---
 
 ### Seeking help
-Here demonstrate how to seek help in R programing. These keywords include: help(), ?, apropos and example.
+First step in doing any programming is to know where to seek help. Here demonstrate how to seek help in R programming. These keywords include: help(), ?, apropos and example.
 ```{r}
 help(plot)
 ?plot
@@ -89,6 +89,7 @@ apply(x,2,sum) #Sum of each column
 ### Indexing/subsetting of Vectors, Arrays and Data Frames
 This might be one of the most important part because manipulating and selecting data needs addition criteria. 
 #### Vectors
+For more reference, see https://www.tutorialspoint.com/r/r_vectors.htm.
 ```{r}
 x <- c(1,12,15,NA,16,13,0,NA,NA)
 names(x) <- c("Pl","Bt","Mu","Q","Kfs","Ky","Ol","Px","C")
@@ -105,4 +106,75 @@ x[1:5] #the first to five elements
 x[c(1,5,6)] #1st, 5th and 7th elements
 ```
 #### Matrices/Data Frames
+Elements of a matrix are presented in the order [row, column]. If nothing is given for a *row* or *column*, it means no restriction. For more reference, see https://www.tutorialspoint.com/r/r_matrices.htm and https://www.tutorialspoint.com/r/r_data_frames.htm. For instance:
+```{r}
+x <- matrix(1:12,3,4)
+x
+x[1,] # all columns of the first row
+x[,c(1,3)] # all rows of the first and third columns
+x[1:3,-2] # all columns apart from the 2nd of rows 1-3
+```
+If the result is a single row or column, it is automatically converted to a vector. To prevent that, one can supply drop = F:
+```{r}
+x[1,,drop=F]
+```
+Manipulate matrix using index arrays:
+```{r}
+x <- matrix(1:20,4,5)
+x
+i <- matrix(c(1,2,3,3,2,1),3,2)
+i
+x[i] <- 0
+x
+```
+### Lists
+Lists are ordered collections of other objects, which do not have to be of the same mode or type.For more references, see https://www.tutorialspoint.com/r/r_lists.htm.
+```{r}
+x1 <- c("Luckovice","9 km E of Blatna","disused quarry")
+x2 <- "melamonzonite"
+x3 <- c(47.31, 1.05, 14.94, 7.01, 8.46, 10.33)
+names(x3) <- c("SiO2", "TiO2", "Al2O3", "FeO", "MgO", "CaO")
+luckovice <- list(ID="Gbl-4",Locality=x1,Rock=x2,major=x3)
+luckovice
+```
+```{r}
+luckovice[[1]]
+luckovice$Rock
+luckovice[[2]][3]
+luckovice$major[c("SiO2","Al2O3")]
+```
+### Factors
+Factors are vector objects used for discrete classification (grouping) of components in other vectors of the same length, matrices or data frames, which is often served as categorical variables. For another reference, see https://www.tutorialspoint.com/r/r_factors.htm.
+```{r}
+#Basic usage
+x <- c("Pl","Bt","Pl","Pl","Kfs","Pl","Bt","Pl",NA)
+factor(x)
+ordered(x,c("Pl","Kfs","Bt"))
+```
+#### Conversion of numeric vectors to factors
+In some cases, we want to divide the total range of a numeric vector x into a certain number of discrete groups and code the values in x accroding to the rank they fall in.
+```{r}
+numericVector <- runif(10, min = 1, max = 256 )
+numericVector
+cut(numericVector, 3)
+cut(numericVector, 3, labels = c("low","med","high"))
+cut(numericVector,breaks = c(1,100,200,256), labels = c("l","m","h"))
+```
+table(...) to counts the number of occurences of the givel level within the factor
+```{r}
+vt_cut <- cut(numericVector,breaks = c(1,100,200,256), labels = c("l","m","h"))
+table(vt_cut)
+```
+tapply(x,INDEX,FUN,...):Apply a function to each cell of a ragged array, that is to each (non-empty) group of values given by a unique combination of the levels of certain factors. See https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/tapply.
+```{r}
+statef <- c("tas", "sa",  "qld", "nsw", "nsw", "nt",  "wa",  "wa",  "qld", "vic", "nsw", "vic", "qld", "qld", "sa",  "tas",  "sa",  "nt",  "wa",  "vic", "qld", "nsw", "nsw", "wa",  "sa",  "act", "nsw", "vic", "vic", "act")
+incomes <- c(60, 49, 40, 61, 64, 60, 59, 54, 62, 69, 70, 42, 56, 61, 61, 61, 58, 51, 48, 65, 49, 49, 41, 48, 52, 46, 59, 46, 58, 43)
+
+(incmeans <- tapply(incomes, statef, sum))
+```
+aggregate(x,by,FUN,..): Splits the data into subsets, computes summary statistics for each, and returns the result in a convenient form. See https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/aggregate
+```{r}
+data("ChickWeight")
+aggregate(ChickWeight$weight,  by=list(chkID = ChickWeight$Diet), FUN=mean)
+```
 

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title> Exploring Adakite using Python &middot; Geochemistry programming </title>
+
+
+<link rel="stylesheet" href="/css/slim.css">
+<link rel="stylesheet" href="/css/highlight.min.css">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/favicon.ico">
+
+
+<link href="" rel="alternate" type="application/rss+xml" title="Geochemistry programming" />
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+  <h1 class="site-title"><a href="/">Geochemistry programming</a></h1>
+  <p class="site-tagline"></p>
+  <div class="nav">
+    <a class="nav-btn" href="#">
+      <span class="ci ci-burger"></span>
+    </a>
+    <ul class="nav-list">
+      
+      <li><a href="/index.html">Article</a></li>
+      
+      <li><a href="/about/">About</a></li>
+      
+      <li><a href="/categories/">Categories</a></li>
+       
+	  <li class="spacer">&ac;</li>
+  
+    </ul>
+  </div>
+</div>
+    <div class="content">
+      <div class="posts">
+        <div class="post">
+          <h2 class="post-title"><a href="/post/exploring-adakite-using-python/">Exploring Adakite using Python</a></h2>
+          <span class="post-date">Jun 11, 2020 </span>
+          <div class="post-content">
+            <p>We download the precompiled data of adakite from GEOROC database.
+For a simple impression of adakite, the wikipedia page gives some clue: Adakites are volcanic rocks of intermediate to felsic composition that have geochemical characteristics of magma thought to have formed by partial melting of altered basalt that is subducted below volcanic arcs.</p>
+<p>In this example, we demonstrate how to use python to simplify the data, discard the null data, classify and plot the geochemical properties.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
+<span style="color:#f92672">from</span> mpl_toolkits.basemap <span style="color:#f92672">import</span> Basemap
+<span style="color:#f92672">import</span> warnings
+warnings<span style="color:#f92672">.</span>filterwarnings(<span style="color:#e6db74">&#34;ignore&#34;</span>)
+plt<span style="color:#f92672">.</span>rcParams[<span style="color:#e6db74">&#39;figure.figsize&#39;</span>] <span style="color:#f92672">=</span> (<span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">10</span>)
+plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use(<span style="color:#e6db74">&#39;default&#39;</span>)
+
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#34;ADAKITE.csv&#34;</span>, encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;iso-8859-1&#34;</span>)
+df <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>dropna(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, thresh<span style="color:#f92672">=</span>int(<span style="color:#ae81ff">0.5</span><span style="color:#f92672">*</span>len(df)))
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">plot_harker</span>(x,xlabel,y,ylabel,title<span style="color:#f92672">=</span>None,xlim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">40</span>,<span style="color:#ae81ff">80</span>],ylim<span style="color:#f92672">=</span>None,color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;b&#34;</span>,label<span style="color:#f92672">=</span>None):
+    plt<span style="color:#f92672">.</span>scatter(x<span style="color:#f92672">=</span>x,y<span style="color:#f92672">=</span>y,marker<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;o&#34;</span>, c<span style="color:#f92672">=</span>color,s<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>,label <span style="color:#f92672">=</span> label)
+    plt<span style="color:#f92672">.</span>xlabel(xlabel)
+    plt<span style="color:#f92672">.</span>ylabel(ylabel)
+    plt<span style="color:#f92672">.</span>xlim(xlim)
+    <span style="color:#66d9ef">try</span>:
+        plt<span style="color:#f92672">.</span>ylim(ylim)
+    <span style="color:#66d9ef">except</span>:
+        <span style="color:#66d9ef">pass</span>
+    <span style="color:#66d9ef">if</span> title <span style="color:#f92672">!=</span> None:
+        plt<span style="color:#f92672">.</span>title(title)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">10</span>))
+m <span style="color:#f92672">=</span> Basemap(lon_0<span style="color:#f92672">=</span><span style="color:#ae81ff">180</span>,projection<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;hammer&#39;</span>)
+lon <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#34;LONGITUDE MIN&#34;</span>]<span style="color:#f92672">.</span>dropna()
+lat <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#34;LATITUDE MIN&#34;</span>]<span style="color:#f92672">.</span>dropna()
+lon <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>to_numeric(lon, errors<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ignore&#39;</span>);
+lat <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>to_numeric(lat, errors<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ignore&#39;</span>);
+lon_ <span style="color:#f92672">=</span> [];lat_ <span style="color:#f92672">=</span> []
+<span style="color:#66d9ef">for</span> x, y <span style="color:#f92672">in</span> zip(lon,lat):
+    <span style="color:#66d9ef">try</span>:
+        xx, yy <span style="color:#f92672">=</span> m(float(x),float(y))
+        lon_<span style="color:#f92672">.</span>append(xx);lat_<span style="color:#f92672">.</span>append(yy)
+    <span style="color:#66d9ef">except</span>:
+        <span style="color:#66d9ef">pass</span>
+m<span style="color:#f92672">.</span>scatter(lon_, lat_, marker <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;o&#34;</span> ,s<span style="color:#f92672">=</span><span style="color:#ae81ff">15</span>, c<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;r&#34;</span> , edgecolors <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;k&#34;</span>, alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+m<span style="color:#f92672">.</span>drawcoastlines()
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Adakite rocks sample&#39;</span>)
+plt<span style="color:#f92672">.</span>show()
+</code></pre></div><p><img src="/post/2020-06-11-exploring-adakite-using-python_files/Adakite_3_0.png" alt=""></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">12</span>))
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">321</span>)
+plot_harker(x<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;SIO2(WT%)&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ (wt%)&#39;</span>,
+            y<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;AL2O3(WT%)&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$Al_2O_3$ (wt%)&#39;</span>),title<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ vs $Al_2O_3$&#39;</span>)
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">322</span>)
+plot_harker(x<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;SIO2(WT%)&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ (wt%)&#39;</span>,
+            y<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;MGO(WT%)&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$MgO$ (wt%)&#39;</span>),title<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ vs $MgO$&#39;</span>)
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">323</span>)
+plot_harker(x<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;SIO2(WT%)&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ (wt%)&#39;</span>,
+            y<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;FEOT(WT%)&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$FeOt$ (wt%)&#39;</span>),title<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ vs $FeOt$&#39;</span>)
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">324</span>)
+plot_harker(x<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;SIO2(WT%)&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ (wt%)&#39;</span>,
+            y<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;TIO2(WT%)&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$TiO_2$ (wt%)&#39;</span>),title<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ vs $TiO_2$&#39;</span>)
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">325</span>)
+plot_harker(x<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;SIO2(WT%)&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ (wt%)&#39;</span>,
+            y<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;NA2O(WT%)&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$Na_2O$ (wt%)&#39;</span>),title<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ vs $Na_2O$&#39;</span>)
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">326</span>)
+plot_harker(x<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;SIO2(WT%)&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ (wt%)&#39;</span>,
+            y<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;K2O(WT%)&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$MgO$ (wt%)&#39;</span>),title<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ vs $K_2O$&#39;</span>)
+plt<span style="color:#f92672">.</span>suptitle(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;Harker diagram of Adakite vs $SiO_2$&#39;</span>,y<span style="color:#f92672">=</span><span style="color:#ae81ff">0.92</span>,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">15</span>)
+plt<span style="color:#f92672">.</span>subplots_adjust(hspace<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>)
+plt<span style="color:#f92672">.</span>show()
+</code></pre></div><p><img src="/post/2020-06-11-exploring-adakite-using-python_files/Adakite_4_0.png" alt=""></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">8</span>))
+tec <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;TECTONIC SETTING&#39;</span>]<span style="color:#f92672">.</span>dropna()
+tec <span style="color:#f92672">=</span> tec<span style="color:#f92672">.</span>replace(<span style="color:#e6db74">&#39;ARCHEAN CRATON (INCLUDING GREENSTONE BELTS)&#39;</span>,<span style="color:#e6db74">&#39;ARCHEAN CRATON&#39;</span>)
+tec_counts <span style="color:#f92672">=</span> tec<span style="color:#f92672">.</span>value_counts()
+tec_counts<span style="color:#f92672">.</span>plot(kind<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;bar&#34;</span>,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Tectonic settings of Adakite&#39;</span>)
+plt<span style="color:#f92672">.</span>ylim([<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">500</span>])
+plt<span style="color:#f92672">.</span>show()
+
+</code></pre></div><p><img src="/post/2020-06-11-exploring-adakite-using-python_files/Adakite_5_0.png" alt=""></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df[<span style="color:#e6db74">&#39;SR/Y&#39;</span>] <span style="color:#f92672">=</span> (df[<span style="color:#e6db74">&#34;SR(PPM)&#34;</span>]<span style="color:#f92672">/</span>df[<span style="color:#e6db74">&#34;Y(PPM)&#34;</span>])
+df[<span style="color:#e6db74">&#39;CAO+NA2O&#39;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;CAO(WT%)&#39;</span>] <span style="color:#f92672">+</span> df[<span style="color:#e6db74">&#39;NA2O(WT%)&#39;</span>]
+df[<span style="color:#e6db74">&#39;CR/NI&#39;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;CR(PPM)&#39;</span>] <span style="color:#f92672">+</span> df[<span style="color:#e6db74">&#39;NI(PPM)&#39;</span>]
+df_hsa <span style="color:#f92672">=</span> df[df[<span style="color:#e6db74">&#34;SIO2(WT%)&#34;</span>] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">60</span>]
+df_lsa <span style="color:#f92672">=</span> df[df[<span style="color:#e6db74">&#34;SIO2(WT%)&#34;</span>] <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">60</span>]
+plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">12</span>))
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">221</span>)
+plot_harker(x<span style="color:#f92672">=</span>df_hsa[<span style="color:#e6db74">&#34;TIO2(WT%)&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$TiO_2$ (%)&#39;</span>,
+            y<span style="color:#f92672">=</span>df_hsa[<span style="color:#e6db74">&#34;CR/NI&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$Cr/Ni$&#39;</span>),
+            xlim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>],ylim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">200</span>],color<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;r&#34;</span>)
+plot_harker(x<span style="color:#f92672">=</span>df_lsa[<span style="color:#e6db74">&#34;TIO2(WT%)&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$TiO_2$ (%)&#39;</span>,
+            y<span style="color:#f92672">=</span>df_lsa[<span style="color:#e6db74">&#34;CR/NI&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$Cr/Ni$&#39;</span>),
+            xlim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>],ylim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">200</span>],color<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;b&#34;</span>)
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">222</span>)
+plot_harker(x<span style="color:#f92672">=</span>df_hsa[<span style="color:#e6db74">&#34;CAO+NA2O&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$CaO+Na_2O$ (%)&#39;</span>,
+            y<span style="color:#f92672">=</span>df_hsa[<span style="color:#e6db74">&#34;SR(PPM)&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$Sr$ (ppm)&#39;</span>),
+            xlim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">20</span>],ylim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">3000</span>],color<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;r&#34;</span>)
+plot_harker(x<span style="color:#f92672">=</span>df_lsa[<span style="color:#e6db74">&#34;CAO+NA2O&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$CaO+Na_2O$ (%)&#39;</span>,
+            y<span style="color:#f92672">=</span>df_lsa[<span style="color:#e6db74">&#34;SR(PPM)&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$Sr$ (ppm)&#39;</span>),
+            xlim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">20</span>],ylim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">3000</span>],color<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;b&#34;</span>)
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">223</span>)
+plot_harker(x<span style="color:#f92672">=</span>df_hsa[<span style="color:#e6db74">&#34;SIO2(WT%)&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ (%)&#39;</span>,
+            y<span style="color:#f92672">=</span>df_hsa[<span style="color:#e6db74">&#34;MGO(WT%)&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$MgO$ (%)&#39;</span>),
+            xlim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">40</span>,<span style="color:#ae81ff">80</span>],ylim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">10</span>],color<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;r&#34;</span>)
+plot_harker(x<span style="color:#f92672">=</span>df_lsa[<span style="color:#e6db74">&#34;SIO2(WT%)&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ (%)&#39;</span>,
+            y<span style="color:#f92672">=</span>df_lsa[<span style="color:#e6db74">&#34;MGO(WT%)&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$MgO$ (%)&#39;</span>),
+            xlim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">40</span>,<span style="color:#ae81ff">80</span>],ylim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">10</span>],color<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;b&#34;</span>)
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">224</span>)
+plot_harker(x<span style="color:#f92672">=</span>df_hsa[<span style="color:#e6db74">&#34;Y(PPM)&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$Y$ (ppm)&#39;</span>,
+            y<span style="color:#f92672">=</span>df_hsa[<span style="color:#e6db74">&#34;SR/Y&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$Sr/Y$&#39;</span>),
+            xlim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">60</span>],ylim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">200</span>],color<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;r&#34;</span>,label<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;High $SiO_2$ (&gt;60%) adakites &#34;</span>)
+plot_harker(x<span style="color:#f92672">=</span>df_lsa[<span style="color:#e6db74">&#34;Y(PPM)&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$Y$ (ppm)&#39;</span>,
+            y<span style="color:#f92672">=</span>df_lsa[<span style="color:#e6db74">&#34;SR/Y&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$Sr/Y$&#39;</span>),
+            xlim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">60</span>],ylim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">200</span>],color<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;b&#34;</span>,label<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;Low $SiO_2$ (&lt;60%) adakites&#34;</span>)
+plt<span style="color:#f92672">.</span>suptitle(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;Harker diagram of Low vs High $SiO_2$ adakites&#39;</span>,y<span style="color:#f92672">=</span><span style="color:#ae81ff">0.92</span>,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">15</span>)
+plt<span style="color:#f92672">.</span>legend()
+plt<span style="color:#f92672">.</span>show()
+</code></pre></div><p><img src="/post/2020-06-11-exploring-adakite-using-python_files/Adakite_6_0.png" alt=""></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">cite <span style="color:#f92672">=</span> [df<span style="color:#f92672">.</span>CITATIONS[x] <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,len(df)) <span style="color:#66d9ef">if</span> len(df<span style="color:#f92672">.</span>CITATIONS[x]) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">20</span> <span style="color:#f92672">and</span> df<span style="color:#f92672">.</span>CITATIONS[x]<span style="color:#f92672">.</span>count(<span style="color:#e6db74">&#39;[&#39;</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>]
+year <span style="color:#f92672">=</span> []
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,len(cite)):
+    year<span style="color:#f92672">.</span>append(int(cite[i]<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;[&#39;</span>)[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;]&#39;</span>)[<span style="color:#ae81ff">0</span>]))
+plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">10</span>))
+plt<span style="color:#f92672">.</span>hist(year,<span style="color:#ae81ff">40</span>,
+         facecolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;green&#39;</span>,
+         edgecolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;k&#39;</span>)
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Number of paper about adakite vs year from GEOROC database&#39;</span>)
+plt<span style="color:#f92672">.</span>show()    
+</code></pre></div><p><img src="/post/2020-06-11-exploring-adakite-using-python_files/Adakite_7_0.png" alt=""></p>
+
+          </div>
+        </div>
+        <div class="pagination">
+          <a class="btn previous " href="/about/"> Prev</a>  
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+  
+  <p>Powered by <a href="https://gohugo.io">Hugo</a>. This theme—Slim—is open sourced on <a href="https://github.com/zhe/hugo-theme-slim">Github</a>.</p>
+  
+</div>
+
+  </div>
+  <script src="/js/slim.js"></script>
+  <script src="/js/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+</body>
+
+</html>

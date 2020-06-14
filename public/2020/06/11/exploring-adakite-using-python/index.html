@@ -1,78 +1,402 @@
-<!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.72.0" />
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "\/"
+        },
+        "articleSection" : "post",
+        "name" : "Exploring Adakite using Python",
+        "headline" : "Exploring Adakite using Python",
+        "description" : "We download the precompiled data of adakite from GEOROC database. For a simple impression of adakite, the wikipedia page gives some clue: Adakites are volcanic rocks of intermediate to felsic composition that have geochemical characteristics of magma thought to have formed by partial melting of altered basalt that is subducted below volcanic arcs.\nIn this example, we demonstrate how to use python to simplify the data, discard the null data, classify and plot the geochemical properties.",
+        "inLanguage" : "en",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2020",
+        "datePublished": "2020-06-11 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2020-06-11 00:00:00 \u002b0000 UTC",
+        "url" : "\/2020\/06\/11\/exploring-adakite-using-python\/",
+        "wordCount" : "374",
+        "keywords" : [ "geochemistry","GEOROC","Blog" ]
+    }
+    </script>
+        
+            
+                <title>Exploring Adakite using Python</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.72.0" />
+        
 
 
-<title>Exploring Adakite using Python - Geochemistry programming</title>
-<meta property="og:title" content="Exploring Adakite using Python - Geochemistry programming">
+        
+            <meta name="author" content="Nguyen Cong Nghia">
+        
+        
+            
+                <meta name="description" content="Geochemistry modeling">
+            
+        
+
+        <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Exploring Adakite using Python"/>
+<meta name="twitter:description" content="We download the precompiled data of adakite from GEOROC database. For a simple impression of adakite, the wikipedia page gives some clue: Adakites are volcanic rocks of intermediate to felsic composition that have geochemical characteristics of magma thought to have formed by partial melting of altered basalt that is subducted below volcanic arcs.
+In this example, we demonstrate how to use python to simplify the data, discard the null data, classify and plot the geochemical properties."/>
+
+        <meta property="og:title" content="Exploring Adakite using Python" />
+<meta property="og:description" content="We download the precompiled data of adakite from GEOROC database. For a simple impression of adakite, the wikipedia page gives some clue: Adakites are volcanic rocks of intermediate to felsic composition that have geochemical characteristics of magma thought to have formed by partial melting of altered basalt that is subducted below volcanic arcs.
+In this example, we demonstrate how to use python to simplify the data, discard the null data, classify and plot the geochemical properties." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/2020/06/11/exploring-adakite-using-python/" />
+<meta property="article:published_time" content="2020-06-11T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-06-11T00:00:00+00:00" />
+
+        <meta property="og:image" content="//images/logo.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="512">
+        <meta property="og:image:height" content="512">
+        <meta itemprop="name" content="Exploring Adakite using Python">
+<meta itemprop="description" content="We download the precompiled data of adakite from GEOROC database. For a simple impression of adakite, the wikipedia page gives some clue: Adakites are volcanic rocks of intermediate to felsic composition that have geochemical characteristics of magma thought to have formed by partial melting of altered basalt that is subducted below volcanic arcs.
+In this example, we demonstrate how to use python to simplify the data, discard the null data, classify and plot the geochemical properties.">
+<meta itemprop="datePublished" content="2020-06-11T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-06-11T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="374">
 
 
-  <link href='/favicon.ico' rel='icon' type='image/x-icon'/>
 
+<meta itemprop="keywords" content="geochemistry,GEOROC," />
+        
+
+        
+            
+        
+
+        
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
+            <link rel="stylesheet" href="/css/main.css">
+            <link rel="stylesheet" href="/css/add-on.css">
+            <link rel="stylesheet" href="/css/academicons.min.css">
+        
+
+        
+
+
+  
+    
+    <link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+  
+
+
+      
+    </head>
+    <body>
+
+      
+      <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+      <h1><a href="/"></a></h1>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/index.html">
+                            <i class="">&nbsp;</i>Article
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/about/">
+                            <i class="">&nbsp;</i>About
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/categories/">
+                            <i class="">&nbsp;</i>Categories
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="as_sitesearch" value="/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="as_sitesearch" value="/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/index.html">
+                            <h3>
+                                <i class="">&nbsp;</i>Article
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/about/">
+                            <h3>
+                                <i class="">&nbsp;</i>About
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories/">
+                            <h3>
+                                <i class="">&nbsp;</i>Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section class="recent-posts">
+            <div class="mini-posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+
+                
+                    
+                
+
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/2020/06/11/exploring-adakite-using-python/">Exploring Adakite using Python</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-06-11'>
+                                    June 11, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/post/">Posts</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-06-11'>
+                                    June 11, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/2020/06/10/geochem-modeling-of-ig-processes-chapter-2/">Geochem modeling of Ig. Processes - Chapter 2</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-06-10'>
+                                    June 10, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/2020/06/10/r-basics/">R Syntax in a Nutshell Part I</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-06-10'>
+                                    June 10, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+
+                
+            </div>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+
+<li>
+  <a href="//twitter.com/share?url=%2f2020%2f06%2f11%2fexploring-adakite-using-python%2f&amp;text=Exploring%20Adakite%20using%20Python&amp;via=" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+<li>
+  <a href="//plus.google.com/share?url=%2f2020%2f06%2f11%2fexploring-adakite-using-python%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+  </a>
+</li>
+
+
+
+
+
+<li>
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2f2020%2f06%2f11%2fexploring-adakite-using-python%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+<li>
+  <a href="//reddit.com/submit?url=%2f2020%2f06%2f11%2fexploring-adakite-using-python%2f&amp;title=Exploring%20Adakite%20using%20Python" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+  </a>
+</li>
+
+
+
+
+<li>
+  <a href="//www.linkedin.com/shareArticle?url=%2f2020%2f06%2f11%2fexploring-adakite-using-python%2f&amp;title=Exploring%20Adakite%20using%20Python" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+<li>
+  <a href="//www.stumbleupon.com/submit?url=%2f2020%2f06%2f11%2fexploring-adakite-using-python%2f&amp;title=Exploring%20Adakite%20using%20Python" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+  </a>
+</li>
+
+
+
+
+<li>
+  <a href="//www.pinterest.com/pin/create/button/?url=%2f2020%2f06%2f11%2fexploring-adakite-using-python%2f&amp;description=Exploring%20Adakite%20using%20Python" target="_blank" class="share-btn pinterest">
+    <i class="fa fa-pinterest-p"></i>
+    <p>Pinterest</p>
+  </a>
+</li>
+
+
+
+
+<li>
+  <a href="mailto:?subject=Check out this post by Nguyen%20Cong%20Nghia&amp;body=%2f2020%2f06%2f11%2fexploring-adakite-using-python%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+  </a>
+</li>
+
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+  <header>
+    <div class="title">
+        
+            <h1><a href="/2020/06/11/exploring-adakite-using-python/">Exploring Adakite using Python</a></h1>
+            
+        
+        
+    </div>
+    <div class="meta">
+        
+
+        <time class="published"
+            datetime='2020-06-11'>
+            June 11, 2020</time>
+        <span class="author">Nguyen Cong Nghia</span>
+        
+        
+    </div>
+</header>
 
 
   
 
+  
 
-
-
-
-
-
-
-<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
-
-
-
-<link rel="stylesheet" href="/css/fonts.css" media="all">
-<link rel="stylesheet" href="/css/main.css" media="all">
-
-
-
-  </head>
-  <body>
-    <div class="wrapper">
-      <header class="header">
-        <nav class="nav">
-  <a href="/" class="nav-logo">
-    <img src="/images/logo.png"
-         width="50"
-         height="50"
-         alt="Logo">
-  </a>
-
-  <ul class="nav-links">
-    
-    <li><a href="/index.html">Article</a></li>
-    
-    <li><a href="/about/">About</a></li>
-    
-    <li><a href="/categories/">Categories</a></li>
-    
-  </ul>
-</nav>
-
-      </header>
-
-
-<main class="content" role="main">
-
-  <article class="article">
-    
-    <span class="article-duration">2 min read</span>
-    
-
-    <h1 class="article-title">Exploring Adakite using Python</h1>
-
-    
-    <span class="article-date">2020-06-11</span>
-    
-
-    <div class="article-content">
-      <p>We download the precompiled data of adakite from GEOROC database.
+  <div id="content">
+    <p>We download the precompiled data of adakite from GEOROC database.
 For a simple impression of adakite, the wikipedia page gives some clue: Adakites are volcanic rocks of intermediate to felsic composition that have geochemical characteristics of magma thought to have formed by partial melting of altered basalt that is subducted below volcanic arcs.</p>
 <p>In this example, we demonstrate how to use python to simplify the data, discard the null data, classify and plot the geochemical properties.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
@@ -197,46 +521,209 @@ plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Nu
 plt<span style="color:#f92672">.</span>show()    
 </code></pre></div><p><img src="/post/2020-06-11-exploring-adakite-using-python_files/Adakite_7_0.png" alt=""></p>
 
+  </div>
+
+  <footer>
+    <ul class="stats">
+  <li class="categories">
+    <ul>
+        
+            
+            
+                <i class="fa fa-folder"></i>
+                
+                
+                <li><a class="article-category-link" href="/categories/python">Python</a></li>
+                
+            
+        
+    </ul>
+  </li>
+  <li class="tags">
+    <ul>
+        
+            
+            
+                <i class="fa fa-tags"></i>
+                
+                
+                <li><a class="article-category-link" href="/tags/geochemistry">geochemistry</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/georoc">GEOROC</a></li>
+                
+            
+        
+    </ul>
+  </li>
+</ul>
+
+  </footer>
+
+</article>
+
+
+<ul class="actions pagination">
+    
+        <li><a href="/2020/06/10/geochem-modeling-of-ig-processes-chapter-2/"
+                class="button big previous">Geochem modeling of Ig. Processes - Chapter 2</a></li>
+    
+
+    
+</ul>
+
+
     </div>
-  </article>
+    
+<section id="sidebar">
 
   
+  <section id="intro">
+    
+    
+    
+    
+  </section>
 
+  
+  <section class="recent-posts">
+    <div class="mini-posts">
+      <header>
+        <h3>Recent Posts</h3>
+      </header>
+      <div class="posts-container">
+        
 
-</main>
+        
+          
+        
 
-      <footer class="footer">
-        <ul class="footer-links">
-          <li>
-            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
-          </li>
-          <li>
-            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
-          </li>
-        </ul>
-      </footer>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/2020/06/11/exploring-adakite-using-python/">Exploring Adakite using Python</a>
+              </h3>
+              
+              <time class="published" datetime='2020-06-11'>
+                June 11, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/post/">Posts</a>
+              </h3>
+              
+              <time class="published" datetime='2020-06-11'>
+                June 11, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/2020/06/10/geochem-modeling-of-ig-processes-chapter-2/">Geochem modeling of Ig. Processes - Chapter 2</a>
+              </h3>
+              
+              <time class="published" datetime='2020-06-10'>
+                June 10, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/2020/06/10/r-basics/">R Syntax in a Nutshell Part I</a>
+              </h3>
+              
+              <time class="published" datetime='2020-06-10'>
+                June 10, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+      </div>
+
+      
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+  
+
+  
+  <section id="footer">
+    
+    <p class="copyright">
+      
+        &copy; 2020
+        
+          Geoscience programming
+        
+      .
+      Powered by <a href="//gohugo.io" target="_blank">Hugo</a>
+    </p>
+  </section>
+</section>
 
     </div>
+    <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
     
 
-
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-
-
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
-<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
-
-
+    
+      
+    
 
     
-<script src="/js/math-code.js"></script>
-<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
+      
+      
+      
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        
+        
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+        <script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+      
+    
+    
+    
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
+      <script src="/js/util.js"></script>
+      <script src="/js/main.js"></script>
+      <script src="/js/backToTop.js"></script>
+    
 
     
+
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+      <script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
   </body>
 </html>
 

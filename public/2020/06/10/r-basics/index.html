@@ -1,78 +1,402 @@
-<!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.72.0" />
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "\/"
+        },
+        "articleSection" : "post",
+        "name" : "R Syntax in a Nutshell Part I",
+        "headline" : "R Syntax in a Nutshell Part I",
+        "description" : "Seeking help Object types Numeric Vectors Character Vectors Arrays, Matrices, Data Frames Indexing\/subsetting of Vectors, Arrays and Data Frames Lists Factors   Seeking help First step in doing any programming is to know where to seek help. Here demonstrate how to seek help in R programming. These keywords include: help(), ?, apropos and example.\nhelp(plot) ?plot apropos(\u0026quot;plot\u0026quot;) #Commands related to \u0026quot;plot\u0026quot; ## [1] \u0026quot;assocplot\u0026quot; \u0026quot;barplot\u0026quot; \u0026quot;barplot.default\u0026quot; ## [4] \u0026quot;biplot\u0026quot; \u0026quot;boxplot\u0026quot; \u0026quot;boxplot.",
+        "inLanguage" : "en",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2020",
+        "datePublished": "2020-06-10 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2020-06-10 00:00:00 \u002b0000 UTC",
+        "url" : "\/2020\/06\/10\/r-basics\/",
+        "wordCount" : "1720",
+        "keywords" : [ "R basics","Blog" ]
+    }
+    </script>
+        
+            
+                <title>R Syntax in a Nutshell Part I</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.72.0" />
+        
 
 
-<title>R Syntax in a Nutshell Part I - Geochemistry programming</title>
-<meta property="og:title" content="R Syntax in a Nutshell Part I - Geochemistry programming">
+        
+            <meta name="author" content="Nguyen Cong Nghia">
+        
+        
+            
+                <meta name="description" content="Geochemistry modeling">
+            
+        
+
+        <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="R Syntax in a Nutshell Part I"/>
+<meta name="twitter:description" content="Seeking help Object types Numeric Vectors Character Vectors Arrays, Matrices, Data Frames Indexing/subsetting of Vectors, Arrays and Data Frames Lists Factors   Seeking help First step in doing any programming is to know where to seek help. Here demonstrate how to seek help in R programming. These keywords include: help(), ?, apropos and example.
+help(plot) ?plot apropos(&quot;plot&quot;) #Commands related to &quot;plot&quot; ## [1] &quot;assocplot&quot; &quot;barplot&quot; &quot;barplot.default&quot; ## [4] &quot;biplot&quot; &quot;boxplot&quot; &quot;boxplot."/>
+
+        <meta property="og:title" content="R Syntax in a Nutshell Part I" />
+<meta property="og:description" content="Seeking help Object types Numeric Vectors Character Vectors Arrays, Matrices, Data Frames Indexing/subsetting of Vectors, Arrays and Data Frames Lists Factors   Seeking help First step in doing any programming is to know where to seek help. Here demonstrate how to seek help in R programming. These keywords include: help(), ?, apropos and example.
+help(plot) ?plot apropos(&quot;plot&quot;) #Commands related to &quot;plot&quot; ## [1] &quot;assocplot&quot; &quot;barplot&quot; &quot;barplot.default&quot; ## [4] &quot;biplot&quot; &quot;boxplot&quot; &quot;boxplot." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/2020/06/10/r-basics/" />
+<meta property="article:published_time" content="2020-06-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-06-10T00:00:00+00:00" />
+
+        <meta property="og:image" content="//images/logo.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="512">
+        <meta property="og:image:height" content="512">
+        <meta itemprop="name" content="R Syntax in a Nutshell Part I">
+<meta itemprop="description" content="Seeking help Object types Numeric Vectors Character Vectors Arrays, Matrices, Data Frames Indexing/subsetting of Vectors, Arrays and Data Frames Lists Factors   Seeking help First step in doing any programming is to know where to seek help. Here demonstrate how to seek help in R programming. These keywords include: help(), ?, apropos and example.
+help(plot) ?plot apropos(&quot;plot&quot;) #Commands related to &quot;plot&quot; ## [1] &quot;assocplot&quot; &quot;barplot&quot; &quot;barplot.default&quot; ## [4] &quot;biplot&quot; &quot;boxplot&quot; &quot;boxplot.">
+<meta itemprop="datePublished" content="2020-06-10T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-06-10T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1720">
 
 
-  <link href='/favicon.ico' rel='icon' type='image/x-icon'/>
 
+<meta itemprop="keywords" content="R basics," />
+        
+
+        
+            
+        
+
+        
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
+            <link rel="stylesheet" href="/css/main.css">
+            <link rel="stylesheet" href="/css/add-on.css">
+            <link rel="stylesheet" href="/css/academicons.min.css">
+        
+
+        
+
+
+  
+    
+    <link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+  
+
+
+      
+    </head>
+    <body>
+
+      
+      <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+      <h1><a href="/"></a></h1>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/index.html">
+                            <i class="">&nbsp;</i>Article
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/about/">
+                            <i class="">&nbsp;</i>About
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/categories/">
+                            <i class="">&nbsp;</i>Categories
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="as_sitesearch" value="/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="as_sitesearch" value="/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/index.html">
+                            <h3>
+                                <i class="">&nbsp;</i>Article
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/about/">
+                            <h3>
+                                <i class="">&nbsp;</i>About
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories/">
+                            <h3>
+                                <i class="">&nbsp;</i>Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section class="recent-posts">
+            <div class="mini-posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+
+                
+                    
+                
+
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/2020/06/11/exploring-adakite-using-python/">Exploring Adakite using Python</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-06-11'>
+                                    June 11, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/post/">Posts</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-06-11'>
+                                    June 11, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/2020/06/10/geochem-modeling-of-ig-processes-chapter-2/">Geochem modeling of Ig. Processes - Chapter 2</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-06-10'>
+                                    June 10, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/2020/06/10/r-basics/">R Syntax in a Nutshell Part I</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-06-10'>
+                                    June 10, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+
+                
+            </div>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+
+<li>
+  <a href="//twitter.com/share?url=%2f2020%2f06%2f10%2fr-basics%2f&amp;text=R%20Syntax%20in%20a%20Nutshell%20Part%20I&amp;via=" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+<li>
+  <a href="//plus.google.com/share?url=%2f2020%2f06%2f10%2fr-basics%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+  </a>
+</li>
+
+
+
+
+
+<li>
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2f2020%2f06%2f10%2fr-basics%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+<li>
+  <a href="//reddit.com/submit?url=%2f2020%2f06%2f10%2fr-basics%2f&amp;title=R%20Syntax%20in%20a%20Nutshell%20Part%20I" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+  </a>
+</li>
+
+
+
+
+<li>
+  <a href="//www.linkedin.com/shareArticle?url=%2f2020%2f06%2f10%2fr-basics%2f&amp;title=R%20Syntax%20in%20a%20Nutshell%20Part%20I" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+<li>
+  <a href="//www.stumbleupon.com/submit?url=%2f2020%2f06%2f10%2fr-basics%2f&amp;title=R%20Syntax%20in%20a%20Nutshell%20Part%20I" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+  </a>
+</li>
+
+
+
+
+<li>
+  <a href="//www.pinterest.com/pin/create/button/?url=%2f2020%2f06%2f10%2fr-basics%2f&amp;description=R%20Syntax%20in%20a%20Nutshell%20Part%20I" target="_blank" class="share-btn pinterest">
+    <i class="fa fa-pinterest-p"></i>
+    <p>Pinterest</p>
+  </a>
+</li>
+
+
+
+
+<li>
+  <a href="mailto:?subject=Check out this post by Nguyen%20Cong%20Nghia&amp;body=%2f2020%2f06%2f10%2fr-basics%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+  </a>
+</li>
+
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+  <header>
+    <div class="title">
+        
+            <h1><a href="/2020/06/10/r-basics/">R Syntax in a Nutshell Part I</a></h1>
+            
+        
+        
+    </div>
+    <div class="meta">
+        
+
+        <time class="published"
+            datetime='2020-06-10'>
+            June 10, 2020</time>
+        <span class="author">Nguyen Cong Nghia</span>
+        
+        
+    </div>
+</header>
 
 
   
 
+  
 
-
-
-
-
-
-
-<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
-
-
-
-<link rel="stylesheet" href="/css/fonts.css" media="all">
-<link rel="stylesheet" href="/css/main.css" media="all">
-
-
-
-  </head>
-  <body>
-    <div class="wrapper">
-      <header class="header">
-        <nav class="nav">
-  <a href="/" class="nav-logo">
-    <img src="/images/logo.png"
-         width="50"
-         height="50"
-         alt="Logo">
-  </a>
-
-  <ul class="nav-links">
+  <div id="content">
     
-    <li><a href="/index.html">Article</a></li>
-    
-    <li><a href="/about/">About</a></li>
-    
-    <li><a href="/categories/">Categories</a></li>
-    
-  </ul>
-</nav>
-
-      </header>
-
-
-<main class="content" role="main">
-
-  <article class="article">
-    
-    <span class="article-duration">5 min read</span>
-    
-
-    <h1 class="article-title">R Syntax in a Nutshell Part I</h1>
-
-    
-    <span class="article-date">2020-06-10</span>
-    
-
-    <div class="article-content">
-      
 
 <div id="TOC">
 <ul>
@@ -82,12 +406,14 @@
 <li><a href="#character-vectors">Character Vectors</a></li>
 <li><a href="#arrays-matrices-data-frames">Arrays, Matrices, Data Frames</a></li>
 <li><a href="#indexingsubsetting-of-vectors-arrays-and-data-frames">Indexing/subsetting of Vectors, Arrays and Data Frames</a></li>
+<li><a href="#lists">Lists</a></li>
+<li><a href="#factors">Factors</a></li>
 </ul>
 </div>
 
 <div id="seeking-help" class="section level3">
 <h3>Seeking help</h3>
-<p>Here demonstrate how to seek help in R programing. These keywords include: help(), ?, apropos and example.</p>
+<p>First step in doing any programming is to know where to seek help. Here demonstrate how to seek help in R programming. These keywords include: help(), ?, apropos and example.</p>
 <pre class="r"><code>help(plot)
 ?plot
 apropos(&quot;plot&quot;) #Commands related to &quot;plot&quot;</code></pre>
@@ -256,7 +582,8 @@ z</code></pre>
 <div id="indexingsubsetting-of-vectors-arrays-and-data-frames" class="section level3">
 <h3>Indexing/subsetting of Vectors, Arrays and Data Frames</h3>
 <p>This might be one of the most important part because manipulating and selecting data needs addition criteria.
-#### Vectors</p>
+#### Vectors
+For more reference, see <a href="https://www.tutorialspoint.com/r/r_vectors.htm" class="uri">https://www.tutorialspoint.com/r/r_vectors.htm</a>.</p>
 <pre class="r"><code>x &lt;- c(1,12,15,NA,16,13,0,NA,NA)
 names(x) &lt;- c(&quot;Pl&quot;,&quot;Bt&quot;,&quot;Mu&quot;,&quot;Q&quot;,&quot;Kfs&quot;,&quot;Ky&quot;,&quot;Ol&quot;,&quot;Px&quot;,&quot;C&quot;)
 x</code></pre>
@@ -278,49 +605,335 @@ x</code></pre>
 ##   1  16  13</code></pre>
 <div id="matricesdata-frames" class="section level4">
 <h4>Matrices/Data Frames</h4>
+<p>Elements of a matrix are presented in the order [row, column]. If nothing is given for a <em>row</em> or <em>column</em>, it means no restriction. For more reference, see <a href="https://www.tutorialspoint.com/r/r_matrices.htm" class="uri">https://www.tutorialspoint.com/r/r_matrices.htm</a> and <a href="https://www.tutorialspoint.com/r/r_data_frames.htm" class="uri">https://www.tutorialspoint.com/r/r_data_frames.htm</a>. For instance:</p>
+<pre class="r"><code>x &lt;- matrix(1:12,3,4)
+x</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    4    7   10
+## [2,]    2    5    8   11
+## [3,]    3    6    9   12</code></pre>
+<pre class="r"><code>x[1,] # all columns of the first row</code></pre>
+<pre><code>## [1]  1  4  7 10</code></pre>
+<pre class="r"><code>x[,c(1,3)] # all rows of the first and third columns</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1    7
+## [2,]    2    8
+## [3,]    3    9</code></pre>
+<pre class="r"><code>x[1:3,-2] # all columns apart from the 2nd of rows 1-3</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    7   10
+## [2,]    2    8   11
+## [3,]    3    9   12</code></pre>
+<p>If the result is a single row or column, it is automatically converted to a vector. To prevent that, one can supply drop = F:</p>
+<pre class="r"><code>x[1,,drop=F]</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    4    7   10</code></pre>
+<p>Manipulate matrix using index arrays:</p>
+<pre class="r"><code>x &lt;- matrix(1:20,4,5)
+x</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    5    9   13   17
+## [2,]    2    6   10   14   18
+## [3,]    3    7   11   15   19
+## [4,]    4    8   12   16   20</code></pre>
+<pre class="r"><code>i &lt;- matrix(c(1,2,3,3,2,1),3,2)
+i</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1    3
+## [2,]    2    2
+## [3,]    3    1</code></pre>
+<pre class="r"><code>x[i] &lt;- 0
+x</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    5    0   13   17
+## [2,]    2    0   10   14   18
+## [3,]    0    7   11   15   19
+## [4,]    4    8   12   16   20</code></pre>
+</div>
+</div>
+<div id="lists" class="section level3">
+<h3>Lists</h3>
+<p>Lists are ordered collections of other objects, which do not have to be of the same mode or type.For more references, see <a href="https://www.tutorialspoint.com/r/r_lists.htm" class="uri">https://www.tutorialspoint.com/r/r_lists.htm</a>.</p>
+<pre class="r"><code>x1 &lt;- c(&quot;Luckovice&quot;,&quot;9 km E of Blatna&quot;,&quot;disused quarry&quot;)
+x2 &lt;- &quot;melamonzonite&quot;
+x3 &lt;- c(47.31, 1.05, 14.94, 7.01, 8.46, 10.33)
+names(x3) &lt;- c(&quot;SiO2&quot;, &quot;TiO2&quot;, &quot;Al2O3&quot;, &quot;FeO&quot;, &quot;MgO&quot;, &quot;CaO&quot;)
+luckovice &lt;- list(ID=&quot;Gbl-4&quot;,Locality=x1,Rock=x2,major=x3)
+luckovice</code></pre>
+<pre><code>## $ID
+## [1] &quot;Gbl-4&quot;
+## 
+## $Locality
+## [1] &quot;Luckovice&quot;        &quot;9 km E of Blatna&quot; &quot;disused quarry&quot;  
+## 
+## $Rock
+## [1] &quot;melamonzonite&quot;
+## 
+## $major
+##  SiO2  TiO2 Al2O3   FeO   MgO   CaO 
+## 47.31  1.05 14.94  7.01  8.46 10.33</code></pre>
+<pre class="r"><code>luckovice[[1]]</code></pre>
+<pre><code>## [1] &quot;Gbl-4&quot;</code></pre>
+<pre class="r"><code>luckovice$Rock</code></pre>
+<pre><code>## [1] &quot;melamonzonite&quot;</code></pre>
+<pre class="r"><code>luckovice[[2]][3]</code></pre>
+<pre><code>## [1] &quot;disused quarry&quot;</code></pre>
+<pre class="r"><code>luckovice$major[c(&quot;SiO2&quot;,&quot;Al2O3&quot;)]</code></pre>
+<pre><code>##  SiO2 Al2O3 
+## 47.31 14.94</code></pre>
+</div>
+<div id="factors" class="section level3">
+<h3>Factors</h3>
+<p>Factors are vector objects used for discrete classification (grouping) of components in other vectors of the same length, matrices or data frames, which is often served as categorical variables. For another reference, see <a href="https://www.tutorialspoint.com/r/r_factors.htm" class="uri">https://www.tutorialspoint.com/r/r_factors.htm</a>.</p>
+<pre class="r"><code>#Basic usage
+x &lt;- c(&quot;Pl&quot;,&quot;Bt&quot;,&quot;Pl&quot;,&quot;Pl&quot;,&quot;Kfs&quot;,&quot;Pl&quot;,&quot;Bt&quot;,&quot;Pl&quot;,NA)
+factor(x)</code></pre>
+<pre><code>## [1] Pl   Bt   Pl   Pl   Kfs  Pl   Bt   Pl   &lt;NA&gt;
+## Levels: Bt Kfs Pl</code></pre>
+<pre class="r"><code>ordered(x,c(&quot;Pl&quot;,&quot;Kfs&quot;,&quot;Bt&quot;))</code></pre>
+<pre><code>## [1] Pl   Bt   Pl   Pl   Kfs  Pl   Bt   Pl   &lt;NA&gt;
+## Levels: Pl &lt; Kfs &lt; Bt</code></pre>
+<div id="conversion-of-numeric-vectors-to-factors" class="section level4">
+<h4>Conversion of numeric vectors to factors</h4>
+<p>In some cases, we want to divide the total range of a numeric vector x into a certain number of discrete groups and code the values in x accroding to the rank they fall in.</p>
+<pre class="r"><code>numericVector &lt;- runif(10, min = 1, max = 256 )
+numericVector</code></pre>
+<pre><code>##  [1] 200.87228 181.25822 177.50095 254.34912 130.34155  75.24619  69.16914
+##  [8] 239.49859  80.69252 240.40641</code></pre>
+<pre class="r"><code>cut(numericVector, 3)</code></pre>
+<pre><code>##  [1] (193,255] (131,193] (131,193] (193,255] (69,131]  (69,131]  (69,131] 
+##  [8] (193,255] (69,131]  (193,255]
+## Levels: (69,131] (131,193] (193,255]</code></pre>
+<pre class="r"><code>cut(numericVector, 3, labels = c(&quot;low&quot;,&quot;med&quot;,&quot;high&quot;))</code></pre>
+<pre><code>##  [1] high med  med  high low  low  low  high low  high
+## Levels: low med high</code></pre>
+<pre class="r"><code>cut(numericVector,breaks = c(1,100,200,256), labels = c(&quot;l&quot;,&quot;m&quot;,&quot;h&quot;))</code></pre>
+<pre><code>##  [1] h m m h m l l h l h
+## Levels: l m h</code></pre>
+<p>table(…) to counts the number of occurences of the givel level within the factor</p>
+<pre class="r"><code>vt_cut &lt;- cut(numericVector,breaks = c(1,100,200,256), labels = c(&quot;l&quot;,&quot;m&quot;,&quot;h&quot;))
+table(vt_cut)</code></pre>
+<pre><code>## vt_cut
+## l m h 
+## 3 3 4</code></pre>
+<p>tapply(x,INDEX,FUN,…):Apply a function to each cell of a ragged array, that is to each (non-empty) group of values given by a unique combination of the levels of certain factors. See <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/tapply" class="uri">https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/tapply</a>.</p>
+<pre class="r"><code>statef &lt;- c(&quot;tas&quot;, &quot;sa&quot;,  &quot;qld&quot;, &quot;nsw&quot;, &quot;nsw&quot;, &quot;nt&quot;,  &quot;wa&quot;,  &quot;wa&quot;,  &quot;qld&quot;, &quot;vic&quot;, &quot;nsw&quot;, &quot;vic&quot;, &quot;qld&quot;, &quot;qld&quot;, &quot;sa&quot;,  &quot;tas&quot;,  &quot;sa&quot;,  &quot;nt&quot;,  &quot;wa&quot;,  &quot;vic&quot;, &quot;qld&quot;, &quot;nsw&quot;, &quot;nsw&quot;, &quot;wa&quot;,  &quot;sa&quot;,  &quot;act&quot;, &quot;nsw&quot;, &quot;vic&quot;, &quot;vic&quot;, &quot;act&quot;)
+incomes &lt;- c(60, 49, 40, 61, 64, 60, 59, 54, 62, 69, 70, 42, 56, 61, 61, 61, 58, 51, 48, 65, 49, 49, 41, 48, 52, 46, 59, 46, 58, 43)
+
+(incmeans &lt;- tapply(incomes, statef, sum))</code></pre>
+<pre><code>## act nsw  nt qld  sa tas vic  wa 
+##  89 344 111 268 220 121 280 209</code></pre>
+<p>aggregate(x,by,FUN,..): Splits the data into subsets, computes summary statistics for each, and returns the result in a convenient form. See <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/aggregate" class="uri">https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/aggregate</a></p>
+<pre class="r"><code>data(&quot;ChickWeight&quot;)
+aggregate(ChickWeight$weight,  by=list(chkID = ChickWeight$Diet), FUN=mean)</code></pre>
+<pre><code>##   chkID        x
+## 1     1 102.6455
+## 2     2 122.6167
+## 3     3 142.9500
+## 4     4 135.2627</code></pre>
 </div>
 </div>
 
+  </div>
+
+  <footer>
+    <ul class="stats">
+  <li class="categories">
+    <ul>
+        
+            
+            
+                <i class="fa fa-folder"></i>
+                
+                
+                <li><a class="article-category-link" href="/categories/r">R</a></li>
+                
+            
+        
+    </ul>
+  </li>
+  <li class="tags">
+    <ul>
+        
+            
+            
+                <i class="fa fa-tags"></i>
+                
+                
+                <li><a class="article-category-link" href="/tags/r-basics">R basics</a></li>
+                
+            
+        
+    </ul>
+  </li>
+</ul>
+
+  </footer>
+
+</article>
+
+
+<ul class="actions pagination">
+    
+
+    
+        <li><a href="/2020/06/10/geochem-modeling-of-ig-processes-chapter-2/"
+                class="button big next">Geochem modeling of Ig. Processes - Chapter 2</a></li>
+    
+</ul>
+
+
     </div>
-  </article>
+    
+<section id="sidebar">
 
   
+  <section id="intro">
+    
+    
+    
+    
+  </section>
 
+  
+  <section class="recent-posts">
+    <div class="mini-posts">
+      <header>
+        <h3>Recent Posts</h3>
+      </header>
+      <div class="posts-container">
+        
 
-</main>
+        
+          
+        
 
-      <footer class="footer">
-        <ul class="footer-links">
-          <li>
-            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
-          </li>
-          <li>
-            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
-          </li>
-        </ul>
-      </footer>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/2020/06/11/exploring-adakite-using-python/">Exploring Adakite using Python</a>
+              </h3>
+              
+              <time class="published" datetime='2020-06-11'>
+                June 11, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/post/">Posts</a>
+              </h3>
+              
+              <time class="published" datetime='2020-06-11'>
+                June 11, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/2020/06/10/geochem-modeling-of-ig-processes-chapter-2/">Geochem modeling of Ig. Processes - Chapter 2</a>
+              </h3>
+              
+              <time class="published" datetime='2020-06-10'>
+                June 10, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/2020/06/10/r-basics/">R Syntax in a Nutshell Part I</a>
+              </h3>
+              
+              <time class="published" datetime='2020-06-10'>
+                June 10, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+      </div>
+
+      
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+  
+
+  
+  <section id="footer">
+    
+    <p class="copyright">
+      
+        &copy; 2020
+        
+          Geoscience programming
+        
+      .
+      Powered by <a href="//gohugo.io" target="_blank">Hugo</a>
+    </p>
+  </section>
+</section>
 
     </div>
+    <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
     
 
-
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-
-
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
-<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
-
-
+    
+      
+    
 
     
-<script src="/js/math-code.js"></script>
-<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
+      
+      
+      
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        
+        
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+        <script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+      
+    
+    
+    
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
+      <script src="/js/util.js"></script>
+      <script src="/js/main.js"></script>
+      <script src="/js/backToTop.js"></script>
+    
 
     
+
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+      <script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
   </body>
 </html>
 
