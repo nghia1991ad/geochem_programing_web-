@@ -16,7 +16,7 @@ disableFastRender = true
 
 [[menu.main]]
     name = "Article"
-    url = "/index.html"
+    url = "/post"
     weight = 1
 [[menu.main]]
     name = "Categories"
