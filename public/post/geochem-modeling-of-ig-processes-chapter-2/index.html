@@ -1,53 +1,381 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+
 <html>
-
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<title> Geochem modeling of Ig. Processes - Chapter 2 &middot; Geochemistry programming </title>
-
-
-<link rel="stylesheet" href="/css/slim.css">
-<link rel="stylesheet" href="/css/highlight.min.css">
-<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
-
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
-<link rel="shortcut icon" href="/favicon.ico">
-
-
-<link href="" rel="alternate" type="application/rss+xml" title="Geochemistry programming" />
-
-</head>
-
-<body>
-  <div class="container">
-    <div class="header">
-  <h1 class="site-title"><a href="/">Geochemistry programming</a></h1>
-  <p class="site-tagline"></p>
-  <div class="nav">
-    <a class="nav-btn" href="#">
-      <span class="ci ci-burger"></span>
-    </a>
-    <ul class="nav-list">
-      
-      <li><a href="/index.html">Article</a></li>
-      
-      <li><a href="/about/">About</a></li>
-      
-      <li><a href="/categories/">Categories</a></li>
-       
-	  <li class="spacer">&ac;</li>
-  
-    </ul>
-  </div>
-</div>
-    <div class="content">
-      <div class="posts">
-        <div class="post">
-          <h2 class="post-title"><a href="/post/geochem-modeling-of-ig-processes-chapter-2/">Geochem modeling of Ig. Processes - Chapter 2</a></h2>
-          <span class="post-date">Jun 10, 2020 </span>
-          <div class="post-content">
+    <head>
+        <script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "\/"
+        },
+        "articleSection" : "post",
+        "name" : "Geochem modeling of Ig. Processes - Chapter 2",
+        "headline" : "Geochem modeling of Ig. Processes - Chapter 2",
+        "description" : "Introduction 2.1. Loading and Manipulating Data Exercise 2.1: Subsetting a numeric vector, vector operations Excercise 2.2: Loading files, matrix\/data frame manipulations  2.2. Linking Whole-Rock Chemistry with Mineral Stoichiometry Exercise 2.3: Calculating simple indexes  2.3. Statistics Exercise 2.4: Simple statistics  2.4. Classification and Grouping - Using Factors Exercise 2.5. Using factors to deal with complex datasets I Exercise 2.6. Using factors to deal with complex datasets II Excercise 2.",
+        "inLanguage" : "en",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2020",
+        "datePublished": "2020-06-10 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2020-06-10 00:00:00 \u002b0000 UTC",
+        "url" : "\/post\/geochem-modeling-of-ig-processes-chapter-2\/",
+        "wordCount" : "3696",
+        "keywords" : [ "geochemical modeling","Igneous processes","Blog" ]
+    }
+    </script>
+        
             
+                <title>Geochem modeling of Ig. Processes - Chapter 2</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.72.0" />
+        
+  
+    
+  
+
+  
+
+  <link rel="apple-touch-icon-precomposed" href='/favicon/apple-touch-icon-precomposed.png'>
+  <link rel="icon" href='/favicon/favicon.png'>
+  
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content='/favicon/mstile.png'>
+  <meta name="application-name" content="Geosciences Programming">
+  <meta name="msapplication-tooltip" content="Learn geosciences, learn programming.">
+  <meta name="msapplication-config" content='/favicon/ieconfig.xml'>
+
+
+
+        
+            <meta name="author" content="Nguyen Cong Nghia">
+        
+        
+            
+                <meta name="description" content="Learn geosciences, learn programming.">
+            
+        
+
+        <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Geochem modeling of Ig. Processes - Chapter 2"/>
+<meta name="twitter:description" content="Introduction 2.1. Loading and Manipulating Data Exercise 2.1: Subsetting a numeric vector, vector operations Excercise 2.2: Loading files, matrix/data frame manipulations  2.2. Linking Whole-Rock Chemistry with Mineral Stoichiometry Exercise 2.3: Calculating simple indexes  2.3. Statistics Exercise 2.4: Simple statistics  2.4. Classification and Grouping - Using Factors Exercise 2.5. Using factors to deal with complex datasets I Exercise 2.6. Using factors to deal with complex datasets II Excercise 2."/>
+
+        <meta property="og:title" content="Geochem modeling of Ig. Processes - Chapter 2" />
+<meta property="og:description" content="Introduction 2.1. Loading and Manipulating Data Exercise 2.1: Subsetting a numeric vector, vector operations Excercise 2.2: Loading files, matrix/data frame manipulations  2.2. Linking Whole-Rock Chemistry with Mineral Stoichiometry Exercise 2.3: Calculating simple indexes  2.3. Statistics Exercise 2.4: Simple statistics  2.4. Classification and Grouping - Using Factors Exercise 2.5. Using factors to deal with complex datasets I Exercise 2.6. Using factors to deal with complex datasets II Excercise 2." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/geochem-modeling-of-ig-processes-chapter-2/" />
+<meta property="article:published_time" content="2020-06-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-06-10T00:00:00+00:00" />
+
+        <meta property="og:image" content="//images/logo.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="512">
+        <meta property="og:image:height" content="512">
+        <meta itemprop="name" content="Geochem modeling of Ig. Processes - Chapter 2">
+<meta itemprop="description" content="Introduction 2.1. Loading and Manipulating Data Exercise 2.1: Subsetting a numeric vector, vector operations Excercise 2.2: Loading files, matrix/data frame manipulations  2.2. Linking Whole-Rock Chemistry with Mineral Stoichiometry Exercise 2.3: Calculating simple indexes  2.3. Statistics Exercise 2.4: Simple statistics  2.4. Classification and Grouping - Using Factors Exercise 2.5. Using factors to deal with complex datasets I Exercise 2.6. Using factors to deal with complex datasets II Excercise 2.">
+<meta itemprop="datePublished" content="2020-06-10T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-06-10T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="3696">
+
+
+
+<meta itemprop="keywords" content="geochemical modeling,Igneous processes," />
+        
+
+        
+            
+        
+
+        
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
+            <link rel="stylesheet" href="/css/main.css">
+            <link rel="stylesheet" href="/css/add-on.css">
+            <link rel="stylesheet" href="/css/academicons.min.css">
+        
+
+        
+            
+                
+            
+        
+
+
+  
+    
+    <link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+  
+
+
+      
+    </head>
+    <body>
+
+      
+      <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+      <h1><a href="/">post</a></h1>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/">
+                            <i class="fa fa-home">&nbsp;</i>Home
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/about/">
+                            <i class="fa fa-id-card-o">&nbsp;</i>About
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/categories/">
+                            <i class="fa fa-sitemap">&nbsp;</i>Categories
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="as_sitesearch" value="/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="as_sitesearch" value="/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/">
+                            <h3>
+                                <i class="fa fa-home">&nbsp;</i>Home
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/about/">
+                            <h3>
+                                <i class="fa fa-id-card-o">&nbsp;</i>About
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories/">
+                            <h3>
+                                <i class="fa fa-sitemap">&nbsp;</i>Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section class="recent-posts">
+            <div class="mini-posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+
+                
+                    
+                
+
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/post/">Post</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-06-15'>
+                                    June 15, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/post/r-syntax-in-a-nutshell-part-ii/">R Syntax in a Nutshell Part II</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-06-15'>
+                                    June 15, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/post/exploring-adakite-using-python/">Exploring Adakite using Python</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-06-11'>
+                                    June 11, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/post/geochem-modeling-of-ig-processes-chapter-2/">Geochem modeling of Ig. Processes - Chapter 2</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-06-10'>
+                                    June 10, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/post/r-basics/">R Syntax in a Nutshell Part I</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-06-10'>
+                                    June 10, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+
+                
+                    <a href=
+                        
+                            /blog/
+                        
+                        class="button">View more posts</a>
+                
+            </div>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+  <header>
+    <div class="title">
+        
+            <h1><a href="/post/geochem-modeling-of-ig-processes-chapter-2/">Geochem modeling of Ig. Processes - Chapter 2</a></h1>
+            
+        
+        
+    </div>
+    <div class="meta">
+        
+
+        <time class="published"
+            datetime='2020-06-10'>
+            June 10, 2020</time>
+        <span class="author">Nguyen Cong Nghia</span>
+        
+            <p>18 minute read</p>
+        
+        
+    </div>
+</header>
+
+
+  
+
+  
+
+  <div id="content">
+    
 
 <div id="TOC">
 <ul>
@@ -651,28 +979,487 @@ table(intrusion)</code></pre>
 <p>Quite an amazing chapter, onward to chapter 3!</p>
 </div>
 
-          </div>
-        </div>
-        <div class="pagination">
-          <a class="btn previous " href="/post/r-basics/"> Prev</a>  
-          <a class="btn next " href="/about/"> Next</a> 
-        </div>
-      </div>
+  </div>
+
+  <footer>
+    <ul class="stats">
+  <li class="categories">
+    <ul>
+        
+            
+            
+                <i class="fa fa-folder"></i>
+                
+                
+                <li><a class="article-category-link" href="/categories/r">R</a></li>
+                
+            
+        
+    </ul>
+  </li>
+  <li class="tags">
+    <ul>
+        
+            
+            
+                <i class="fa fa-tags"></i>
+                
+                
+                <li><a class="article-category-link" href="/tags/geochemical-modeling">geochemical modeling</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/igneous-processes">Igneous processes</a></li>
+                
+            
+        
+    </ul>
+  </li>
+</ul>
+
+  </footer>
+
+</article>
+
+    <article class="post">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </article>
+
+
+<ul class="actions pagination">
+    
+        <li><a href="/post/r-basics/"
+                class="button big previous">R Syntax in a Nutshell Part I</a></li>
+    
+
+    
+        <li><a href="/post/exploring-adakite-using-python/"
+                class="button big next">Exploring Adakite using Python</a></li>
+    
+</ul>
+
+
     </div>
     
-    <div class="footer">
-  
-  <p>Powered by <a href="https://gohugo.io">Hugo</a>. This theme—Slim—is open sourced on <a href="https://github.com/zhe/hugo-theme-slim">Github</a>.</p>
-  
-</div>
+<section id="sidebar">
 
-  </div>
-  <script src="/js/slim.js"></script>
-  <script src="/js/highlight.min.js"></script>
-  <script>
-    hljs.initHighlightingOnLoad();
-  </script>
   
-</body>
+  <section id="intro">
+    
+    
+      
+        <a href='/'><img src="/main/logo.jpg" class="intro-circle" width="" alt="Geosciences Programming" /></a>
+      
+    
+    
+      <header>
+        <h2>Geosciences Programming</h2>
+        <p>Learn more not less <i class='fa fa-hand-peace-o'></i></p>
+      </header>
+    
+    
+      <ul class="icons">
+        
+          
+    <li><a href="/index.xml" type="application/rss+xml" target="_blank" title="RSS" class="fa fa-rss"></a></li>
 
+
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    
+  </section>
+
+  
+  <section class="recent-posts">
+    <div class="mini-posts">
+      <header>
+        <h3>Recent Posts</h3>
+      </header>
+      <div class="posts-container">
+        
+
+        
+          
+        
+
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/post/">Post</a>
+              </h3>
+              
+              <time class="published" datetime='2020-06-15'>
+                June 15, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/post/r-syntax-in-a-nutshell-part-ii/">R Syntax in a Nutshell Part II</a>
+              </h3>
+              
+              <time class="published" datetime='2020-06-15'>
+                June 15, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/post/exploring-adakite-using-python/">Exploring Adakite using Python</a>
+              </h3>
+              
+              <time class="published" datetime='2020-06-11'>
+                June 11, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/post/geochem-modeling-of-ig-processes-chapter-2/">Geochem modeling of Ig. Processes - Chapter 2</a>
+              </h3>
+              
+              <time class="published" datetime='2020-06-10'>
+                June 10, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/post/r-basics/">R Syntax in a Nutshell Part I</a>
+              </h3>
+              
+              <time class="published" datetime='2020-06-10'>
+                June 10, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+      </div>
+
+      
+        <a href=
+          
+            /blog/
+          
+        class="button">View more posts</a>
+      
+    </div>
+  </section>
+
+  
+  
+  
+  
+  
+    <section id="categories">
+      <header>
+        <h3>
+          <a href="/categories/">Categories</a>
+        </h3>
+      </header>
+        
+          
+        
+
+        
+        <p>
+          <article>
+            <header>
+              
+                <a href="/categories/r/">r</a>
+                <span style="float:right;">3</span>
+              
+            </header>
+          </article>
+        </p>
+        
+        <p>
+          <article>
+            <header>
+              
+                <a href="/categories/python/">python</a>
+                <span style="float:right;">1</span>
+              
+            </header>
+          </article>
+        </p>
+        
+    </section>
+  
+  
+
+  
+  
+    <section id="mini-bio">
+      <h3>About</h3>
+      <p>R. Python. Geology. Geochemistry. Geophysics and more.</p>
+      <a href="/about/" class="button">Learn More</a>
+    </section>
+  
+
+  
+  <section id="footer">
+    
+      <ul class="icons">
+        
+          
+    <li><a href="/index.xml" type="application/rss+xml" target="_blank" title="RSS" class="fa fa-rss"></a></li>
+
+
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    
+    <p class="copyright">
+      
+        &copy; 2020
+        
+          Geosciences Programming
+        
+      .
+      Powered by <a href="//gohugo.io" target="_blank">Hugo</a>
+    </p>
+  </section>
+</section>
+
+    </div>
+    <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+    
+
+    
+      
+    
+
+    
+      
+      
+      
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+        
+        
+        
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/css.min.js"></script>
+        <script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+      
+    
+    
+    
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
+      <script src="/js/util.js"></script>
+      <script src="/js/main.js"></script>
+      <script src="/js/backToTop.js"></script>
+    
+
+    
+      
+        
+      
+    
+
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+      <script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+  </body>
 </html>
+

@@ -1,0 +1,29 @@
+---
+title: R Syntax in a Nutshell Part II
+author: Nguyen Cong Nghia
+date: '2020-06-15'
+slug: r-syntax-in-a-nutshell-part-ii
+categories:
+  - R
+tags:
+  - R basics
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+output:
+  blogdown::html_page:
+    toc: true
+---
+## Graphics
+R can produce and expert quite good publication-quality diagrams and they are divided into two types: *high-level functions* that open a new graphical window and set up a coordinate system (table A1.4) and *low-level functions* that annotate pre-existing plots (table A1.5)
+![](/post/2020-06-15-r-syntax-in-a-nutshell-part-ii_files/table_A14.png)
+
+![](/post/2020-06-15-r-syntax-in-a-nutshell-part-ii_files/table_A15.png)
+
+### Obtaining and Annotating Binary Plots
+### Additional High-level Plotting Functions
+### Creating Custom Layouts and Axes
+### Exporting Graphs from R and Graphical Devices
+### Interaction with Plots

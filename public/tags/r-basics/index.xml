@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>R basics on Geoscience programming</title>
+    <title>R basics on Geosciences Programming</title>
     <link>/tags/r-basics/</link>
-    <description>Recent content in R basics on Geoscience programming</description>
+    <description>Recent content in R basics on Geosciences Programming</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 10 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 15 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/r-basics/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>R Syntax in a Nutshell Part II</title>
+      <link>/post/r-syntax-in-a-nutshell-part-ii/</link>
+      <pubDate>Mon, 15 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/r-syntax-in-a-nutshell-part-ii/</guid>
+      <description>Graphics Obtaining and Annotating Binary Plots Additional High-level Plotting Functions Creating Custom Layouts and Axes Exporting Graphs from R and Graphical Devices Interaction with Plots    Graphics R can produce and expert quite good publication-quality diagrams and they are divided into two types: high-level functions that open a new graphical window and set up a coordinate system (table A1.4) and low-level functions that annotate pre-existing plots (table A1.</description>
+    </item>
+    
+    <item>
       <title>R Syntax in a Nutshell Part I</title>
-      <link>/2020/06/10/r-basics/</link>
+      <link>/post/r-basics/</link>
       <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/06/10/r-basics/</guid>
+      <guid>/post/r-basics/</guid>
       <description>Seeking help Object types Numeric Vectors Character Vectors Arrays, Matrices, Data Frames Indexing/subsetting of Vectors, Arrays and Data Frames Lists Factors   Seeking help First step in doing any programming is to know where to seek help. Here demonstrate how to seek help in R programming. These keywords include: help(), ?, apropos and example.
 help(plot) ?plot apropos(&amp;quot;plot&amp;quot;) #Commands related to &amp;quot;plot&amp;quot; ## [1] &amp;quot;assocplot&amp;quot; &amp;quot;barplot&amp;quot; &amp;quot;barplot.default&amp;quot; ## [4] &amp;quot;biplot&amp;quot; &amp;quot;boxplot&amp;quot; &amp;quot;boxplot.</description>
     </item>

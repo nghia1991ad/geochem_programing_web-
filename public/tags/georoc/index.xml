@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>GEOROC on Geoscience programming</title>
+    <title>GEOROC on Geosciences Programming</title>
     <link>/tags/georoc/</link>
-    <description>Recent content in GEOROC on Geoscience programming</description>
+    <description>Recent content in GEOROC on Geosciences Programming</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 11 Jun 2020 00:00:00 +0000</lastBuildDate>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Exploring Adakite using Python</title>
-      <link>/2020/06/11/exploring-adakite-using-python/</link>
+      <link>/post/exploring-adakite-using-python/</link>
       <pubDate>Thu, 11 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/06/11/exploring-adakite-using-python/</guid>
+      <guid>/post/exploring-adakite-using-python/</guid>
       <description>We download the precompiled data of adakite from GEOROC database. For a simple impression of adakite, the wikipedia page gives some clue: Adakites are volcanic rocks of intermediate to felsic composition that have geochemical characteristics of magma thought to have formed by partial melting of altered basalt that is subducted below volcanic arcs.
 In this example, we demonstrate how to use python to simplify the data, discard the null data, classify and plot the geochemical properties.</description>
     </item>

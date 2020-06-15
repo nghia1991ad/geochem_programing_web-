@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Igneous processes on Geoscience programming</title>
+    <title>Igneous processes on Geosciences Programming</title>
     <link>/tags/igneous-processes/</link>
-    <description>Recent content in Igneous processes on Geoscience programming</description>
+    <description>Recent content in Igneous processes on Geosciences Programming</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 10 Jun 2020 00:00:00 +0000</lastBuildDate>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Geochem modeling of Ig. Processes - Chapter 2</title>
-      <link>/2020/06/10/geochem-modeling-of-ig-processes-chapter-2/</link>
+      <link>/post/geochem-modeling-of-ig-processes-chapter-2/</link>
       <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/06/10/geochem-modeling-of-ig-processes-chapter-2/</guid>
+      <guid>/post/geochem-modeling-of-ig-processes-chapter-2/</guid>
       <description>Introduction 2.1. Loading and Manipulating Data Exercise 2.1: Subsetting a numeric vector, vector operations Excercise 2.2: Loading files, matrix/data frame manipulations  2.2. Linking Whole-Rock Chemistry with Mineral Stoichiometry Exercise 2.3: Calculating simple indexes  2.3. Statistics Exercise 2.4: Simple statistics  2.4. Classification and Grouping - Using Factors Exercise 2.5. Using factors to deal with complex datasets I Exercise 2.6. Using factors to deal with complex datasets II Excercise 2.</description>
     </item>
     

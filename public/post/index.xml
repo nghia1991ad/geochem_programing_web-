@@ -1,41 +1,50 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Geoscience programming</title>
+    <title>Post on Geosciences Programming</title>
     <link>/post/</link>
-    <description>Recent content in Posts on Geoscience programming</description>
+    <description>Recent content in Post on Geosciences Programming</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 11 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 15 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>R Syntax in a Nutshell Part II</title>
+      <link>/post/r-syntax-in-a-nutshell-part-ii/</link>
+      <pubDate>Mon, 15 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/r-syntax-in-a-nutshell-part-ii/</guid>
+      <description>Graphics Obtaining and Annotating Binary Plots Additional High-level Plotting Functions Creating Custom Layouts and Axes Exporting Graphs from R and Graphical Devices Interaction with Plots    Graphics R can produce and expert quite good publication-quality diagrams and they are divided into two types: high-level functions that open a new graphical window and set up a coordinate system (table A1.4) and low-level functions that annotate pre-existing plots (table A1.</description>
+    </item>
+    
+    <item>
       <title>Exploring Adakite using Python</title>
-      <link>/2020/06/11/exploring-adakite-using-python/</link>
+      <link>/post/exploring-adakite-using-python/</link>
       <pubDate>Thu, 11 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/06/11/exploring-adakite-using-python/</guid>
+      <guid>/post/exploring-adakite-using-python/</guid>
       <description>We download the precompiled data of adakite from GEOROC database. For a simple impression of adakite, the wikipedia page gives some clue: Adakites are volcanic rocks of intermediate to felsic composition that have geochemical characteristics of magma thought to have formed by partial melting of altered basalt that is subducted below volcanic arcs.
 In this example, we demonstrate how to use python to simplify the data, discard the null data, classify and plot the geochemical properties.</description>
     </item>
     
     <item>
       <title>Geochem modeling of Ig. Processes - Chapter 2</title>
-      <link>/2020/06/10/geochem-modeling-of-ig-processes-chapter-2/</link>
+      <link>/post/geochem-modeling-of-ig-processes-chapter-2/</link>
       <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/06/10/geochem-modeling-of-ig-processes-chapter-2/</guid>
+      <guid>/post/geochem-modeling-of-ig-processes-chapter-2/</guid>
       <description>Introduction 2.1. Loading and Manipulating Data Exercise 2.1: Subsetting a numeric vector, vector operations Excercise 2.2: Loading files, matrix/data frame manipulations  2.2. Linking Whole-Rock Chemistry with Mineral Stoichiometry Exercise 2.3: Calculating simple indexes  2.3. Statistics Exercise 2.4: Simple statistics  2.4. Classification and Grouping - Using Factors Exercise 2.5. Using factors to deal with complex datasets I Exercise 2.6. Using factors to deal with complex datasets II Excercise 2.</description>
     </item>
     
     <item>
       <title>R Syntax in a Nutshell Part I</title>
-      <link>/2020/06/10/r-basics/</link>
+      <link>/post/r-basics/</link>
       <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/06/10/r-basics/</guid>
+      <guid>/post/r-basics/</guid>
       <description>Seeking help Object types Numeric Vectors Character Vectors Arrays, Matrices, Data Frames Indexing/subsetting of Vectors, Arrays and Data Frames Lists Factors   Seeking help First step in doing any programming is to know where to seek help. Here demonstrate how to seek help in R programming. These keywords include: help(), ?, apropos and example.
 help(plot) ?plot apropos(&amp;quot;plot&amp;quot;) #Commands related to &amp;quot;plot&amp;quot; ## [1] &amp;quot;assocplot&amp;quot; &amp;quot;barplot&amp;quot; &amp;quot;barplot.default&amp;quot; ## [4] &amp;quot;biplot&amp;quot; &amp;quot;boxplot&amp;quot; &amp;quot;boxplot.</description>
     </item>
