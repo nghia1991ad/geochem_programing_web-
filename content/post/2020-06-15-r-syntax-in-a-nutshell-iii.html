@@ -1,0 +1,112 @@
+---
+title: R Syntax in a Nutshell III
+author: Nguyen Cong Nghia
+date: '2020-06-15'
+slug: r-syntax-in-a-nutshell-iii
+categories:
+  - R
+tags:
+  - R basics
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+output:
+  blogdown::html_page:
+    toc: true
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#programming-in-r">Programming in R</a></li>
+<li><a href="#conditional-execution">Conditional Execution</a></li>
+<li><a href="#loops">Loops</a></li>
+</ul>
+</div>
+
+<div id="programming-in-r" class="section level3">
+<h3>Programming in R</h3>
+<div id="input-and-output" class="section level4">
+<h4>Input and Output</h4>
+<p>Typical print message:</p>
+<pre class="r"><code>x &lt;- 5.8
+cat(&quot;The result is&quot;,x,&quot;N/m.\n&quot;)</code></pre>
+<pre><code>## The result is 5.8 N/m.</code></pre>
+<pre class="r"><code>x &lt;- readline(&quot;Enter x: \n&quot;)</code></pre>
+<pre><code>## Enter x:</code></pre>
+<pre class="r"><code>x</code></pre>
+<pre><code>## [1] &quot;&quot;</code></pre>
+<pre class="r"><code>x &lt;- as.numeric(x)
+x</code></pre>
+<pre><code>## [1] NA</code></pre>
+</div>
+</div>
+<div id="conditional-execution" class="section level3">
+<h3>Conditional Execution</h3>
+<p>The traditional if… else… syntax in R</p>
+<pre class="r"><code>x &lt;- 6
+y &lt;- 0.5
+if (x&gt;2 &amp; y&lt;1){
+  print(x)
+  print(y)
+}else{
+  cat(&quot;Warning, x&lt;=2 or y&gt;-1\n&quot;)
+}</code></pre>
+<pre><code>## [1] 6
+## [1] 0.5</code></pre>
+</div>
+<div id="loops" class="section level3">
+<h3>Loops</h3>
+<p>R has powerful indexing power, therefore loops are needed considerably less ofen than in any conventional programming language.</p>
+<pre class="r"><code>for (f in seq(1,10,by=2)){
+  cat(&quot;Square root of&quot;,f,&quot;is&quot;,sqrt(f),&quot;\n&quot;)
+}</code></pre>
+<pre><code>## Square root of 1 is 1 
+## Square root of 3 is 1.732051 
+## Square root of 5 is 2.236068 
+## Square root of 7 is 2.645751 
+## Square root of 9 is 3</code></pre>
+<p>Try to avoid loops if possible. Here is an alternative of the above codes:</p>
+<pre class="r"><code>x &lt;- seq(1,10,by=2)
+ee &lt;- paste(&quot;Square root of&quot;,x,&quot;is&quot;,sqrt(x),&quot;\n&quot;)
+cat(ee)</code></pre>
+<pre><code>## Square root of 1 is 1 
+##  Square root of 3 is 1.73205080756888 
+##  Square root of 5 is 2.23606797749979 
+##  Square root of 7 is 2.64575131106459 
+##  Square root of 9 is 3</code></pre>
+<p>Commands <em>apply, tapply, sapply</em> are commonly a better approach.
+#### User-defined Functions
+<strong>function.name</strong> &lt;- <strong>function</strong>(<em>argument1,argument2,…</em>)expression</p>
+<p>For example: calculating a geometric mean, which defined as <span class="math inline">\(n^{th}\)</span> root of the product of n numbers:</p>
+<p><span class="math display">\[S = \sqrt{\prod_{i = 1}^{n} f(x_i)}\]</span></p>
+<pre class="r"><code>geo.mean &lt;- function(x){
+  z &lt;- prod(x)^(1/length(x))
+  return(z)
+}
+x = seq(1,100)
+geo.mean(x)</code></pre>
+<pre><code>## [1] 37.99269</code></pre>
+<p>Arguments to Functions</p>
+<ul>
+<li><p>Pass them in the order matching the function’s definition</p></li>
+<li><p>Supply the arguments in the form <em>argument.name = value</em> in an arbitrary sequence</p></li>
+</ul>
+<pre class="r"><code>my.plot &lt;- function(x,y,symb=&quot;+&quot;,color=&quot;red&quot;){
+  plot(x,y,pch=symb,col=color)
+}
+x = seq(1,20,1)
+y = seq(5,24,1)
+my.plot(x,y)</code></pre>
+<p><img src="/post/2020-06-15-r-syntax-in-a-nutshell-iii_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre class="r"><code>my.plot(x,y,&quot;o&quot;)</code></pre>
+<p><img src="/post/2020-06-15-r-syntax-in-a-nutshell-iii_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+<pre class="r"><code>my.plot(x,y,color=&quot;blue&quot;)</code></pre>
+<p><img src="/post/2020-06-15-r-syntax-in-a-nutshell-iii_files/figure-html/unnamed-chunk-8-3.png" width="672" /></p>
+<pre class="r"><code>args(&quot;my.plot&quot;)</code></pre>
+<pre><code>## function (x, y, symb = &quot;+&quot;, color = &quot;red&quot;) 
+## NULL</code></pre>
+<p>Assigments in Functions</p>
+</div>

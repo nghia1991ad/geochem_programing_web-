@@ -25,9 +25,8 @@ output:
 <li><a href="#additional-high-level-plotting-functions">Additional High-level Plotting Functions</a></li>
 <li><a href="#creating-custom-layouts-and-axes">Creating Custom Layouts and Axes</a></li>
 <li><a href="#exporting-graphs-from-r-and-graphical-devices">Exporting Graphs from R and Graphical Devices</a></li>
-<li><a href="#interaction-with-plots">Interaction with Plots</a></li>
 </ul></li>
-<li><a href="#read-more">Read more</a></li>
+<li><a href="#more-info">More info</a></li>
 </ul>
 </div>
 
@@ -108,24 +107,48 @@ contour(volcano, col=&quot;blue&quot;)</code></pre>
 axis(1,0:3,c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;))
 axis(2,-1:1,c(&quot;I&quot;,&quot;II&quot;,&quot;III&quot;))
 box()</code></pre>
-<p><img src="/post/2020-06-15-r-syntax-in-a-nutshell-part-ii_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="/post/2020-06-15-r-syntax-in-a-nutshell-part-ii_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+Different expression and parse text</p>
+<pre class="r"><code>expression(SiO[2])</code></pre>
+<pre><code>## expression(SiO[2])</code></pre>
+<pre class="r"><code>x &lt;- &quot;SiO[2]&quot;
+parse(text=as.expression(x))</code></pre>
+<pre><code>## expression(SiO[2])</code></pre>
 </div>
 <div id="exporting-graphs-from-r-and-graphical-devices" class="section level3">
 <h3>Exporting Graphs from R and Graphical Devices</h3>
+<pre class="r"><code># Create my_data
+my_data &lt;- mtcars
+# Print the first 6 rows
+head(my_data, 6)</code></pre>
+<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<pre class="r"><code># 1. Open a pdf file
+pdf(&quot;rplot.pdf&quot;) 
+# 2. Create a plot
+plot(x = my_data$wt, y = my_data$mpg,
+     pch = 16, frame = FALSE,
+     xlab = &quot;wt&quot;, ylab = &quot;mpg&quot;, col = &quot;#2E9FDF&quot;)
+# Close the pdf file
+dev.off() </code></pre>
+<pre><code>## quartz_off_screen 
+##                 2</code></pre>
 </div>
-<div id="interaction-with-plots" class="section level3">
-<h3>Interaction with Plots</h3>
 </div>
-</div>
-<div id="read-more" class="section level2">
-<h2>Read more</h2>
+<div id="more-info" class="section level2">
+<h2>More info</h2>
 <p>A huge number of examples with codes are available. Here list a few:
 * <a href="https://r-graphics.org/index.html" class="uri">https://r-graphics.org/index.html</a></p>
 <ul>
 <li><p><a href="https://www.r-graph-gallery.com/" class="uri">https://www.r-graph-gallery.com/</a></p></li>
 <li><p><a href="https://www.statmethods.net/graphs/index.html" class="uri">https://www.statmethods.net/graphs/index.html</a></p></li>
 </ul>
-<p>Some other alternatives:</p>
+<p>Some other alternatives for geochemical plot:</p>
 <ul>
 <li><a href="https://serc.carleton.edu/NAGTWorkshops/petrology/plot_programs.html" class="uri">https://serc.carleton.edu/NAGTWorkshops/petrology/plot_programs.html</a></li>
 </ul>

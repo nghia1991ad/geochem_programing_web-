@@ -45,3 +45,51 @@ if (x>2 & y<1){
 }
 ```
 
+### Loops
+R has powerful indexing power, therefore loops are needed considerably less ofen than in any conventional programming language.
+```{r}
+for (f in seq(1,10,by=2)){
+  cat("Square root of",f,"is",sqrt(f),"\n")
+}
+```
+Try to avoid loops if possible. Here is an alternative of the above codes:
+```{r}
+x <- seq(1,10,by=2)
+ee <- paste("Square root of",x,"is",sqrt(x),"\n")
+cat(ee)
+```
+Commands *apply, tapply, sapply* are commonly a better approach.
+#### User-defined Functions
+**function.name** <- **function**(*argument1,argument2,...*)expression
+
+For example: calculating a geometric mean, which defined as $n^{th}$ root of the product of n numbers:
+
+$$S = \sqrt{\prod_{i = 1}^{n} f(x_i)}$$
+```{r}
+geo.mean <- function(x){
+  z <- prod(x)^(1/length(x))
+  return(z)
+}
+x = seq(1,100)
+geo.mean(x)
+```
+Arguments to Functions
+
+* Pass them in the order matching the function's definition 
+
+* Supply the arguments in the form *argument.name = value* in an arbitrary sequence
+
+```{r}
+my.plot <- function(x,y,symb="+",color="red"){
+  plot(x,y,pch=symb,col=color)
+}
+x = seq(1,20,1)
+y = seq(5,24,1)
+my.plot(x,y)
+my.plot(x,y,"o")
+my.plot(x,y,color="blue")
+args("my.plot")
+```
+Assigments in Functions
+
+

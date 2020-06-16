@@ -12,12 +12,23 @@
     
     
     <item>
+      <title>R Syntax in a Nutshell III</title>
+      <link>/post/r-syntax-in-a-nutshell-iii/</link>
+      <pubDate>Mon, 15 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/r-syntax-in-a-nutshell-iii/</guid>
+      <description>Programming in R Conditional Execution Loops   Programming in R Input and Output Typical print message:
+x &amp;lt;- 5.8 cat(&amp;quot;The result is&amp;quot;,x,&amp;quot;N/m.\n&amp;quot;) ## The result is 5.8 N/m. x &amp;lt;- readline(&amp;quot;Enter x: \n&amp;quot;) ## Enter x: x ## [1] &amp;quot;&amp;quot; x &amp;lt;- as.numeric(x) x ## [1] NA   Conditional Execution The traditional if… else… syntax in R
+x &amp;lt;- 6 y &amp;lt;- 0.5 if (x&amp;gt;2 &amp;amp; y&amp;lt;1){ print(x) print(y) }else{ cat(&amp;quot;Warning, x&amp;lt;=2 or y&amp;gt;-1\n&amp;quot;) } ## [1] 6 ## [1] 0.</description>
+    </item>
+    
+    <item>
       <title>R Syntax in a Nutshell Part II</title>
       <link>/post/r-syntax-in-a-nutshell-part-ii/</link>
       <pubDate>Mon, 15 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>/post/r-syntax-in-a-nutshell-part-ii/</guid>
-      <description>Graphics Obtaining and Annotating Binary Plots Additional High-level Plotting Functions Creating Custom Layouts and Axes Exporting Graphs from R and Graphical Devices Interaction with Plots  Read more   Graphics R can produce and expert quite good publication-quality diagrams and they are divided into two types: high-level functions that open a new graphical window and set up a coordinate system (table A1.4) and low-level functions that annotate pre-existing plots (table A1.</description>
+      <description>Graphics Obtaining and Annotating Binary Plots Additional High-level Plotting Functions Creating Custom Layouts and Axes Exporting Graphs from R and Graphical Devices  More info   Graphics R can produce and expert quite good publication-quality diagrams and they are divided into two types: high-level functions that open a new graphical window and set up a coordinate system (table A1.4) and low-level functions that annotate pre-existing plots (table A1.</description>
     </item>
     
     <item>
