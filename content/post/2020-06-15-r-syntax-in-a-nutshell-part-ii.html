@@ -27,6 +27,7 @@ output:
 <li><a href="#exporting-graphs-from-r-and-graphical-devices">Exporting Graphs from R and Graphical Devices</a></li>
 <li><a href="#interaction-with-plots">Interaction with Plots</a></li>
 </ul></li>
+<li><a href="#read-more">Read more</a></li>
 </ul>
 </div>
 
@@ -37,12 +38,77 @@ output:
 <p><img src="/post/2020-06-15-r-syntax-in-a-nutshell-part-ii_files/table_A15.png" /></p>
 <div id="obtaining-and-annotating-binary-plots" class="section level3">
 <h3>Obtaining and Annotating Binary Plots</h3>
+<pre class="r"><code>sink(&quot;/dev/null&quot;); suppressPackageStartupMessages(library(GCDkit)); sink();</code></pre>
+<pre class="r"><code>data(sazava)
+plot(sazava[,&quot;SiO2&quot;],sazava[,&quot;Ba&quot;],xlab=expression(SiO[2]),
+     cex=1.5,ylab=&quot;Ba&quot;,pc=16,main=&quot;Sazava&quot;,xlim=c(45,75))
+abline(h=seq(0,1500,500),lty=&quot;dotted&quot;,col=&quot;gray&quot;)
+abline(v=seq(40,80,10),lty=&quot;dotted&quot;,col=&quot;gray&quot;)
+text(sazava[,&quot;SiO2&quot;],sazava[,&quot;Ba&quot;],rownames(sazava),pos=4,col=&quot;red&quot;)
+ee &lt;- lm(sazava[,&quot;Ba&quot;] ~ sazava[,&quot;SiO2&quot;])
+ee</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = sazava[, &quot;Ba&quot;] ~ sazava[, &quot;SiO2&quot;])
+## 
+## Coefficients:
+##      (Intercept)  sazava[, &quot;SiO2&quot;]  
+##         -1680.45             43.67</code></pre>
+<pre class="r"><code>abline(ee,lwd=2,lty=&quot;dashed&quot;,col=&quot;blue&quot;)</code></pre>
+<p><img src="/post/2020-06-15-r-syntax-in-a-nutshell-part-ii_files/figure-html/fig1-1.png" width="480" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>summary(ee)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = sazava[, &quot;Ba&quot;] ~ sazava[, &quot;SiO2&quot;])
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -207.22 -141.43   -4.17   96.79  387.49 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value  Pr(&gt;|t|)    
+## (Intercept)      -1680.452    386.483  -4.348   0.00145 ** 
+## sazava[, &quot;SiO2&quot;]    43.667      6.526   6.691 0.0000542 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 175.8 on 10 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.8174, Adjusted R-squared:  0.7992 
+## F-statistic: 44.77 on 1 and 10 DF,  p-value: 0.00005422</code></pre>
+<pre class="r"><code>data(sazava)
+plot(sazava[,&quot;Rb&quot;],sazava[,&quot;Sr&quot;],xlab=&quot;Rb (ppm)&quot;,
+     ylab=&quot;Sr (ppm)&quot;,pch=sazava[,&quot;Symbol&quot;],cex=2,
+     xlim=c(0,70),ylim=c(0,650),xaxs=&quot;i&quot;,yaxs=&quot;i&quot;)
+abline(0,5,col=&quot;red&quot;,lwd=1.5,lty=&quot;dashed&quot;)
+curve(x^2,add=TRUE,col=&quot;blue&quot;,lwd=1.5,lty=&quot;dotted&quot;,from=0,to=25)</code></pre>
+<p><img src="/post/2020-06-15-r-syntax-in-a-nutshell-part-ii_files/figure-html/fig2-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 <div id="additional-high-level-plotting-functions" class="section level3">
 <h3>Additional High-level Plotting Functions</h3>
+<pre class="r"><code>data(sazava)
+oxides &lt;- c(&quot;MgO&quot;,&quot;CaO&quot;,&quot;Na2O&quot;,&quot;K2O&quot;)
+boxplot(sazava[,oxides],col=c(&quot;khaki&quot;,&quot;gray&quot;,&quot;red&quot;,&quot;blue&quot;))</code></pre>
+<p><img src="/post/2020-06-15-r-syntax-in-a-nutshell-part-ii_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>hist(sazava[,&quot;Sr&quot;],xlab=&quot;Sr&quot;,ylab=&quot;frequency&quot;,
+     xlim=c(100,700),col=&quot;darkred&quot;,density=5, 
+     angle=45, main = &quot;Histogram of Sr&quot;)
+box()</code></pre>
+<p><img src="/post/2020-06-15-r-syntax-in-a-nutshell-part-ii_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>data(volcano)
+contour(volcano, col=&quot;blue&quot;)</code></pre>
+<p><img src="/post/2020-06-15-r-syntax-in-a-nutshell-part-ii_files/figure-html/fig4-1.png" width="480" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>filled.contour(volcano,color.palette = terrain.colors,asp=1)</code></pre>
+<p><img src="/post/2020-06-15-r-syntax-in-a-nutshell-part-ii_files/figure-html/fig4-2.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 <div id="creating-custom-layouts-and-axes" class="section level3">
 <h3>Creating Custom Layouts and Axes</h3>
+<pre class="r"><code>plot(1,1,xlim=c(0,3),ylim=c(-1,1),axes=FALSE,
+     xlab=&quot;custom X&quot;,ylab=&quot;custom Y&quot;,type=&quot;n&quot;)
+axis(1,0:3,c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;))
+axis(2,-1:1,c(&quot;I&quot;,&quot;II&quot;,&quot;III&quot;))
+box()</code></pre>
+<p><img src="/post/2020-06-15-r-syntax-in-a-nutshell-part-ii_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 <div id="exporting-graphs-from-r-and-graphical-devices" class="section level3">
 <h3>Exporting Graphs from R and Graphical Devices</h3>
@@ -50,4 +116,17 @@ output:
 <div id="interaction-with-plots" class="section level3">
 <h3>Interaction with Plots</h3>
 </div>
+</div>
+<div id="read-more" class="section level2">
+<h2>Read more</h2>
+<p>A huge number of examples with codes are available. Here list a few:
+* <a href="https://r-graphics.org/index.html" class="uri">https://r-graphics.org/index.html</a></p>
+<ul>
+<li><p><a href="https://www.r-graph-gallery.com/" class="uri">https://www.r-graph-gallery.com/</a></p></li>
+<li><p><a href="https://www.statmethods.net/graphs/index.html" class="uri">https://www.statmethods.net/graphs/index.html</a></p></li>
+</ul>
+<p>Some other alternatives:</p>
+<ul>
+<li><a href="https://serc.carleton.edu/NAGTWorkshops/petrology/plot_programs.html" class="uri">https://serc.carleton.edu/NAGTWorkshops/petrology/plot_programs.html</a></li>
+</ul>
 </div>

@@ -1,0 +1,47 @@
+---
+title: R Syntax in a Nutshell III
+author: Nguyen Cong Nghia
+date: '2020-06-15'
+slug: r-syntax-in-a-nutshell-iii
+categories:
+  - R
+tags:
+  - R basics
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+output:
+  blogdown::html_page:
+    toc: true
+---
+### Programming in R
+#### Input and Output
+Typical print message:
+```{r}
+x <- 5.8
+cat("The result is",x,"N/m.\n")
+```
+```{r}
+x <- readline("Enter x: \n")
+x
+```
+```{r}
+x <- as.numeric(x)
+x
+```
+
+### Conditional Execution
+The traditional if... else... syntax in R
+```{r}
+x <- 6
+y <- 0.5
+if (x>2 & y<1){
+  print(x)
+  print(y)
+}else{
+  cat("Warning, x<=2 or y>-1\n")
+}
+```
+
