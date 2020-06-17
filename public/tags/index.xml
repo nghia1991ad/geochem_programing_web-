@@ -6,10 +6,37 @@
     <description>Recent content in Tags on Geosciences Programming</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 15 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>geochemical modeling</title>
+      <link>/tags/geochemical-modeling/</link>
+      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/geochemical-modeling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>geochemistry</title>
+      <link>/tags/geochemistry/</link>
+      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/geochemistry/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Igneous processes</title>
+      <link>/tags/igneous-processes/</link>
+      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/igneous-processes/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>R basics</title>
@@ -21,38 +48,11 @@
     </item>
     
     <item>
-      <title>geochemistry</title>
-      <link>/tags/geochemistry/</link>
-      <pubDate>Thu, 11 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/geochemistry/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>GEOROC</title>
       <link>/tags/georoc/</link>
       <pubDate>Thu, 11 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>/tags/georoc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>geochemical modeling</title>
-      <link>/tags/geochemical-modeling/</link>
-      <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/geochemical-modeling/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Igneous processes</title>
-      <link>/tags/igneous-processes/</link>
-      <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/igneous-processes/</guid>
       <description></description>
     </item>
     

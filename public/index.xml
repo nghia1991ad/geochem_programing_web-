@@ -6,10 +6,20 @@
     <description>Recent content on Geosciences Programming</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 15 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Geochemical Modelling of Ig. Processes - Chapter 3</title>
+      <link>/post/geochemical-modelling-of-ig-processes-chapter-3/</link>
+      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/geochemical-modelling-of-ig-processes-chapter-3/</guid>
+      <description>Binary Plots   This post is a compilation of the exercises from Chapter 3: Classical Plots from the book Geochemical Modelling of Igneous Processes - Principles and Recipes in R language by Vojtěch Janoušek, Jean Hervé Martin, Vojtěch Erban and Colin Farrow.
+sink(&amp;quot;/dev/null&amp;quot;); suppressPackageStartupMessages(library(GCDkit)); sink(); Binary Plots Plotting Simple Binary Plots In this exercise we focus on graphical analysis of the Sázava dataset. a) Build a binary plot SiO2–CaO.</description>
+    </item>
     
     <item>
       <title>R Syntax in a Nutshell III</title>

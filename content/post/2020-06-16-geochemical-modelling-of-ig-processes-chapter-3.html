@@ -1,0 +1,64 @@
+---
+title: Geochemical Modelling of Ig. Processes - Chapter 3
+author: Nguyen Cong Nghia
+date: '2020-06-16'
+slug: geochemical-modelling-of-ig-processes-chapter-3
+categories:
+  - R
+tags:
+  - geochemical modeling
+  - geochemistry
+  - Igneous processes
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+output:
+  blogdown::html_page:
+    toc: true
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#binary-plots">Binary Plots</a></li>
+</ul>
+</div>
+
+<p>This post is a compilation of the exercises from Chapter 3: Classical Plots from the book Geochemical Modelling of Igneous Processes - Principles and Recipes in R language by Vojtěch Janoušek, Jean Hervé Martin, Vojtěch Erban and Colin Farrow.</p>
+<pre class="r"><code>sink(&quot;/dev/null&quot;); suppressPackageStartupMessages(library(GCDkit)); sink();</code></pre>
+<div id="binary-plots" class="section level3">
+<h3>Binary Plots</h3>
+<div id="plotting-simple-binary-plots" class="section level4">
+<h4>Plotting Simple Binary Plots</h4>
+<p>In this exercise we focus on graphical analysis of the Sázava dataset.
+a) Build a binary plot SiO2–CaO. Choose suitable ranges for the axes,label them and annotate data points by sample names. Assign the plotting symbols according to individual rock types (utilizing the pre-defined column “Symbol”).</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><p>Plot a line SiO2/CaO = 10 passing through origin [0,0].</p></li>
+<li><p>Plot a diagram logZr – logBa and fit the data points,using the least-square linear regression, by a straight line.</p></li>
+</ol>
+<pre class="r"><code>data(sazava)
+par(mfrow=c(1,2))
+par(mar=c(4,4,1,1))
+plot(sazava[,&quot;SiO2&quot;],sazava[,&quot;CaO&quot;], cex=1.2,
+     xlab=expression(SiO[2]),ylab=&quot;CaO&quot;,
+     pch=sazava[,&quot;Symbol&quot;],xlim=c(49,75),ylim=c(0,15))
+text(sazava[,&quot;SiO2&quot;],sazava[,&quot;CaO&quot;],rownames(sazava),
+     pos=4,cex=0.7)
+abline(0,0.1)
+plot(sazava[,&quot;Zr&quot;],sazava[,&quot;Ba&quot;],xlab=&quot;Zr&quot;,ylab=&quot;Ba&quot;,
+     pch=15,cex=1.5,log=&quot;xy&quot;)
+lq &lt;- lm(log10(sazava[,&quot;Ba&quot;]) ~ log10(sazava[,&quot;Zr&quot;]))
+lq</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = log10(sazava[, &quot;Ba&quot;]) ~ log10(sazava[, &quot;Zr&quot;]))
+## 
+## Coefficients:
+##           (Intercept)  log10(sazava[, &quot;Zr&quot;])  
+##                1.1994                 0.8847</code></pre>
+<pre class="r"><code>abline(lq,lty=2,lwd=2,col=&quot;darkgreen&quot;)</code></pre>
+<p><img src="/post/2020-06-16-geochemical-modelling-of-ig-processes-chapter-3_files/figure-html/fig-1.png" width="960" /></p>
+</div>
+</div>

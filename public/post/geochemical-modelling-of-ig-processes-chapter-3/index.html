@@ -1,0 +1,909 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "\/"
+        },
+        "articleSection" : "post",
+        "name" : "Geochemical Modelling of Ig. Processes - Chapter 3",
+        "headline" : "Geochemical Modelling of Ig. Processes - Chapter 3",
+        "description" : "Binary Plots   This post is a compilation of the exercises from Chapter 3: Classical Plots from the book Geochemical Modelling of Igneous Processes - Principles and Recipes in R language by Vojtěch Janoušek, Jean Hervé Martin, Vojtěch Erban and Colin Farrow.\nsink(\u0026quot;\/dev\/null\u0026quot;); suppressPackageStartupMessages(library(GCDkit)); sink(); Binary Plots Plotting Simple Binary Plots In this exercise we focus on graphical analysis of the Sázava dataset. a) Build a binary plot SiO2–CaO.",
+        "inLanguage" : "en",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2020",
+        "datePublished": "2020-06-16 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2020-06-16 00:00:00 \u002b0000 UTC",
+        "url" : "\/post\/geochemical-modelling-of-ig-processes-chapter-3\/",
+        "wordCount" : "165",
+        "keywords" : [ "geochemical modeling","geochemistry","Igneous processes","Blog" ]
+    }
+    </script>
+        
+            
+                <title>Geochemical Modelling of Ig. Processes - Chapter 3</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.72.0" />
+        
+  
+    
+  
+
+  
+
+  <link rel="apple-touch-icon-precomposed" href='/favicon/apple-touch-icon-precomposed.png'>
+  <link rel="icon" href='/favicon/favicon.png'>
+  
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content='/favicon/mstile.png'>
+  <meta name="application-name" content="Geosciences Programming">
+  <meta name="msapplication-tooltip" content="Learn geosciences, learn programming.">
+  <meta name="msapplication-config" content='/favicon/ieconfig.xml'>
+
+
+
+        
+            <meta name="author" content="Nguyen Cong Nghia">
+        
+        
+            
+                <meta name="description" content="Learn geosciences, learn programming.">
+            
+        
+
+        <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Geochemical Modelling of Ig. Processes - Chapter 3"/>
+<meta name="twitter:description" content="Binary Plots   This post is a compilation of the exercises from Chapter 3: Classical Plots from the book Geochemical Modelling of Igneous Processes - Principles and Recipes in R language by Vojtěch Janoušek, Jean Hervé Martin, Vojtěch Erban and Colin Farrow.
+sink(&quot;/dev/null&quot;); suppressPackageStartupMessages(library(GCDkit)); sink(); Binary Plots Plotting Simple Binary Plots In this exercise we focus on graphical analysis of the Sázava dataset. a) Build a binary plot SiO2–CaO."/>
+
+        <meta property="og:title" content="Geochemical Modelling of Ig. Processes - Chapter 3" />
+<meta property="og:description" content="Binary Plots   This post is a compilation of the exercises from Chapter 3: Classical Plots from the book Geochemical Modelling of Igneous Processes - Principles and Recipes in R language by Vojtěch Janoušek, Jean Hervé Martin, Vojtěch Erban and Colin Farrow.
+sink(&quot;/dev/null&quot;); suppressPackageStartupMessages(library(GCDkit)); sink(); Binary Plots Plotting Simple Binary Plots In this exercise we focus on graphical analysis of the Sázava dataset. a) Build a binary plot SiO2–CaO." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/geochemical-modelling-of-ig-processes-chapter-3/" />
+<meta property="article:published_time" content="2020-06-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-06-16T00:00:00+00:00" />
+
+        <meta property="og:image" content="//images/logo.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="512">
+        <meta property="og:image:height" content="512">
+        <meta itemprop="name" content="Geochemical Modelling of Ig. Processes - Chapter 3">
+<meta itemprop="description" content="Binary Plots   This post is a compilation of the exercises from Chapter 3: Classical Plots from the book Geochemical Modelling of Igneous Processes - Principles and Recipes in R language by Vojtěch Janoušek, Jean Hervé Martin, Vojtěch Erban and Colin Farrow.
+sink(&quot;/dev/null&quot;); suppressPackageStartupMessages(library(GCDkit)); sink(); Binary Plots Plotting Simple Binary Plots In this exercise we focus on graphical analysis of the Sázava dataset. a) Build a binary plot SiO2–CaO.">
+<meta itemprop="datePublished" content="2020-06-16T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-06-16T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="165">
+
+
+
+<meta itemprop="keywords" content="geochemical modeling,geochemistry,Igneous processes," />
+        
+
+        
+            
+        
+
+        
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
+            <link rel="stylesheet" href="/css/main.css">
+            <link rel="stylesheet" href="/css/add-on.css">
+            <link rel="stylesheet" href="/css/academicons.min.css">
+        
+
+        
+            
+                
+            
+        
+
+
+  
+    
+    <link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+  
+
+
+      
+    </head>
+    <body>
+
+      
+      <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+      <h1><a href="/">post</a></h1>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/">
+                            <i class="fa fa-home">&nbsp;</i>Home
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/about/">
+                            <i class="fa fa-id-card-o">&nbsp;</i>About
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/categories/">
+                            <i class="fa fa-sitemap">&nbsp;</i>Categories
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="as_sitesearch" value="/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="as_sitesearch" value="/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/">
+                            <h3>
+                                <i class="fa fa-home">&nbsp;</i>Home
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/about/">
+                            <h3>
+                                <i class="fa fa-id-card-o">&nbsp;</i>About
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories/">
+                            <h3>
+                                <i class="fa fa-sitemap">&nbsp;</i>Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section class="recent-posts">
+            <div class="mini-posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+
+                
+                    
+                
+
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/post/geochemical-modelling-of-ig-processes-chapter-3/">Geochemical Modelling of Ig. Processes - Chapter 3</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-06-16'>
+                                    June 16, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/post/">Post</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-06-16'>
+                                    June 16, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/post/r-syntax-in-a-nutshell-iii/">R Syntax in a Nutshell III</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-06-15'>
+                                    June 15, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/post/r-syntax-in-a-nutshell-part-ii/">R Syntax in a Nutshell Part II</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-06-15'>
+                                    June 15, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/post/exploring-adakite-using-python/">Exploring Adakite using Python</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-06-11'>
+                                    June 11, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+
+                
+                    <a href=
+                        
+                            /blog/
+                        
+                        class="button">View more posts</a>
+                
+            </div>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+  <header>
+    <div class="title">
+        
+            <h1><a href="/post/geochemical-modelling-of-ig-processes-chapter-3/">Geochemical Modelling of Ig. Processes - Chapter 3</a></h1>
+            
+        
+        
+    </div>
+    <div class="meta">
+        
+
+        <time class="published"
+            datetime='2020-06-16'>
+            June 16, 2020</time>
+        <span class="author">Nguyen Cong Nghia</span>
+        
+            <p>1 minute read</p>
+        
+        
+    </div>
+</header>
+
+
+  
+
+  
+
+  <div id="content">
+    
+
+<div id="TOC">
+<ul>
+<li><a href="#binary-plots">Binary Plots</a></li>
+</ul>
+</div>
+
+<p>This post is a compilation of the exercises from Chapter 3: Classical Plots from the book Geochemical Modelling of Igneous Processes - Principles and Recipes in R language by Vojtěch Janoušek, Jean Hervé Martin, Vojtěch Erban and Colin Farrow.</p>
+<pre class="r"><code>sink(&quot;/dev/null&quot;); suppressPackageStartupMessages(library(GCDkit)); sink();</code></pre>
+<div id="binary-plots" class="section level3">
+<h3>Binary Plots</h3>
+<div id="plotting-simple-binary-plots" class="section level4">
+<h4>Plotting Simple Binary Plots</h4>
+<p>In this exercise we focus on graphical analysis of the Sázava dataset.
+a) Build a binary plot SiO2–CaO. Choose suitable ranges for the axes,label them and annotate data points by sample names. Assign the plotting symbols according to individual rock types (utilizing the pre-defined column “Symbol”).</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><p>Plot a line SiO2/CaO = 10 passing through origin [0,0].</p></li>
+<li><p>Plot a diagram logZr – logBa and fit the data points,using the least-square linear regression, by a straight line.</p></li>
+</ol>
+<pre class="r"><code>data(sazava)
+par(mfrow=c(1,2))
+par(mar=c(4,4,1,1))
+plot(sazava[,&quot;SiO2&quot;],sazava[,&quot;CaO&quot;], cex=1.2,
+     xlab=expression(SiO[2]),ylab=&quot;CaO&quot;,
+     pch=sazava[,&quot;Symbol&quot;],xlim=c(49,75),ylim=c(0,15))
+text(sazava[,&quot;SiO2&quot;],sazava[,&quot;CaO&quot;],rownames(sazava),
+     pos=4,cex=0.7)
+abline(0,0.1)
+plot(sazava[,&quot;Zr&quot;],sazava[,&quot;Ba&quot;],xlab=&quot;Zr&quot;,ylab=&quot;Ba&quot;,
+     pch=15,cex=1.5,log=&quot;xy&quot;)
+lq &lt;- lm(log10(sazava[,&quot;Ba&quot;]) ~ log10(sazava[,&quot;Zr&quot;]))
+lq</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = log10(sazava[, &quot;Ba&quot;]) ~ log10(sazava[, &quot;Zr&quot;]))
+## 
+## Coefficients:
+##           (Intercept)  log10(sazava[, &quot;Zr&quot;])  
+##                1.1994                 0.8847</code></pre>
+<pre class="r"><code>abline(lq,lty=2,lwd=2,col=&quot;darkgreen&quot;)</code></pre>
+<p><img src="/post/2020-06-16-geochemical-modelling-of-ig-processes-chapter-3_files/figure-html/fig-1.png" width="960" /></p>
+</div>
+</div>
+
+  </div>
+
+  <footer>
+    <ul class="stats">
+  <li class="categories">
+    <ul>
+        
+            
+            
+                <i class="fa fa-folder"></i>
+                
+                
+                <li><a class="article-category-link" href="/categories/r">R</a></li>
+                
+            
+        
+    </ul>
+  </li>
+  <li class="tags">
+    <ul>
+        
+            
+            
+                <i class="fa fa-tags"></i>
+                
+                
+                <li><a class="article-category-link" href="/tags/geochemical-modeling">geochemical modeling</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/geochemistry">geochemistry</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/igneous-processes">Igneous processes</a></li>
+                
+            
+        
+    </ul>
+  </li>
+</ul>
+
+  </footer>
+
+</article>
+
+    <article class="post">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "geo-programing.disqus.com" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </article>
+
+
+<ul class="actions pagination">
+    
+        <li><a href="/post/r-syntax-in-a-nutshell-iii/"
+                class="button big previous">R Syntax in a Nutshell III</a></li>
+    
+
+    
+</ul>
+
+
+    </div>
+    
+<section id="sidebar">
+
+  
+  <section id="intro">
+    
+    
+      
+        <a href='/'><img src="/main/logo.png" class="intro-circle" width="80px" alt="Geosciences Programming" /></a>
+      
+    
+    
+      <header>
+        <h2>Geosciences Programming</h2>
+        <p>Learn more not less <i class='fa fa-hand-peace-o'></i></p>
+      </header>
+    
+    
+      <ul class="icons">
+        
+          
+    <li><a href="/index.xml" type="application/rss+xml" target="_blank" title="RSS" class="fa fa-rss"></a></li>
+
+
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    
+  </section>
+
+  
+  <section class="recent-posts">
+    <div class="mini-posts">
+      <header>
+        <h3>Recent Posts</h3>
+      </header>
+      <div class="posts-container">
+        
+
+        
+          
+        
+
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/post/geochemical-modelling-of-ig-processes-chapter-3/">Geochemical Modelling of Ig. Processes - Chapter 3</a>
+              </h3>
+              
+              <time class="published" datetime='2020-06-16'>
+                June 16, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/post/">Post</a>
+              </h3>
+              
+              <time class="published" datetime='2020-06-16'>
+                June 16, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/post/r-syntax-in-a-nutshell-iii/">R Syntax in a Nutshell III</a>
+              </h3>
+              
+              <time class="published" datetime='2020-06-15'>
+                June 15, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/post/r-syntax-in-a-nutshell-part-ii/">R Syntax in a Nutshell Part II</a>
+              </h3>
+              
+              <time class="published" datetime='2020-06-15'>
+                June 15, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/post/exploring-adakite-using-python/">Exploring Adakite using Python</a>
+              </h3>
+              
+              <time class="published" datetime='2020-06-11'>
+                June 11, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+      </div>
+
+      
+        <a href=
+          
+            /blog/
+          
+        class="button">View more posts</a>
+      
+    </div>
+  </section>
+
+  
+  
+  
+  
+  
+    <section id="categories">
+      <header>
+        <h3>
+          <a href="/categories/">Categories</a>
+        </h3>
+      </header>
+        
+          
+        
+
+        
+        <p>
+          <article>
+            <header>
+              
+                <a href="/categories/r/">r</a>
+                <span style="float:right;">5</span>
+              
+            </header>
+          </article>
+        </p>
+        
+        <p>
+          <article>
+            <header>
+              
+                <a href="/categories/python/">python</a>
+                <span style="float:right;">1</span>
+              
+            </header>
+          </article>
+        </p>
+        
+    </section>
+  
+  
+
+  
+  
+    <section id="mini-bio">
+      <h3>About</h3>
+      <p>R. Python. Geology. Geochemistry. Geophysics and more.</p>
+      <a href="/about/" class="button">Learn More</a>
+    </section>
+  
+
+  
+  <section id="footer">
+    
+      <ul class="icons">
+        
+          
+    <li><a href="/index.xml" type="application/rss+xml" target="_blank" title="RSS" class="fa fa-rss"></a></li>
+
+
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    
+    <p class="copyright">
+      
+        &copy; 2020
+        
+          Geosciences Programming
+        
+      .
+      Powered by <a href="//gohugo.io" target="_blank">Hugo</a>
+    </p>
+  </section>
+</section>
+
+    </div>
+    <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+    
+
+    
+      
+    
+
+    
+      
+      
+      
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+        
+        
+        
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/css.min.js"></script>
+        <script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+      
+    
+    
+    
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
+      <script src="/js/util.js"></script>
+      <script src="/js/main.js"></script>
+      <script src="/js/backToTop.js"></script>
+    
+
+    
+      
+        
+      
+    
+
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+      <script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+  </body>
+</html>
+

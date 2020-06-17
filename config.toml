@@ -4,7 +4,7 @@ title = "Geosciences Programming"
 theme = "hugo-future-imperfect"
 preserveTaxonomyNames = true
 paginate = 3
-disqusShortname = "geo-programing.disqus.com"
+disqusShortname = "geo-programing"
 googleAnalytics = ""
 pluralizeListTitles = false
 # Set the followings to true as part of your site SEO
@@ -118,12 +118,12 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   # This appears at the top of the sidebar above params.intro.header.
   # A width of less than 100px is recommended from a design perspective.
   [params.intro.pic]
-    src       = "/main/logo.jpg"
+    src       = "/main/logo.png"
     # Sets Image to be a cirlce
     circle    = true
     # Sets Image to be Future Imperfect's hexagon
     imperfect = false
-    width     = ""
+    width     = "80px"
     alt       = "Geosciences Programming"
 
 [params.postAmount]

@@ -1,0 +1,51 @@
+---
+title: Geochemical Modelling of Ig. Processes - Chapter 3
+author: Nguyen Cong Nghia
+date: '2020-06-16'
+slug: geochemical-modelling-of-ig-processes-chapter-3
+categories:
+  - R
+tags:
+  - geochemical modeling
+  - geochemistry
+  - Igneous processes
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+output:
+  blogdown::html_page:
+    toc: true
+---
+This post is a compilation of the exercises from Chapter 3: Classical Plots from the book Geochemical Modelling of Igneous Processes - Principles and Recipes in R language by Vojtěch Janoušek, Jean Hervé Martin, Vojtěch Erban and Colin Farrow.
+```{r}
+sink("/dev/null"); suppressPackageStartupMessages(library(GCDkit)); sink();
+```
+
+### Binary Plots
+#### Plotting Simple Binary Plots
+In this exercise we focus on graphical analysis of the Sázava dataset.
+a) Build a binary plot SiO2–CaO. Choose suitable ranges for the axes,label them and annotate data points by sample names. Assign the plotting symbols according to individual rock types (utilizing the pre-defined column “Symbol”).
+
+b) Plot a line SiO2/CaO = 10 passing through origin [0,0].
+
+c) Plot a diagram logZr – logBa and fit the data points,using the least-square linear regression, by a straight line.
+```{r fig, fig.width = 10, fig.height = 5}
+sazava <- read.table("data/sazava.data",sep="\t")
+par(mfrow=c(1,2))
+par(mar=c(4,4,1,1))
+plot(sazava[,"SiO2"],sazava[,"CaO"], cex=1.2,
+     xlab=expression(SiO[2]),ylab="CaO",
+     pch=sazava[,"Symbol"],xlim=c(49,75),ylim=c(0,15))
+text(sazava[,"SiO2"],sazava[,"CaO"],rownames(sazava),
+     pos=4,cex=0.7)
+abline(0,0.1)
+plot(sazava[,"Zr"],sazava[,"Ba"],xlab="Zr",ylab="Ba",
+     pch=15,cex=1.5,log="xy")
+lq <- lm(log10(sazava[,"Ba"]) ~ log10(sazava[,"Zr"]))
+lq
+abline(lq,lty=2,lwd=2,col="darkgreen")
+```
+
+

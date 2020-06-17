@@ -24,7 +24,7 @@
         "datePublished": "2020-06-15 00:00:00 \u002b0000 UTC",
         "dateModified" : "2020-06-15 00:00:00 \u002b0000 UTC",
         "url" : "\/post\/r-syntax-in-a-nutshell-iii\/",
-        "wordCount" : "307",
+        "wordCount" : "362",
         "keywords" : [ "R basics","Blog" ]
     }
     </script>
@@ -89,7 +89,7 @@ x &lt;- 5.8 cat(&quot;The result is&quot;,x,&quot;N/m.\n&quot;) ## The result is
 x &lt;- 6 y &lt;- 0.5 if (x&gt;2 &amp; y&lt;1){ print(x) print(y) }else{ cat(&quot;Warning, x&lt;=2 or y&gt;-1\n&quot;) } ## [1] 6 ## [1] 0.">
 <meta itemprop="datePublished" content="2020-06-15T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2020-06-15T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="307">
+<meta itemprop="wordCount" content="362">
 
 
 
@@ -239,11 +239,23 @@ x &lt;- 6 y &lt;- 0.5 if (x&gt;2 &amp; y&lt;1){ print(x) print(y) }else{ cat(&qu
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/post/geochemical-modelling-of-ig-processes-chapter-3/">Geochemical Modelling of Ig. Processes - Chapter 3</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-06-16'>
+                                    June 16, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/post/">Post</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-06-15'>
-                                    June 15, 2020</time>
+                                    '2020-06-16'>
+                                    June 16, 2020</time>
                             </header>
                             
 
@@ -280,18 +292,6 @@ x &lt;- 6 y &lt;- 0.5 if (x&gt;2 &amp; y&lt;1){ print(x) print(y) }else{ cat(&qu
                                 <time class="published" datetime=
                                     '2020-06-11'>
                                     June 11, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/post/geochem-modeling-of-ig-processes-chapter-2/">Geochem modeling of Ig. Processes - Chapter 2</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-06-10'>
-                                    June 10, 2020</time>
                             </header>
                             
 
@@ -442,9 +442,10 @@ cat(ee)</code></pre>
 ##  Square root of 5 is 2.23606797749979 
 ##  Square root of 7 is 2.64575131106459 
 ##  Square root of 9 is 3</code></pre>
-<p>Commands <em>apply, tapply, sapply</em> are commonly a better approach.
-#### User-defined Functions
-<strong>function.name</strong> &lt;- <strong>function</strong>(<em>argument1,argument2,…</em>)expression</p>
+<p>Commands <em>apply, tapply, sapply</em> are commonly a better approach.</p>
+<div id="user-defined-functions" class="section level4">
+<h4>User-defined Functions</h4>
+<p><strong>function.name</strong> &lt;- <strong>function</strong>(<em>argument1,argument2,…</em>)expression</p>
 <p>For example: calculating a geometric mean, which defined as <span class="math inline">\(n^{th}\)</span> root of the product of n numbers:</p>
 <p><span class="math display">\[S = \sqrt{\prod_{i = 1}^{n} f(x_i)}\]</span></p>
 <pre class="r"><code>geo.mean &lt;- function(x){
@@ -473,7 +474,17 @@ my.plot(x,y)</code></pre>
 <pre class="r"><code>args(&quot;my.plot&quot;)</code></pre>
 <pre><code>## function (x, y, symb = &quot;+&quot;, color = &quot;red&quot;) 
 ## NULL</code></pre>
-<p>Assigments in Functions</p>
+</div>
+<div id="an-alternative-to-loops---sapply" class="section level4">
+<h4>An alternative to Loops - sapply</h4>
+<p>sapply(x,FUN): apply a function FUN over a vector x.</p>
+<pre class="r"><code>sapply(seq(1,10,by=2), function(i){
+  z &lt;- paste(&quot;Square root of&quot;,i,&quot;is&quot;,round(sqrt(i),3))
+})</code></pre>
+<pre><code>## [1] &quot;Square root of 1 is 1&quot;     &quot;Square root of 3 is 1.732&quot;
+## [3] &quot;Square root of 5 is 2.236&quot; &quot;Square root of 7 is 2.646&quot;
+## [5] &quot;Square root of 9 is 3&quot;</code></pre>
+</div>
 </div>
 
   </div>
@@ -545,6 +556,9 @@ my.plot(x,y)</code></pre>
     
 
     
+        <li><a href="/post/geochemical-modelling-of-ig-processes-chapter-3/"
+                class="button big next">Geochemical Modelling of Ig. Processes - Chapter 3</a></li>
+    
 </ul>
 
 
@@ -557,7 +571,7 @@ my.plot(x,y)</code></pre>
     
     
       
-        <a href='/'><img src="/main/logo.jpg" class="intro-circle" width="" alt="Geosciences Programming" /></a>
+        <a href='/'><img src="/main/logo.png" class="intro-circle" width="80px" alt="Geosciences Programming" /></a>
       
     
     
@@ -673,11 +687,25 @@ my.plot(x,y)</code></pre>
           <article class="mini-post">
             <header>
               <h3>
+                <a href="/post/geochemical-modelling-of-ig-processes-chapter-3/">Geochemical Modelling of Ig. Processes - Chapter 3</a>
+              </h3>
+              
+              <time class="published" datetime='2020-06-16'>
+                June 16, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
                 <a href="/post/">Post</a>
               </h3>
               
-              <time class="published" datetime='2020-06-15'>
-                June 15, 2020
+              <time class="published" datetime='2020-06-16'>
+                June 16, 2020
               </time>
             </header>
             
@@ -726,20 +754,6 @@ my.plot(x,y)</code></pre>
 
           </article>
         
-          <article class="mini-post">
-            <header>
-              <h3>
-                <a href="/post/geochem-modeling-of-ig-processes-chapter-2/">Geochem modeling of Ig. Processes - Chapter 2</a>
-              </h3>
-              
-              <time class="published" datetime='2020-06-10'>
-                June 10, 2020
-              </time>
-            </header>
-            
-
-          </article>
-        
       </div>
 
       
@@ -773,7 +787,7 @@ my.plot(x,y)</code></pre>
             <header>
               
                 <a href="/categories/r/">r</a>
-                <span style="float:right;">4</span>
+                <span style="float:right;">5</span>
               
             </header>
           </article>

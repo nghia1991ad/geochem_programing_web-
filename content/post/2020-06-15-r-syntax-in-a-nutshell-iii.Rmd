@@ -59,7 +59,9 @@ ee <- paste("Square root of",x,"is",sqrt(x),"\n")
 cat(ee)
 ```
 Commands *apply, tapply, sapply* are commonly a better approach.
+
 #### User-defined Functions
+
 **function.name** <- **function**(*argument1,argument2,...*)expression
 
 For example: calculating a geometric mean, which defined as $n^{th}$ root of the product of n numbers:
@@ -90,6 +92,14 @@ my.plot(x,y,"o")
 my.plot(x,y,color="blue")
 args("my.plot")
 ```
-Assigments in Functions
+#### An alternative to Loops - sapply
+sapply(x,FUN): apply a function FUN over a vector x. 
+```{r}
+sapply(seq(1,10,by=2), function(i){
+  z <- paste("Square root of",i,"is",round(sqrt(i),3))
+})
+
+```
+
 
 

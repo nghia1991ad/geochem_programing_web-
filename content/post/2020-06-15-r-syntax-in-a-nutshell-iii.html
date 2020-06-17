@@ -77,9 +77,10 @@ cat(ee)</code></pre>
 ##  Square root of 5 is 2.23606797749979 
 ##  Square root of 7 is 2.64575131106459 
 ##  Square root of 9 is 3</code></pre>
-<p>Commands <em>apply, tapply, sapply</em> are commonly a better approach.
-#### User-defined Functions
-<strong>function.name</strong> &lt;- <strong>function</strong>(<em>argument1,argument2,…</em>)expression</p>
+<p>Commands <em>apply, tapply, sapply</em> are commonly a better approach.</p>
+<div id="user-defined-functions" class="section level4">
+<h4>User-defined Functions</h4>
+<p><strong>function.name</strong> &lt;- <strong>function</strong>(<em>argument1,argument2,…</em>)expression</p>
 <p>For example: calculating a geometric mean, which defined as <span class="math inline">\(n^{th}\)</span> root of the product of n numbers:</p>
 <p><span class="math display">\[S = \sqrt{\prod_{i = 1}^{n} f(x_i)}\]</span></p>
 <pre class="r"><code>geo.mean &lt;- function(x){
@@ -108,5 +109,15 @@ my.plot(x,y)</code></pre>
 <pre class="r"><code>args(&quot;my.plot&quot;)</code></pre>
 <pre><code>## function (x, y, symb = &quot;+&quot;, color = &quot;red&quot;) 
 ## NULL</code></pre>
-<p>Assigments in Functions</p>
+</div>
+<div id="an-alternative-to-loops---sapply" class="section level4">
+<h4>An alternative to Loops - sapply</h4>
+<p>sapply(x,FUN): apply a function FUN over a vector x.</p>
+<pre class="r"><code>sapply(seq(1,10,by=2), function(i){
+  z &lt;- paste(&quot;Square root of&quot;,i,&quot;is&quot;,round(sqrt(i),3))
+})</code></pre>
+<pre><code>## [1] &quot;Square root of 1 is 1&quot;     &quot;Square root of 3 is 1.732&quot;
+## [3] &quot;Square root of 5 is 2.236&quot; &quot;Square root of 7 is 2.646&quot;
+## [5] &quot;Square root of 9 is 3&quot;</code></pre>
+</div>
 </div>
