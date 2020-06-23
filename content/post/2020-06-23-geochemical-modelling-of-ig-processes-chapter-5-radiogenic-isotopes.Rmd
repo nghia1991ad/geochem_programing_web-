@@ -1,0 +1,100 @@
+---
+title: 'Geochemical modelling of Ig. processes - Chapter 5: Radiogenic Isotopes'
+author: Nguyen Cong Nghia
+date: '2020-06-23'
+slug: geochemical-modelling-of-ig-processes-chapter-5-radiogenic-isotopes
+categories:
+  - R
+tags:
+  - geochemical modeling
+  - geochemistry
+  - Igneous processes
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+output:
+  blogdown::html_page:
+    toc: true
+---
+This post is a compilation of the exercises from Chapter 5: Radiogenic Isotopes from the book Geochemical Modelling of Igneous Processes - Principles and Recipes in R language by Vojtěch Janoušek, Jean Hervé Martin, Vojtěch Erban and Colin Farrow.
+
+Many of the parent-daughter dating methods are based on similar principles. The parent (radioactive) isotope decayse to ther daughter (radiogenic) isotope:
+
+$$^{87}Rb\rightarrow^{87}Sr$$
+$$^{147}Sm\rightarrow^{143}Nd$$
+$$^{176}Lu\rightarrow^{176}Hf$$
+$$^{187}Re\rightarrow^{187}Os$$
+Do note that while the **I** ratios are measured directly with the mass spectrometer (TIMS or ICP-MS), **R** ratios must be calculated from elemental concentration obtained by isotope dilution, ICP-MS, XRF or other analytcal methods.
+
+The formular based on Faure (1986):
+
+$$\frac{^{87}Rb}{^{86}Sr}=(\frac{C_{Rb}}{C_{Sr}})[2.6939 + 0.2832 \frac{^{87}Sr}{^{86}Sr}]$$
+$$\frac{^{147}Sm}{^{144}Nd}=(\frac{C_{Sm}}{C_{Nd}})[0.53151 + 0.14252 \frac{^{143}Nd}{^{144}Nd}]$$
+
+### Calculation of Initial Ratios or Ages
+$$I=R(e^{\lambda t}-1)$$
+* I: ratio of daughter isotope to a stable, non-radiogenic isotope (e.g: $^{87}Sr/^{86}Sr$, $^{143}Nd/^{144}Nd$ or $^{176}Hf/^{177}Hf$)
+
+* R: ratio of parental isotope to the same non-radiogenic isotope in I (e.g: $^{87}Rb/^{86}Sr$, $^{147}Sm/^{144}Nd$ or $^{176}Lu/^{177}Hf$)
+
+* $\lambda$: decay constant
+
+* t: time (Ma or ka)
+
+However, due to the presence of *common* element present, the formula is modified as:
+$$I=I_{i}+R(e^{\lambda t}-1)$$
+
+* $I_{i}$: the initial ratio of common daughter-stable isotope
+
+From this, if the age is known, the isotopic ratios can be easily 'age-corrected' and used in petrogenetic considerations. On the other hand, knowing the initial ratio, we can determined the age by solving for t:
+
+$$t=\frac{1}{\lambda}ln(\frac{I-I_i}{R}+1)$$
+
+#### Exercise 5.1: Initial ratios and ages
+
+The Sr–Nd isotopic study of the Central Bohemian Plutonic Complex (CBPC) (Janoušek et al. 1995) has proven a diversity of sources and processes involved in genesis of individual intrusions and suites. The file contains an excerpt from the data for several granitoid types and two country rocks.
+
+![](/post/2020-06-23-geochemical-modelling-of-ig-processes-chapter-5-radiogenic-isotopes_files/Screen Shot 2020-06-23 at 5.50.56 PM.png)
+
+Import the data file into a matrix *izo*, calculate the $^{87}Rb/^{86}Sr$ and $^{147}Sm/^{144}Nd$ ratios and attach them to the matrix as the last data columns.
+
+Design functions yielding Sr and Nd initial ratios; back-calculate these at 350 and 300 Ma ago; can you program a single function with an argument identifying the isotopic system (Sr or Nd)?
+
+Calculate the age of the sample Koz-2 assuming that its initial ratio is 0.705.
+
+```{r}
+# Part a
+izo <- read.table("data/cbpizo.data", sep= "\t", check.names=F)
+izo$"87Rb/86Sr" = izo$Rb/izo$Sr*(2.6939 + 0.2832*izo$`87Sr/86Sr`)
+izo$"147Sm/144Nd" = izo$Sm/izo$Nd*(0.53151 + 0.14252*izo$`143Nd/144Nd`)
+izo
+
+#Part b
+initial <- function(data, system="Sr",age){
+  if (system == "Sr"){
+    lambda = 1.42e-11
+    I = data[,"87Sr/86Sr"]
+    R = data[,"87Rb/86Sr"]
+  } else if (system == "Nd"){
+    lambda = 6.54e-12
+    I = data[,"143Nd/144Nd"]
+    R = data[,"147Sm/144Nd"]
+  }
+  Ii = I - R * (exp(lambda*age*10^6)-1)
+  return(Ii)
+}
+izo$"87Sr/86Sr_i300" = initial(izo,system="Sr", age= 300)
+izo$"87Sr/86Sr_i350" = initial(izo,system="Sr", age= 350)
+izo$"143Nd/144Nd_i300" = initial(izo,system="Nd", age= 300)
+izo$"143Nd/144Nd_i350" = initial(izo,system="Nd", age= 350)
+izo[,c("87Sr/86Sr_i300","87Sr/86Sr_i350","143Nd/144Nd_i300","143Nd/144Nd_i350")]
+
+#Part c
+ini87Sr_86Sr = 0.705
+lambda = 1.42e-11
+age_Koz2 = 1/lambda*log((izo["Koz-2","87Sr/86Sr"]-ini87Sr_86Sr)/izo["Koz-2","87Rb/86Sr"] + 1)
+age_Koz2/10^6
+```
+
