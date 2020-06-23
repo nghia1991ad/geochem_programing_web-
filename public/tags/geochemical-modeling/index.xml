@@ -6,10 +6,20 @@
     <description>Recent content in geochemical modeling on Geosciences Programming</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 16 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/geochemical-modeling/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Geochemical modelling of Ig. processes - Chapter 4</title>
+      <link>/post/geochemical-modelling-of-ig-processes-chapter-4/</link>
+      <pubDate>Mon, 22 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/geochemical-modelling-of-ig-processes-chapter-4/</guid>
+      <description>Log-log binary plots Specialized spider plots Contour plots   This post is a compilation of the exercises from Chapter 4: Specialized Plots from the book Geochemical Modelling of Igneous Processes - Principles and Recipes in R language by Vojtěch Janoušek, Jean Hervé Martin, Vojtěch Erban and Colin Farrow.
+sink(&amp;quot;/dev/null&amp;quot;); suppressPackageStartupMessages(library(GCDkit)); sink(); Log-log binary plots data(sazava) par(mfrow=c(1,2)) # Split screen for 2 graphs par(mar=c(4,4,1,1)) # Outer margins for each of the graphs # Plot 1 plot(sazava[,&amp;quot;Sr&amp;quot;],sazava[,&amp;quot;Rb&amp;quot;],xlim=c(1,1000),ylim=c(1,1000),xlab=&amp;quot;Sr&amp;quot;,ylab=&amp;quot;Rb&amp;quot;,pch=16,col=&amp;quot;blue&amp;quot;,cex=1.</description>
+    </item>
     
     <item>
       <title>Geochemical Modelling of Ig. Processes - Chapter 3</title>
@@ -17,8 +27,8 @@
       <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>/post/geochemical-modelling-of-ig-processes-chapter-3/</guid>
-      <description>Binary Plots   This post is a compilation of the exercises from Chapter 3: Classical Plots from the book Geochemical Modelling of Igneous Processes - Principles and Recipes in R language by Vojtěch Janoušek, Jean Hervé Martin, Vojtěch Erban and Colin Farrow.
-sink(&amp;quot;/dev/null&amp;quot;); suppressPackageStartupMessages(library(GCDkit)); sink(); Binary Plots Plotting Simple Binary Plots In this exercise we focus on graphical analysis of the Sázava dataset. a) Build a binary plot SiO2–CaO.</description>
+      <description>Binary Plots Harker Plots and Other Basic Multiple Plots Ternary Plots Spider plot   This post is a compilation of the exercises from Chapter 3: Classical Plots from the book Geochemical Modelling of Igneous Processes - Principles and Recipes in R language by Vojtěch Janoušek, Jean Hervé Martin, Vojtěch Erban and Colin Farrow.
+sink(&amp;quot;/dev/null&amp;quot;); suppressPackageStartupMessages(library(GCDkit)); sink(); In this chapter, I followed the examples from the book and modified the code where necessary.</description>
     </item>
     
     <item>

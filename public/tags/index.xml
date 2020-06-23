@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Geosciences Programming</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 16 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>geochemical modeling</title>
       <link>/tags/geochemical-modeling/</link>
-      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 22 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>/tags/geochemical-modeling/</guid>
       <description></description>
@@ -23,7 +23,7 @@
     <item>
       <title>geochemistry</title>
       <link>/tags/geochemistry/</link>
-      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 22 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>/tags/geochemistry/</guid>
       <description></description>
@@ -32,9 +32,36 @@
     <item>
       <title>Igneous processes</title>
       <link>/tags/igneous-processes/</link>
-      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 22 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>/tags/igneous-processes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DEM</title>
+      <link>/tags/dem/</link>
+      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/dem/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>earthpy</title>
+      <link>/tags/earthpy/</link>
+      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/earthpy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>/tags/python/</link>
+      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/python/</guid>
       <description></description>
     </item>
     

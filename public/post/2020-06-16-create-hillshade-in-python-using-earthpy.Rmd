@@ -1,0 +1,20 @@
+---
+title: Create hillshade in Python using earthpy
+author: Nguyen Cong Nghia
+date: '2020-06-16'
+slug: create-hillshade-in-python-using-earthpy
+categories:
+  - Python
+tags:
+  - Python
+  - DEM
+  - earthpy
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+---
+This post create a hillshade topography map in Python using earthpy
+
+

@@ -23,22 +23,26 @@ output:
 <div id="TOC">
 <ul>
 <li><a href="#binary-plots">Binary Plots</a></li>
+<li><a href="#harker-plots-and-other-basic-multiple-plots">Harker Plots and Other Basic Multiple Plots</a></li>
+<li><a href="#ternary-plots">Ternary Plots</a></li>
+<li><a href="#spider-plot">Spider plot</a></li>
 </ul>
 </div>
 
 <p>This post is a compilation of the exercises from Chapter 3: Classical Plots from the book Geochemical Modelling of Igneous Processes - Principles and Recipes in R language by Vojtěch Janoušek, Jean Hervé Martin, Vojtěch Erban and Colin Farrow.</p>
 <pre class="r"><code>sink(&quot;/dev/null&quot;); suppressPackageStartupMessages(library(GCDkit)); sink();</code></pre>
+<p>In this chapter, I followed the examples from the book and modified the code where necessary. This includes the basic to some fundamental geochemical plots (classification and spider diagrams).</p>
 <div id="binary-plots" class="section level3">
 <h3>Binary Plots</h3>
 <div id="plotting-simple-binary-plots" class="section level4">
 <h4>Plotting Simple Binary Plots</h4>
 <p>In this exercise we focus on graphical analysis of the Sázava dataset.
-a) Build a binary plot SiO2–CaO. Choose suitable ranges for the axes,label them and annotate data points by sample names. Assign the plotting symbols according to individual rock types (utilizing the pre-defined column “Symbol”).</p>
+a) Build a binary plot SiO<span class="math inline">\(_2\)</span>–CaO. Choose suitable ranges for the axes,label them and annotate data points by sample names. Assign the plotting symbols according to individual rock types (utilizing the pre-defined column “Symbol”).</p>
 <ol start="2" style="list-style-type: lower-alpha">
 <li><p>Plot a line SiO2/CaO = 10 passing through origin [0,0].</p></li>
 <li><p>Plot a diagram logZr – logBa and fit the data points,using the least-square linear regression, by a straight line.</p></li>
 </ol>
-<pre class="r"><code>data(sazava)
+<pre class="r"><code>sazava &lt;- read.table(&quot;data/sazava.data&quot;,sep=&quot;\t&quot;)
 par(mfrow=c(1,2))
 par(mar=c(4,4,1,1))
 plot(sazava[,&quot;SiO2&quot;],sazava[,&quot;CaO&quot;], cex=1.2,
@@ -61,4 +65,133 @@ lq</code></pre>
 <pre class="r"><code>abline(lq,lty=2,lwd=2,col=&quot;darkgreen&quot;)</code></pre>
 <p><img src="/post/2020-06-16-geochemical-modelling-of-ig-processes-chapter-3_files/figure-html/fig-1.png" width="960" /></p>
 </div>
+<div id="constant-sum-effect-closure" class="section level4">
+<h4>Constant Sum Effect (Closure)</h4>
+<p>The correlation in binary plots involving silica is spurious due to the constant sum effect (if one oxide increases in abundance, all others must decrease). Therefore, oxide* is introduced to represent the proportion of the relevant oxide in the non-silica portion of the rock (in wt.%):</p>
+<p><span class="math display">\[oxide*=100\times \frac{oxide}{(100-SiO_2)}\]</span></p>
+<pre class="r"><code>data(sazava)
+oxides &lt;- c(&quot;TiO2&quot;,&quot;Al2O3&quot;,&quot;FeO&quot;,&quot;Fe2O3&quot;,&quot;MnO&quot;,&quot;MgO&quot;,&quot;CaO&quot;,&quot;Na2O&quot;,&quot;K2O&quot;,&quot;P2O5&quot;)
+
+ee &lt;- sapply(rownames(sazava),function(i){
+    z&lt;-100*sazava[i,oxides]/(100-sazava[i,&quot;SiO2&quot;])
+    return(z)
+    }
+)
+oxide_star&lt;-t(ee)
+par(mfrow=c(1,2))
+# Panel a
+plot(sazava[,&quot;SiO2&quot;],sazava[,&quot;Al2O3&quot;],col=sazava[,&quot;Colour&quot;],pch=sazava[,&quot;Symbol&quot;],cex=1.5,xlim=c(45,100),ylim=c(0,40),xaxs=&quot;i&quot;,yaxs=&quot;i&quot;,xlab=expression(SiO[2]),ylab=expression(Al[2]*O[3]))
+text(82,37,cex = 1.5,
+     labels = expression(Si*O[2]*&quot;+&quot;*Al[2]*O[3]*&quot; &gt; 100%&quot;))
+text(82,32,cex = 1.5,
+     labels = expression(&quot;&#39;Forbidden zone&#39;&quot;))
+# Forbidden zone
+polygon(c(100,60,100,100),c(0,40,40,0),density=10,col=&quot;gray&quot;)
+
+# Panel b
+plot(sazava[,&quot;SiO2&quot;],oxide_star[,&quot;Al2O3&quot;],col=sazava[,&quot;Colour&quot;],pch=sazava[,&quot;Symbol&quot;],cex=1.5,xlim=c(45,100),ylim=c(0,60),xaxs=&quot;i&quot;,yaxs=&quot;i&quot;,xlab=expression(SiO[2]),ylab=expression(Al[2]*O[3]*&quot;*&quot;))
+text(70,10, cex = 1.5,
+     labels = expression(Al[2]*O[3]*&quot;* = 100 x &quot;*frac(oxide,(100 - SiO[2]))))</code></pre>
+<p><img src="/post/2020-06-16-geochemical-modelling-of-ig-processes-chapter-3_files/figure-html/fig1-1.png" width="960" /></p>
+<p><strong>GCD solution</strong></p>
+<pre><code>windows(width=10,height=5)
+par(mfrow=c(1,2))
+par(mar=c(4,4,1,1))
+data(sazava)
+accessVar(&quot;sazava&quot;)
+binary(&quot;SiO2&quot;,&quot;CaO&quot;,cex=1.2)
+abline(0,0.1)
+binary(&quot;Zr&quot;,&quot;Ba&quot;,log=&quot;xy&quot;,pch=15,cex=1.5,col=&quot;black&quot;,fit=TRUE)</code></pre>
+</div>
+</div>
+<div id="harker-plots-and-other-basic-multiple-plots" class="section level3">
+<h3>Harker Plots and Other Basic Multiple Plots</h3>
+<div id="exercise-3.2-harker-plots" class="section level4">
+<h4>Exercise 3.2: Harker plots</h4>
+<p>Using a loop and function <em>par(mfrow)</em>, write a short program that would plot six binary plots of SiO<span class="math inline">\(_2\)</span> vs. major-element oxides of your choice.</p>
+<pre class="r"><code>data(sazava)
+par(mfrow=c(2,3))
+ee &lt;- c(&quot;Al2O3&quot;,&quot;MgO&quot;,&quot;CaO&quot;,&quot;Na2O&quot;,&quot;K2O&quot;,&quot;P2O5&quot;)
+for (f in ee){
+  plot(sazava[,&quot;SiO2&quot;],sazava[,f],xlab=&quot;SiO2&quot;,
+       ylab=f,pch=sazava[,&quot;Symbol&quot;],cex=1.5)
+}</code></pre>
+<p><img src="/post/2020-06-16-geochemical-modelling-of-ig-processes-chapter-3_files/figure-html/fig2-1.png" width="768" />
+<strong>Advanced solution for nicer x-axis label</strong></p>
+<pre class="r"><code>data(sazava)
+par(mfrow=c(2,3))
+ee &lt;- c(&quot;Al2O3&quot;,&quot;MgO&quot;,&quot;CaO&quot;,&quot;Na2O&quot;,&quot;K2O&quot;,&quot;P2O5&quot;)
+lab &lt;- c(&quot;Al[2]*O[3]&quot;,&quot;MgO&quot;,&quot;CaO&quot;,&quot;Na[2]*O&quot;,&quot;K[2]*O&quot;,&quot;P[2]*O[5]&quot;)
+for (f in 1:length(ee)){
+  plot(sazava[,&quot;SiO2&quot;],sazava[,ee[f]],xlab=expression(SiO[2]),
+       ylab=parse(text=as.expression(lab[f])),
+       pch=sazava[,&quot;Symbol&quot;],cex=1.5)
+}</code></pre>
+<p><img src="/post/2020-06-16-geochemical-modelling-of-ig-processes-chapter-3_files/figure-html/fig3-1.png" width="768" /></p>
+<p><strong>GCD solution</strong></p>
+<pre><code>data(sazava)
+accessVar(&quot;sazava&quot;)
+multiple(&quot;SiO2&quot;,&quot;Al2O3,MgO,CaO,Na2O,K2O,P2O5&quot;)</code></pre>
+</div>
+</div>
+<div id="ternary-plots" class="section level3">
+<h3>Ternary Plots</h3>
+<div id="exercise-3.3.-ternary-plots" class="section level4">
+<h4>Exercise 3.3. Ternary Plots</h4>
+<ol style="list-style-type: lower-alpha">
+<li>Design a function plotting ternary diagrams.</li>
+<li>Display a Ba-Rb-Sr ternary plot for the Sazava suite.</li>
+</ol>
+<pre class="r"><code>tri &lt;- function(data,alab, blab, clab){
+  sums &lt;- apply(data[,c(alab,blab,clab)],1,sum)
+  a &lt;- data[,alab]/sums
+  b &lt;- data[,blab]/sums
+  x &lt;- 1 - a - b/2
+  y &lt;- sqrt(3)*b/2
+  plot(x,y,xlab=&quot;&quot;,ylab=&quot;&quot;,xlim=c(0,1),
+       ylim=c(0,1),axes=FALSE,asp=1)
+  x1 &lt;- c(0,1,.5,0)
+  y1 &lt;- c(0,0,sqrt(3)/2,0)
+  lines(x1,y1)
+  text(-0.05,0,alab)
+  text(1.05,0,clab)
+  text(0.5,sqrt(3)/2+0.05,blab)
+}
+data(sazava)
+tri(sazava,&quot;Ba&quot;,&quot;Rb&quot;,&quot;Sr&quot;)</code></pre>
+<p><img src="/post/2020-06-16-geochemical-modelling-of-ig-processes-chapter-3_files/figure-html/fig4-1.png" width="480" />
+### Geochemical plot</p>
+<pre><code>data(sazava)
+accessVar(&quot;sazava&quot;)
+plotDiagram(&quot;LarochePlut&quot;,FALSE)
+classify(&quot;LarochePlut&quot;)
+</code></pre>
+</div>
+</div>
+<div id="spider-plot" class="section level3">
+<h3>Spider plot</h3>
+<pre class="r"><code>x &lt;- read.table(&quot;data/boynton.data&quot;,sep=&quot;,&quot;)
+chondrite &lt;- as.numeric(x) # conversion to numeric vector
+names(chondrite) &lt;- names(x) 
+
+norm &lt;- function(x,chon){
+    z &lt;- t(x[,names(chon)])/chon 
+    return(z)
+}
+
+data(sazava)
+y &lt;- norm(sazava,chondrite)
+plot(y[,&quot;Po-1&quot;],type=&quot;o&quot;,log=&quot;y&quot;,axes=FALSE,xlab=&quot;&quot;,ylab=&quot;REE/chondrite&quot;,ylim=c(0.1,100),col=&quot;darkgreen&quot;)
+axis(1,1:length(chondrite),labels=names(chondrite),cex.axis=0.75)
+axis(2,cex.axis=0.75)
+points(y[,&quot;Po-4&quot;],col=&quot;blue&quot;)
+lines(y[,&quot;Po-4&quot;],col=&quot;blue&quot;)
+abline(h=(10^(-1:3)),lty=&quot;dashed&quot;)
+box()</code></pre>
+<p><img src="/post/2020-06-16-geochemical-modelling-of-ig-processes-chapter-3_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre><code>data(sazava)
+accessVar(&quot;sazava&quot;)
+spider(WR,&quot;Boynton&quot;,0.1,1000,pch=labels$Symbol,col=labels$Colour)
+spider(WR,&quot;Boynton&quot;,field=TRUE,density=0.02,angle=45, col=&quot;gray&quot;,fill.col=FALSE,add=TRUE) </code></pre>
+<p><img src="/post/2020-06-16-geochemical-modelling-of-ig-processes-chapter-3_files/Screen%20Shot%202020-06-22%20at%202.55.42%20PM.png" /></p>
 </div>

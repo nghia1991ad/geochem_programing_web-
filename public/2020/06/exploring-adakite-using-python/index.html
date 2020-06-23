@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.72.0 with theme Tranquilpeak 0.4.8-BETA">
+<meta name="author" content="Firstname Lastname">
+<meta name="keywords" content="">
+<meta name="description" content="We download the precompiled data of adakite from GEOROC database. For a simple impression of adakite, the wikipedia page gives some clue: Adakites are volcanic rocks of intermediate to felsic composition that have geochemical characteristics of magma thought to have formed by partial melting of altered basalt that is subducted below volcanic arcs.
+In this example, we demonstrate how to use python to simplify the data, discard the null data, classify and plot the geochemical properties.">
+
+
+<meta property="og:description" content="We download the precompiled data of adakite from GEOROC database. For a simple impression of adakite, the wikipedia page gives some clue: Adakites are volcanic rocks of intermediate to felsic composition that have geochemical characteristics of magma thought to have formed by partial melting of altered basalt that is subducted below volcanic arcs.
+In this example, we demonstrate how to use python to simplify the data, discard the null data, classify and plot the geochemical properties.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Exploring Adakite using Python">
+<meta name="twitter:title" content="Exploring Adakite using Python">
+<meta property="og:url" content="/2020/06/exploring-adakite-using-python/">
+<meta property="twitter:url" content="/2020/06/exploring-adakite-using-python/">
+<meta property="og:site_name" content="Hugo tranquilpeak theme">
+<meta property="og:description" content="We download the precompiled data of adakite from GEOROC database. For a simple impression of adakite, the wikipedia page gives some clue: Adakites are volcanic rocks of intermediate to felsic composition that have geochemical characteristics of magma thought to have formed by partial melting of altered basalt that is subducted below volcanic arcs.
+In this example, we demonstrate how to use python to simplify the data, discard the null data, classify and plot the geochemical properties.">
+<meta name="twitter:description" content="We download the precompiled data of adakite from GEOROC database. For a simple impression of adakite, the wikipedia page gives some clue: Adakites are volcanic rocks of intermediate to felsic composition that have geochemical characteristics of magma thought to have formed by partial melting of altered basalt that is subducted below volcanic arcs.
+In this example, we demonstrate how to use python to simplify the data, discard the null data, classify and plot the geochemical properties.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2020-06-11T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2020-06-11T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Python">
+    
+  
+  
+    
+      <meta property="article:tag" content="geochemistry">
+    
+      <meta property="article:tag" content="GEOROC">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/d09dc2d7aa5c467519e8af89f7b3d94c?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/d09dc2d7aa5c467519e8af89f7b3d94c?s=640">
+
+
+    <title>Exploring Adakite using Python</title>
+
+    <link rel="icon" href="/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="/2020/06/exploring-adakite-using-python/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">Hugo tranquilpeak theme</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/d09dc2d7aa5c467519e8af89f7b3d94c?s=90" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/d09dc2d7aa5c467519e8af89f7b3d94c?s=110" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Firstname Lastname</h4>
+        
+          <h5 class="sidebar-profile-bio">Super bio with markdown support <strong>COOL</strong></h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/kakawait">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/636472/kakawait">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Exploring Adakite using Python
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2020-06-11T00:00:00Z">
+        
+  June 11, 2020
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="/categories/python">Python</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>We download the precompiled data of adakite from GEOROC database.
+For a simple impression of adakite, the wikipedia page gives some clue: Adakites are volcanic rocks of intermediate to felsic composition that have geochemical characteristics of magma thought to have formed by partial melting of altered basalt that is subducted below volcanic arcs.</p>
+<p>In this example, we demonstrate how to use python to simplify the data, discard the null data, classify and plot the geochemical properties.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
+<span style="color:#f92672">from</span> mpl_toolkits.basemap <span style="color:#f92672">import</span> Basemap
+<span style="color:#f92672">import</span> warnings
+warnings<span style="color:#f92672">.</span>filterwarnings(<span style="color:#e6db74">&#34;ignore&#34;</span>)
+plt<span style="color:#f92672">.</span>rcParams[<span style="color:#e6db74">&#39;figure.figsize&#39;</span>] <span style="color:#f92672">=</span> (<span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">10</span>)
+plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use(<span style="color:#e6db74">&#39;default&#39;</span>)
+
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#34;ADAKITE.csv&#34;</span>, encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;iso-8859-1&#34;</span>)
+df <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>dropna(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, thresh<span style="color:#f92672">=</span>int(<span style="color:#ae81ff">0.5</span><span style="color:#f92672">*</span>len(df)))
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">plot_harker</span>(x,xlabel,y,ylabel,title<span style="color:#f92672">=</span>None,xlim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">40</span>,<span style="color:#ae81ff">80</span>],ylim<span style="color:#f92672">=</span>None,color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;b&#34;</span>,label<span style="color:#f92672">=</span>None):
+    plt<span style="color:#f92672">.</span>scatter(x<span style="color:#f92672">=</span>x,y<span style="color:#f92672">=</span>y,marker<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;o&#34;</span>, c<span style="color:#f92672">=</span>color,s<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>,label <span style="color:#f92672">=</span> label)
+    plt<span style="color:#f92672">.</span>xlabel(xlabel)
+    plt<span style="color:#f92672">.</span>ylabel(ylabel)
+    plt<span style="color:#f92672">.</span>xlim(xlim)
+    <span style="color:#66d9ef">try</span>:
+        plt<span style="color:#f92672">.</span>ylim(ylim)
+    <span style="color:#66d9ef">except</span>:
+        <span style="color:#66d9ef">pass</span>
+    <span style="color:#66d9ef">if</span> title <span style="color:#f92672">!=</span> None:
+        plt<span style="color:#f92672">.</span>title(title)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">10</span>))
+m <span style="color:#f92672">=</span> Basemap(lon_0<span style="color:#f92672">=</span><span style="color:#ae81ff">180</span>,projection<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;hammer&#39;</span>)
+lon <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#34;LONGITUDE MIN&#34;</span>]<span style="color:#f92672">.</span>dropna()
+lat <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#34;LATITUDE MIN&#34;</span>]<span style="color:#f92672">.</span>dropna()
+lon <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>to_numeric(lon, errors<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ignore&#39;</span>);
+lat <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>to_numeric(lat, errors<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ignore&#39;</span>);
+lon_ <span style="color:#f92672">=</span> [];lat_ <span style="color:#f92672">=</span> []
+<span style="color:#66d9ef">for</span> x, y <span style="color:#f92672">in</span> zip(lon,lat):
+    <span style="color:#66d9ef">try</span>:
+        xx, yy <span style="color:#f92672">=</span> m(float(x),float(y))
+        lon_<span style="color:#f92672">.</span>append(xx);lat_<span style="color:#f92672">.</span>append(yy)
+    <span style="color:#66d9ef">except</span>:
+        <span style="color:#66d9ef">pass</span>
+m<span style="color:#f92672">.</span>scatter(lon_, lat_, marker <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;o&#34;</span> ,s<span style="color:#f92672">=</span><span style="color:#ae81ff">15</span>, c<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;r&#34;</span> , edgecolors <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;k&#34;</span>, alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+m<span style="color:#f92672">.</span>drawcoastlines()
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Adakite rocks sample&#39;</span>)
+plt<span style="color:#f92672">.</span>show()
+</code></pre></div><p><img src="/post/2020-06-11-exploring-adakite-using-python_files/Adakite_3_0.png" alt=""></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">12</span>))
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">321</span>)
+plot_harker(x<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;SIO2(WT%)&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ (wt%)&#39;</span>,
+            y<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;AL2O3(WT%)&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$Al_2O_3$ (wt%)&#39;</span>),title<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ vs $Al_2O_3$&#39;</span>)
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">322</span>)
+plot_harker(x<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;SIO2(WT%)&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ (wt%)&#39;</span>,
+            y<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;MGO(WT%)&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$MgO$ (wt%)&#39;</span>),title<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ vs $MgO$&#39;</span>)
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">323</span>)
+plot_harker(x<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;SIO2(WT%)&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ (wt%)&#39;</span>,
+            y<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;FEOT(WT%)&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$FeOt$ (wt%)&#39;</span>),title<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ vs $FeOt$&#39;</span>)
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">324</span>)
+plot_harker(x<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;SIO2(WT%)&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ (wt%)&#39;</span>,
+            y<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;TIO2(WT%)&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$TiO_2$ (wt%)&#39;</span>),title<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ vs $TiO_2$&#39;</span>)
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">325</span>)
+plot_harker(x<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;SIO2(WT%)&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ (wt%)&#39;</span>,
+            y<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;NA2O(WT%)&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$Na_2O$ (wt%)&#39;</span>),title<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ vs $Na_2O$&#39;</span>)
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">326</span>)
+plot_harker(x<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;SIO2(WT%)&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ (wt%)&#39;</span>,
+            y<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#34;K2O(WT%)&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$MgO$ (wt%)&#39;</span>),title<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ vs $K_2O$&#39;</span>)
+plt<span style="color:#f92672">.</span>suptitle(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;Harker diagram of Adakite vs $SiO_2$&#39;</span>,y<span style="color:#f92672">=</span><span style="color:#ae81ff">0.92</span>,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">15</span>)
+plt<span style="color:#f92672">.</span>subplots_adjust(hspace<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>)
+plt<span style="color:#f92672">.</span>show()
+</code></pre></div><p><img src="/post/2020-06-11-exploring-adakite-using-python_files/Adakite_4_0.png" alt=""></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">8</span>))
+tec <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;TECTONIC SETTING&#39;</span>]<span style="color:#f92672">.</span>dropna()
+tec <span style="color:#f92672">=</span> tec<span style="color:#f92672">.</span>replace(<span style="color:#e6db74">&#39;ARCHEAN CRATON (INCLUDING GREENSTONE BELTS)&#39;</span>,<span style="color:#e6db74">&#39;ARCHEAN CRATON&#39;</span>)
+tec_counts <span style="color:#f92672">=</span> tec<span style="color:#f92672">.</span>value_counts()
+tec_counts<span style="color:#f92672">.</span>plot(kind<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;bar&#34;</span>,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Tectonic settings of Adakite&#39;</span>)
+plt<span style="color:#f92672">.</span>ylim([<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">500</span>])
+plt<span style="color:#f92672">.</span>show()
+
+</code></pre></div><p><img src="/post/2020-06-11-exploring-adakite-using-python_files/Adakite_5_0.png" alt=""></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df[<span style="color:#e6db74">&#39;SR/Y&#39;</span>] <span style="color:#f92672">=</span> (df[<span style="color:#e6db74">&#34;SR(PPM)&#34;</span>]<span style="color:#f92672">/</span>df[<span style="color:#e6db74">&#34;Y(PPM)&#34;</span>])
+df[<span style="color:#e6db74">&#39;CAO+NA2O&#39;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;CAO(WT%)&#39;</span>] <span style="color:#f92672">+</span> df[<span style="color:#e6db74">&#39;NA2O(WT%)&#39;</span>]
+df[<span style="color:#e6db74">&#39;CR/NI&#39;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;CR(PPM)&#39;</span>] <span style="color:#f92672">+</span> df[<span style="color:#e6db74">&#39;NI(PPM)&#39;</span>]
+df_hsa <span style="color:#f92672">=</span> df[df[<span style="color:#e6db74">&#34;SIO2(WT%)&#34;</span>] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">60</span>]
+df_lsa <span style="color:#f92672">=</span> df[df[<span style="color:#e6db74">&#34;SIO2(WT%)&#34;</span>] <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">60</span>]
+plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">12</span>))
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">221</span>)
+plot_harker(x<span style="color:#f92672">=</span>df_hsa[<span style="color:#e6db74">&#34;TIO2(WT%)&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$TiO_2$ (%)&#39;</span>,
+            y<span style="color:#f92672">=</span>df_hsa[<span style="color:#e6db74">&#34;CR/NI&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$Cr/Ni$&#39;</span>),
+            xlim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>],ylim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">200</span>],color<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;r&#34;</span>)
+plot_harker(x<span style="color:#f92672">=</span>df_lsa[<span style="color:#e6db74">&#34;TIO2(WT%)&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$TiO_2$ (%)&#39;</span>,
+            y<span style="color:#f92672">=</span>df_lsa[<span style="color:#e6db74">&#34;CR/NI&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$Cr/Ni$&#39;</span>),
+            xlim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>],ylim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">200</span>],color<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;b&#34;</span>)
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">222</span>)
+plot_harker(x<span style="color:#f92672">=</span>df_hsa[<span style="color:#e6db74">&#34;CAO+NA2O&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$CaO+Na_2O$ (%)&#39;</span>,
+            y<span style="color:#f92672">=</span>df_hsa[<span style="color:#e6db74">&#34;SR(PPM)&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$Sr$ (ppm)&#39;</span>),
+            xlim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">20</span>],ylim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">3000</span>],color<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;r&#34;</span>)
+plot_harker(x<span style="color:#f92672">=</span>df_lsa[<span style="color:#e6db74">&#34;CAO+NA2O&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$CaO+Na_2O$ (%)&#39;</span>,
+            y<span style="color:#f92672">=</span>df_lsa[<span style="color:#e6db74">&#34;SR(PPM)&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$Sr$ (ppm)&#39;</span>),
+            xlim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">20</span>],ylim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">3000</span>],color<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;b&#34;</span>)
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">223</span>)
+plot_harker(x<span style="color:#f92672">=</span>df_hsa[<span style="color:#e6db74">&#34;SIO2(WT%)&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ (%)&#39;</span>,
+            y<span style="color:#f92672">=</span>df_hsa[<span style="color:#e6db74">&#34;MGO(WT%)&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$MgO$ (%)&#39;</span>),
+            xlim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">40</span>,<span style="color:#ae81ff">80</span>],ylim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">10</span>],color<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;r&#34;</span>)
+plot_harker(x<span style="color:#f92672">=</span>df_lsa[<span style="color:#e6db74">&#34;SIO2(WT%)&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$SiO_2$ (%)&#39;</span>,
+            y<span style="color:#f92672">=</span>df_lsa[<span style="color:#e6db74">&#34;MGO(WT%)&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$MgO$ (%)&#39;</span>),
+            xlim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">40</span>,<span style="color:#ae81ff">80</span>],ylim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">10</span>],color<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;b&#34;</span>)
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">224</span>)
+plot_harker(x<span style="color:#f92672">=</span>df_hsa[<span style="color:#e6db74">&#34;Y(PPM)&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$Y$ (ppm)&#39;</span>,
+            y<span style="color:#f92672">=</span>df_hsa[<span style="color:#e6db74">&#34;SR/Y&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$Sr/Y$&#39;</span>),
+            xlim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">60</span>],ylim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">200</span>],color<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;r&#34;</span>,label<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;High $SiO_2$ (&gt;60%) adakites &#34;</span>)
+plot_harker(x<span style="color:#f92672">=</span>df_lsa[<span style="color:#e6db74">&#34;Y(PPM)&#34;</span>],xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$Y$ (ppm)&#39;</span>,
+            y<span style="color:#f92672">=</span>df_lsa[<span style="color:#e6db74">&#34;SR/Y&#34;</span>],ylabel<span style="color:#f92672">=</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$Sr/Y$&#39;</span>),
+            xlim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">60</span>],ylim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">200</span>],color<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;b&#34;</span>,label<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;Low $SiO_2$ (&lt;60%) adakites&#34;</span>)
+plt<span style="color:#f92672">.</span>suptitle(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;Harker diagram of Low vs High $SiO_2$ adakites&#39;</span>,y<span style="color:#f92672">=</span><span style="color:#ae81ff">0.92</span>,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">15</span>)
+plt<span style="color:#f92672">.</span>legend()
+plt<span style="color:#f92672">.</span>show()
+</code></pre></div><p><img src="/post/2020-06-11-exploring-adakite-using-python_files/Adakite_6_0.png" alt=""></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">cite <span style="color:#f92672">=</span> [df<span style="color:#f92672">.</span>CITATIONS[x] <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,len(df)) <span style="color:#66d9ef">if</span> len(df<span style="color:#f92672">.</span>CITATIONS[x]) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">20</span> <span style="color:#f92672">and</span> df<span style="color:#f92672">.</span>CITATIONS[x]<span style="color:#f92672">.</span>count(<span style="color:#e6db74">&#39;[&#39;</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>]
+year <span style="color:#f92672">=</span> []
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,len(cite)):
+    year<span style="color:#f92672">.</span>append(int(cite[i]<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;[&#39;</span>)[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;]&#39;</span>)[<span style="color:#ae81ff">0</span>]))
+plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">10</span>))
+plt<span style="color:#f92672">.</span>hist(year,<span style="color:#ae81ff">40</span>,
+         facecolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;green&#39;</span>,
+         edgecolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;k&#39;</span>)
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Number of paper about adakite vs year from GEOROC database&#39;</span>)
+plt<span style="color:#f92672">.</span>show()    
+</code></pre></div><p><img src="/post/2020-06-11-exploring-adakite-using-python_files/Adakite_7_0.png" alt=""></p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/geochemistry/">geochemistry</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/georoc/">GEOROC</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2020/06/r-syntax-in-a-nutshell-part-ii/" data-tooltip="R Syntax in a Nutshell Part II">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2020/06/geochem-modeling-of-ig-processes-chapter-2/" data-tooltip="Geochem modeling of Ig. Processes - Chapter 2">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2020/06/exploring-adakite-using-python/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2020/06/exploring-adakite-using-python/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2020/06/exploring-adakite-using-python/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 Firstname Lastname. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2020/06/r-syntax-in-a-nutshell-part-ii/" data-tooltip="R Syntax in a Nutshell Part II">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2020/06/geochem-modeling-of-ig-processes-chapter-2/" data-tooltip="Geochem modeling of Ig. Processes - Chapter 2">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2020/06/exploring-adakite-using-python/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2020/06/exploring-adakite-using-python/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2020/06/exploring-adakite-using-python/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2020%2F06%2Fexploring-adakite-using-python%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2020%2F06%2Fexploring-adakite-using-python%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=%2F2020%2F06%2Fexploring-adakite-using-python%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/d09dc2d7aa5c467519e8af89f7b3d94c?s=110" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Firstname Lastname</h4>
+    
+      <div id="about-card-bio">Super bio with markdown support <strong>COOL</strong></div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Your job title
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        France
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = '\/2020\/06\/exploring-adakite-using-python\/';
+          
+            this.page.identifier = '\/2020\/06\/exploring-adakite-using-python\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'geo-programming';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

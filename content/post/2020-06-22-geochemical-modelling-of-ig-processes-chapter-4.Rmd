@@ -1,0 +1,83 @@
+---
+title: Geochemical modelling of Ig. processes - Chapter 4
+author: Nguyen Cong Nghia
+date: '2020-06-22'
+slug: geochemical-modelling-of-ig-processes-chapter-4
+categories:
+  - R
+tags:
+  - Igneous processes
+  - geochemical modeling
+  - geochemistry
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+output:
+  blogdown::html_page:
+    toc: true
+---
+This post is a compilation of the exercises from Chapter 4: Specialized Plots from the book Geochemical Modelling of Igneous Processes - Principles and Recipes in R language by Vojtěch Janoušek, Jean Hervé Martin, Vojtěch Erban and Colin Farrow.
+
+```{r}
+sink("/dev/null"); suppressPackageStartupMessages(library(GCDkit)); sink();
+```
+
+### Log-log binary plots
+
+```{r fig1, fig.width=10, fig.height=5}
+data(sazava)
+par(mfrow=c(1,2))                       # Split screen for 2 graphs
+par(mar=c(4,4,1,1))                     # Outer margins for each of the graphs
+
+# Plot 1
+plot(sazava[,"Sr"],sazava[,"Rb"],xlim=c(1,1000),ylim=c(1,1000),xlab="Sr",ylab="Rb",pch=16,col="blue",cex=1.5,xaxs="i",yaxs="i",log="")
+invisible(sapply(c(seq(0.1,1,0.1),1:10),function(i)abline(0,i,lty="dashed")))
+
+# Plot 2
+plot(sazava[,"Sr"],sazava[,"Rb"],xlim=c(1,1000),ylim=c(1,1000),xlab="Sr",ylab="Rb",pch=16,col="blue",cex=1.5,xaxs="i",yaxs="i",log="xy")
+invisible(sapply(c(seq(0.1,1,0.1),1:10),function(i)abline(log10(i),1,lty="dashed")))
+```
+
+### Specialized spider plots
+```
+loadData("dolerites.data")
+
+# Panel a
+ee<-spider.contour("Boynton","MgO",colour.palette="terrain.colors",0.1,100,cex=1.5)
+
+# Panel b
+ee<-spider2norm(WR,"Boynton","Lu",0.1,10,pch=1,col="darkgreen",cex=1.5)
+ee<-spider2norm(WR,"Boynton","Lu",field=TRUE,fill.col=TRUE,shaded.col="khaki",add=TRUE)
+
+```
+![](/post/2020-06-22-geochemical-modelling-of-ig-processes-chapter-4_files/Screen Shot 2020-06-22 at 4.41.19 PM.png)
+![](/post/2020-06-22-geochemical-modelling-of-ig-processes-chapter-4_files/Screen Shot 2020-06-22 at 4.41.25 PM.png)
+```
+data(sazava)
+accessVar("sazava")
+groupsByLabel("Intrusion")
+spider(WR,"Boynton",1,100,pch=labels$Symbol,col=labels$Colour,cex=2)
+figMulti(nrow=1,ncol=3,plot.symb=TRUE)
+```
+![](/post/2020-06-22-geochemical-modelling-of-ig-processes-chapter-4_files/Screen Shot 2020-06-22 at 4.54.59 PM.png)
+![](/post/2020-06-22-geochemical-modelling-of-ig-processes-chapter-4_files/Screen Shot 2020-06-22 at 4.55.26 PM.png)
+
+### Contour plots
+This is the code to call the function making contour plots. The GUI will help with further steps.
+```
+loadData("ANDEAN_ARC.csv")
+
+# Panel a
+plotDiagram("PeceTaylor",F)
+figCol("aquamarine3")
+addContours()
+
+# Panel b
+figRedraw()
+filledContourFig()
+
+```
+![](/post/2020-06-22-geochemical-modelling-of-ig-processes-chapter-4_files/Screen Shot 2020-06-23 at 3.18.42 PM.png)
+![](/post/2020-06-22-geochemical-modelling-of-ig-processes-chapter-4_files/Screen Shot 2020-06-23 at 3.23.42 PM.png)

@@ -6,10 +6,19 @@
     <description>Recent content in Python on Geosciences Programming</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 11 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Create hillshade in Python using earthpy</title>
+      <link>/post/create-hillshade-in-python-using-earthpy/</link>
+      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/create-hillshade-in-python-using-earthpy/</guid>
+      <description>This post create a hillshade topography map in Python using earthpy</description>
+    </item>
     
     <item>
       <title>Exploring Adakite using Python</title>
