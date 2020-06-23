@@ -98,6 +98,33 @@ lambda = 1.42e-11
 age_Koz2 = 1/lambda*log((izo["Koz-2","87Sr/86Sr"]-ini87Sr_86Sr)/izo["Koz-2","87Rb/86Sr"] + 1)
 age_Koz2/10^6
 ```
+An alternative solution for part b (authors' solution):
+```{r}
+izo <- read.table("data/cbpizo.data", sep= "\t", check.names=F)
+izo$"87Rb/86Sr" = izo$Rb/izo$Sr*(2.6939 + 0.2832*izo$`87Sr/86Sr`)
+izo$"147Sm/144Nd" = izo$Sm/izo$Nd*(0.53151 + 0.14252*izo$`143Nd/144Nd`)
+initial <- function(data,system="Sr",age){
+  # data = matrix to be recalculated
+  # system = "Sr" or "Nd", age = age in Ma
+  lambda <- c(1.42*10^-11,6.54*10^-12)
+  names(lambda) <- c("Sr","Nd")
+  R <- cbind(data[,"147Sm/144Nd"],data[,"87Rb/86Sr"])
+  colnames(R) <- c("Nd","Sr")
+  I <- cbind(data[,"143Nd/144Nd"],data[,"87Sr/86Sr"])
+  colnames(I) <- c("Nd","Sr")
+  X <- I[,system]-R[,system]*(exp(lambda[system]*
+    age*10^6)-1)
+return(X) 
+}
+izo <- cbind(izo,initial(izo,"Sr",350),
+  initial(izo,"Sr",300),initial(izo,"Nd",350),
+  initial(izo,"Nd",300))
+colnames(izo)[9:12] <- c("87Sr/86Sr.350","87Sr/86Sr.300",
+  "143Nd/144Nd.350","143Nd/144Nd.300") 
+print(izo[,9:12])
+```
+
+
 ### Epsilon, Delta and Gamma Values
 
 

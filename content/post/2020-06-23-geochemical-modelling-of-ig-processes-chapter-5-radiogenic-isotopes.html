@@ -106,6 +106,37 @@ lambda = 1.42e-11
 age_Koz2 = 1/lambda*log((izo[&quot;Koz-2&quot;,&quot;87Sr/86Sr&quot;]-ini87Sr_86Sr)/izo[&quot;Koz-2&quot;,&quot;87Rb/86Sr&quot;] + 1)
 age_Koz2/10^6</code></pre>
 <pre><code>## [1] 544.85</code></pre>
+<p>An alternative solution for part b (authors’ solution):</p>
+<pre class="r"><code>izo &lt;- read.table(&quot;data/cbpizo.data&quot;, sep= &quot;\t&quot;, check.names=F)
+izo$&quot;87Rb/86Sr&quot; = izo$Rb/izo$Sr*(2.6939 + 0.2832*izo$`87Sr/86Sr`)
+izo$&quot;147Sm/144Nd&quot; = izo$Sm/izo$Nd*(0.53151 + 0.14252*izo$`143Nd/144Nd`)
+initial &lt;- function(data,system=&quot;Sr&quot;,age){
+  # data = matrix to be recalculated
+  # system = &quot;Sr&quot; or &quot;Nd&quot;, age = age in Ma
+  lambda &lt;- c(1.42*10^-11,6.54*10^-12)
+  names(lambda) &lt;- c(&quot;Sr&quot;,&quot;Nd&quot;)
+  R &lt;- cbind(data[,&quot;147Sm/144Nd&quot;],data[,&quot;87Rb/86Sr&quot;])
+  colnames(R) &lt;- c(&quot;Nd&quot;,&quot;Sr&quot;)
+  I &lt;- cbind(data[,&quot;143Nd/144Nd&quot;],data[,&quot;87Sr/86Sr&quot;])
+  colnames(I) &lt;- c(&quot;Nd&quot;,&quot;Sr&quot;)
+  X &lt;- I[,system]-R[,system]*(exp(lambda[system]*
+    age*10^6)-1)
+return(X) 
+}
+izo &lt;- cbind(izo,initial(izo,&quot;Sr&quot;,350),
+  initial(izo,&quot;Sr&quot;,300),initial(izo,&quot;Nd&quot;,350),
+  initial(izo,&quot;Nd&quot;,300))
+colnames(izo)[9:12] &lt;- c(&quot;87Sr/86Sr.350&quot;,&quot;87Sr/86Sr.300&quot;,
+  &quot;143Nd/144Nd.350&quot;,&quot;143Nd/144Nd.300&quot;) 
+print(izo[,9:12])</code></pre>
+<pre><code>##       87Sr/86Sr.350 87Sr/86Sr.300 143Nd/144Nd.350 143Nd/144Nd.300
+## Sa-1      0.7050283     0.7053105       0.5122144       0.5122518
+## Koz-2     0.7077175     0.7084136       0.5119517       0.5119887
+## Bl-2      0.7082604     0.7091308       0.5118844       0.5119153
+## Se-9      0.7117392     0.7138095       0.5117985       0.5118387
+## Ri-1      0.7095471     0.7112640       0.5118196       0.5118530
+## CR-1      0.7061951     0.7090247       0.5117968       0.5118345
+## CR-5      0.7198933     0.7237310       0.5116227       0.5116595</code></pre>
 </div>
 </div>
 <div id="epsilon-delta-and-gamma-values" class="section level3">
