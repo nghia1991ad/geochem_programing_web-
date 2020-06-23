@@ -31,6 +31,7 @@ Do note that while the **I** ratios are measured directly with the mass spectrom
 The formular based on Faure (1986):
 
 $$\frac{^{87}Rb}{^{86}Sr}=(\frac{C_{Rb}}{C_{Sr}})[2.6939 + 0.2832 \frac{^{87}Sr}{^{86}Sr}]$$
+
 $$\frac{^{147}Sm}{^{144}Nd}=(\frac{C_{Sm}}{C_{Nd}})[0.53151 + 0.14252 \frac{^{143}Nd}{^{144}Nd}]$$
 
 ### Calculation of Initial Ratios or Ages
@@ -97,4 +98,6 @@ lambda = 1.42e-11
 age_Koz2 = 1/lambda*log((izo["Koz-2","87Sr/86Sr"]-ini87Sr_86Sr)/izo["Koz-2","87Rb/86Sr"] + 1)
 age_Koz2/10^6
 ```
+### Epsilon, Delta and Gamma Values
+
 

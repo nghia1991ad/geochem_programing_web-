@@ -23,6 +23,7 @@ output:
 <div id="TOC">
 <ul>
 <li><a href="#calculation-of-initial-ratios-or-ages">Calculation of Initial Ratios or Ages</a></li>
+<li><a href="#epsilon-delta-and-gamma-values">Epsilon, Delta and Gamma Values</a></li>
 </ul>
 </div>
 
@@ -34,8 +35,8 @@ output:
 <span class="math display">\[^{187}Re\rightarrow^{187}Os\]</span>
 Do note that while the <strong>I</strong> ratios are measured directly with the mass spectrometer (TIMS or ICP-MS), <strong>R</strong> ratios must be calculated from elemental concentration obtained by isotope dilution, ICP-MS, XRF or other analytcal methods.</p>
 <p>The formular based on Faure (1986):</p>
-<p><span class="math display">\[\frac{^{87}Rb}{^{86}Sr}=(\frac{C_{Rb}}{C_{Sr}})[2.6939 + 0.2832 \frac{^{87}Sr}{^{86}Sr}]\]</span>
-<span class="math display">\[\frac{^{147}Sm}{^{144}Nd}=(\frac{C_{Sm}}{C_{Nd}})[0.53151 + 0.14252 \frac{^{143}Nd}{^{144}Nd}]\]</span></p>
+<p><span class="math display">\[\frac{^{87}Rb}{^{86}Sr}=(\frac{C_{Rb}}{C_{Sr}})[2.6939 + 0.2832 \frac{^{87}Sr}{^{86}Sr}]\]</span></p>
+<p><span class="math display">\[\frac{^{147}Sm}{^{144}Nd}=(\frac{C_{Sm}}{C_{Nd}})[0.53151 + 0.14252 \frac{^{143}Nd}{^{144}Nd}]\]</span></p>
 <div id="calculation-of-initial-ratios-or-ages" class="section level3">
 <h3>Calculation of Initial Ratios or Ages</h3>
 <p><span class="math display">\[I=R(e^{\lambda t}-1)\]</span>
@@ -106,4 +107,7 @@ age_Koz2 = 1/lambda*log((izo[&quot;Koz-2&quot;,&quot;87Sr/86Sr&quot;]-ini87Sr_86
 age_Koz2/10^6</code></pre>
 <pre><code>## [1] 544.85</code></pre>
 </div>
+</div>
+<div id="epsilon-delta-and-gamma-values" class="section level3">
+<h3>Epsilon, Delta and Gamma Values</h3>
 </div>
