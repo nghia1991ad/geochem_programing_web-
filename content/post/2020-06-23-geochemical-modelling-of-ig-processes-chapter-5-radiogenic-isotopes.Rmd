@@ -28,14 +28,17 @@ $$^{176}Lu\rightarrow^{176}Hf$$
 $$^{187}Re\rightarrow^{187}Os$$
 Do note that while the **I** ratios are measured directly with the mass spectrometer (TIMS or ICP-MS), **R** ratios must be calculated from elemental concentration obtained by isotope dilution, ICP-MS, XRF or other analytcal methods.
 
-The formular based on Faure (1986):
+The formula based on Faure (1986)
 
-$$\frac{^{87}Rb}{^{86}Sr}=(\frac{C_{Rb}}{C_{Sr}})[2.6939 + 0.2832 \frac{^{87}Sr}{^{86}Sr}]$$
+$$\frac{^{87}Rb}{^{86}Sr}=(\frac{C_{Rb}}{C_{Sr}})[2.6939 + 0.2832 \frac{^{87}Sr}{^{86}Sr}]$$ 
 
 $$\frac{^{147}Sm}{^{144}Nd}=(\frac{C_{Sm}}{C_{Nd}})[0.53151 + 0.14252 \frac{^{143}Nd}{^{144}Nd}]$$
 
 ### Calculation of Initial Ratios or Ages
-$$I=R(e^{\lambda t}-1)$$
+
+Relationship between daughter and parent ratios:
+
+$$I=R(e^{\lambda t}-1)$$ 
 * I: ratio of daughter isotope to a stable, non-radiogenic isotope (e.g: $^{87}Sr/^{86}Sr$, $^{143}Nd/^{144}Nd$ or $^{176}Hf/^{177}Hf$)
 
 * R: ratio of parental isotope to the same non-radiogenic isotope in I (e.g: $^{87}Rb/^{86}Sr$, $^{147}Sm/^{144}Nd$ or $^{176}Lu/^{177}Hf$)
@@ -44,7 +47,7 @@ $$I=R(e^{\lambda t}-1)$$
 
 * t: time (Ma or ka)
 
-However, due to the presence of *common* element present, the formula is modified as:
+However, due to the presence of *common* element present, the formula to correct the initial ratio, is modified as: 
 $$I=I_{i}+R(e^{\lambda t}-1)$$
 
 * $I_{i}$: the initial ratio of common daughter-stable isotope
@@ -126,5 +129,135 @@ print(izo[,9:12])
 
 
 ### Epsilon, Delta and Gamma Values
+The initial Nd isotopic ratios do not differ much among inidividual rock samples, therefore they are compared to undifferentiated mantle (which is equal to chondiritic meteorites CHUR) at the time of their generation. Geochemists define the term $\epsilon_{Nd}$ to express this comparison:
+$$\epsilon^{i}_{Nd} = ({\frac{(\frac{^{143}Nd}{^{144}Nd})_{isample}}{(\frac{^{143}Nd}{^{144}Nd})_{iCHUR}}-1})\times10^4$$
+* t: intrusion age, indexes i decipher initial isotopic ratios
+
+The present-day composition of the CHUR is $^{147}Sm/^{144}Nd_{CHUR} = 0.1967$ and $^{143}Nd/^{144}Nd_{CHUR} = 0.512638$ (Jacobsen and Wasserburg 1980) or $^{147}Sm/^{144}Nd_{CHUR} = 0.1960$ and $^{143}Nd/^{144}Nd_{CHUR} = 0.512630$ (Bouvier et al. 2008). For an overview of alternatives, as well as of error propagation, see Ickert (2013). 
+
+![](/post/2020-06-23-geochemical-modelling-of-ig-processes-chapter-5-radiogenic-isotopes_files/Screen Shot 2020-06-24 at 2.14.48 PM.png)
+
+As Nd is more incompatible than Sm, partial metling of a mantle peridotite would produce melts with Sm/Nd ratios lower than the source. On the other hand, the residue would be enriched in Sm and yield a higher Sm/Nd ratio.
+
+In contrast, the Rb-Sr system behaves in an opposite way. Rb is more incompatible than Sr in the course of mantle melting and thus the crust is characterized by high Rb/Sr, therefore, high $^{87}Sr/^{86}Sr$ ratios.
+
+The geochemical-reservoir normalized compositions can be also expressed as $\gamma$ values, as is customary for the Re-Os system:
+
+$$\gamma^{i}_{Os} =({\frac{(\frac{^{187}Os}{^{188}Os})_{isample}}{(\frac{^{187}Os}{^{188}Nd})_{iCHUR}}-1})\times10^2$$
+
+The present-day mantle values are $^{187}Re/^{188}Os$ = 0.422 and $^{187}Os/^{188}Os = 0.1283$ (Walker et al. 2002).
+
+**NOTICE!**
+The $\delta$ notation, used for stable isotopes, is analogous (just multiply by $10^3$ rather than $10^2$).
+In fact, this forms a logic system, whereby $10^n$ is expressed by $(n+1)^{th}$ letter in the Greek alphabet.
+
+#### Exercise 5.2: Epsilon Nd values
+
+* Write a function returning the initial $\epsilon_{Nd}$ values.
+
+* Calculate these for the CBPC granitoids from the previous excercise at 350 Ma.
+
+* Plot a binary diagram of initial $^{87}Sr/^{86}Sr$ isotopic ratios versus initial $\epsilon_{Nd}$ values.
+
+```{r, fig.height=6,fig.width=6}
+izo <- read.table("data/cbpizo.data", sep= "\t", check.names=F)
+izo$"87Rb/86Sr" = izo$Rb/izo$Sr*(2.6939 + 0.2832*izo$`87Sr/86Sr`)
+izo$"147Sm/144Nd" = izo$Sm/izo$Nd*(0.53151 + 0.14252*izo$`143Nd/144Nd`)
+
+# Part a
+epsNd <- function(data, age){
+  RCHUR <- 0.1967; ICHUR <- 0.512638;  lambda <- 6.54e-12
+  CHUR <- ICHUR - RCHUR*(exp(lambda*age*10^6)-1) #Calculate Initial CHUR ratio
+  eps <- (initial(data,"Nd",age)/CHUR-1)*10^4 #Make use of "initial" function
+  return(eps)
+}
+
+izo$epsilonNd_350 = round(epsNd(izo,350),2)
+izo
+
+plot(initial(izo,age=350),epsNd(izo,350),
+     xlab=expression(" "^87*Sr/""^86*Sr[i]),
+     ylab=expression(epsilon[Nd]^i),
+     pch=0, cex=1.5, cex.lab=1.5, cex.axis=1.5)
+```
+
+Summary of the steps to get epsilon values:
+
+* Step 1: Get the Initial CHUR 
+
+* Step 2: Get the Initial ratio of $^{143}Nd/^{144}Nd$
+
+* Calculate the epsilon Nd, which is relative to an age. 
+
+### Model Ages
+
+The model ages represent an apparent age of extraction from a model geochemical reservoir. These include, for instance, intercepts with various mantle evolution models (often CHUR or Depleted Mantle - DM). The age is the time in the past when the given sample had the isotopic composition identical to its presumed model source reservoir. This age can be interpreted as "crust-formation ages" for a given crustal segment.
+
+#### Single-stage Nd model ages
+
+Single-stage Nd model age can be derived by setting:
+$$I^{T}_{sample}=I^{T}_{DM}$$
+where DM is the appropriate model reservoir.
+
+$$I_{sample}-R_{sample}(e^{\lambda T}-1)=I_{DM}-R_{DM}(e^{\lambda T}-1)$$
+$$T=\frac{1}{\lambda}ln(\frac{I_{sample}-I_{DM}}{R_{sample}-R_{DM}}+1)$$
+
+The present-day composition of the DM is $^{147}Sm/^{144}Nd$ = 0.222 and $^{143}Nd/^{144}Nd$ = 0.513114
 
 
+
+#### Exercise 5.3: Single-stage Nd model ages
+Design a function yielding single-stage Depleted Mantle Nd model ages. Calculate these for the granitoids of the CBPC. Use the data from the previous exercises or load them from the file
+
+```{r}
+DMAGE <- function(data) {
+  IDM <- 0.513114
+  RDM <- 0.222
+  lambda <- 6.54e-12
+  R <- data[,"147Sm/144Nd"]
+  I <- data[,"143Nd/144Nd"]
+  X <- 1/lambda*log((I-IDM)/(R-RDM)+1)/10^9
+  names(X) <- rownames(data)
+  return(X)
+}
+
+izo <- read.table("data/cbpizo2.data",sep="\t",check.names = F)
+round(DMAGE(izo),2)
+```
+
+Let's test the visualization of the solution for one sample Sa-1 with  $^{143}Nd/^{144}Nd = 0.512476$ and $^{147}Sm/^{144}Nd = 0.11416466$. From the figure, we can roughly estimate the single-stage DM model age is about 900 Ma while single-stage CHUR model age is about 300 Ma. The difference in these two values should be closer when the age is older.
+
+```{r, fig.width=6,fig.height=4}
+t = seq(0,4600,100)
+  lambda <- 6.54e-12
+
+RCHUR <- 0.1967; ICHUR <- 0.512638 #Current CHUR ratios
+CHUR <- ICHUR - RCHUR*(exp(lambda*t*10^6)-1) # Initial CHUR 
+
+R <- 0.11416466; I <- 0.512476 #Current sample ratios
+SAMP <- I - R*(exp(lambda*t*10^6)-1) #Initial Sample
+
+RDM <- 0.222; IDM <- 0.513114 #Current DM ratios
+DM <- IDM - RDM*(exp(lambda*t*10^6)-1) #Initial DM
+
+
+plot(t,CHUR,type="l",xlim=c(1000,0),ylim=c(0.511,0.5128), xlab = "Age (Ma.)", ylab=expression(""^143*Nd/""^144*Nd))
+
+lines(t,SAMP,col="red")
+
+lines(t,DM,col="blue")
+
+text(t[length(t)/5]-0.04,CHUR[length(CHUR)/5]+0.00009,labels = "CHUR",cex = 0.8, srt = 20)
+
+text(t[length(t)/5]-0.04,DM[length(DM)/5]+0.00009,labels = "DM",cex = 0.8, srt = 20, col="blue")
+
+
+points(t[10],DM[10])
+points(t[4],CHUR[4])
+text(t[10],DM[10]+0.00009,labels = expression('T'[DM]),cex=0.6)
+text(t[4],CHUR[4]+0.00009,labels = expression('T'[CHUR]),cex=0.6)
+
+
+```
+
+#### Two-stage Nd model ages

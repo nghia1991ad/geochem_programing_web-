@@ -17,7 +17,7 @@
       <pubDate>Tue, 23 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>/post/geochemical-modelling-of-ig-processes-chapter-5-radiogenic-isotopes/</guid>
-      <description>Calculation of Initial Ratios or Ages Epsilon, Delta and Gamma Values   This post is a compilation of the exercises from Chapter 5: Radiogenic Isotopes from the book Geochemical Modelling of Igneous Processes - Principles and Recipes in R language by Vojtěch Janoušek, Jean Hervé Martin, Vojtěch Erban and Colin Farrow.
+      <description>Calculation of Initial Ratios or Ages Epsilon, Delta and Gamma Values Model Ages   This post is a compilation of the exercises from Chapter 5: Radiogenic Isotopes from the book Geochemical Modelling of Igneous Processes - Principles and Recipes in R language by Vojtěch Janoušek, Jean Hervé Martin, Vojtěch Erban and Colin Farrow.
 Many of the parent-daughter dating methods are based on similar principles. The parent (radioactive) isotope decayse to ther daughter (radiogenic) isotope:</description>
     </item>
     
