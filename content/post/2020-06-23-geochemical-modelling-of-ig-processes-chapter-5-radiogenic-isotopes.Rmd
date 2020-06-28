@@ -102,6 +102,7 @@ age_Koz2 = 1/lambda*log((izo["Koz-2","87Sr/86Sr"]-ini87Sr_86Sr)/izo["Koz-2","87R
 age_Koz2/10^6
 ```
 An alternative solution for part b (authors' solution):
+
 ```{r}
 izo <- read.table("data/cbpizo.data", sep= "\t", check.names=F)
 izo$"87Rb/86Sr" = izo$Rb/izo$Sr*(2.6939 + 0.2832*izo$`87Sr/86Sr`)
@@ -129,7 +130,9 @@ print(izo[,9:12])
 
 
 ### Epsilon, Delta and Gamma Values
+
 The initial Nd isotopic ratios do not differ much among inidividual rock samples, therefore they are compared to undifferentiated mantle (which is equal to chondiritic meteorites CHUR) at the time of their generation. Geochemists define the term $\epsilon_{Nd}$ to express this comparison:
+
 $$\epsilon^{i}_{Nd} = ({\frac{(\frac{^{143}Nd}{^{144}Nd})_{isample}}{(\frac{^{143}Nd}{^{144}Nd})_{iCHUR}}-1})\times10^4$$
 * t: intrusion age, indexes i decipher initial isotopic ratios
 
@@ -148,6 +151,7 @@ $$\gamma^{i}_{Os} =({\frac{(\frac{^{187}Os}{^{188}Os})_{isample}}{(\frac{^{187}O
 The present-day mantle values are $^{187}Re/^{188}Os$ = 0.422 and $^{187}Os/^{188}Os = 0.1283$ (Walker et al. 2002).
 
 **NOTICE!**
+
 The $\delta$ notation, used for stable isotopes, is analogous (just multiply by $10^3$ rather than $10^2$).
 In fact, this forms a logic system, whereby $10^n$ is expressed by $(n+1)^{th}$ letter in the Greek alphabet.
 
@@ -207,6 +211,7 @@ The present-day composition of the DM is $^{147}Sm/^{144}Nd$ = 0.222 and $^{143}
 
 
 #### Exercise 5.3: Single-stage Nd model ages
+
 Design a function yielding single-stage Depleted Mantle Nd model ages. Calculate these for the granitoids of the CBPC. Use the data from the previous exercises or load them from the file
 
 ```{r}
@@ -241,7 +246,7 @@ RDM <- 0.222; IDM <- 0.513114 #Current DM ratios
 DM <- IDM - RDM*(exp(lambda*t*10^6)-1) #Initial DM
 
 
-plot(t,CHUR,type="l",xlim=c(1000,0),ylim=c(0.511,0.5128), xlab = "Age (Ma.)", ylab=expression(""^143*Nd/""^144*Nd))
+plot(t,CHUR,type="l",xlim=c(1000,0),ylim=c(0.511,0.5133), xlab = "Age (Ma.)", ylab=expression(""^143*Nd/""^144*Nd))
 
 lines(t,SAMP,col="red")
 
@@ -254,10 +259,56 @@ text(t[length(t)/5]-0.04,DM[length(DM)/5]+0.00009,labels = "DM",cex = 0.8, srt =
 
 points(t[10],DM[10])
 points(t[4],CHUR[4])
-text(t[10],DM[10]+0.00009,labels = expression('T'[DM]),cex=0.6)
-text(t[4],CHUR[4]+0.00009,labels = expression('T'[CHUR]),cex=0.6)
+text(t[10],DM[10]+0.00014,labels = expression('T'[DM]),cex=0.8)
+text(t[4],CHUR[4]+0.00014,labels = expression('T'[CHUR]),cex=0.8)
+
+points(t[1],DM[1],pch=16)
+points(t[1],CHUR[1],pch=16)
+points(t[1],SAMP[1],pch=16)
+text(t[1],DM[1]+0.00014,labels = expression('I'[DM]),cex=0.8,)
+text(t[1],CHUR[1]+0.00014,labels = expression('I'[CHUR]),cex=0.8)
+text(t[1],SAMP[1]-0.00014,labels = expression('I'[sample]),cex=0.8)
 
 
 ```
-
 #### Two-stage Nd model ages
+
+For crustally-derived rocks, the two-stage model can be used to compensate for the effects of possible second Sm/Nd fractionation (first having occurred at mantle melting) in course of the intracrustal partial melting. We have the modfied equation:
+
+$$T=\frac{1}{\lambda}(\frac{I_{sample}^0-(e^{\lambda t}-1)(R_{sample}^0-R_{CC}^0)-I_{DM}^0}{R_{CC}^0-R_{DM}^0}+1)$$
+
+* DM: Depleted Mantle
+
+* CC: average Continental Crust
+
+* T: two-stage Nd model age; t: crystallization age of the sample
+
+$\left( \frac{^{143}Nd}{^{144}Nd} \right)_{DM}^0= 0.513151$; $\left( \frac{^{147}Sm}{^{144}Nd} \right)_{DM}^0= 0.219$; $\left( \frac{^{147}Sm}{^{144}Nd} \right)_{CC}^0= 0.12$
+
+#### Exercise 5.4: Two-stage Nd model ages
+
+* Design a function returning two-stage Depleted Mantle Nd model ages.
+
+* Calculate these for the granitoids of the CBPC.
+
+```{r}
+DMLHAGE <- function(data,age){
+  R <- data[,"147Sm/144Nd"]
+  I <- data[,"143Nd/144Nd"]
+  IDM <- 0.513151
+  RDM <- 0.219
+  RCC <- 0.12
+  lambda <- 6.54e-12
+  A <- I - (exp(lambda*age*1e6)-1)*(R-RCC)-IDM
+  B <- RCC-RDM
+  X <- 1/lambda*log(A/B+1)/10^9
+  names(X) <- rownames(data)
+  return(X)
+}
+
+izo <- read.table("data/cbpizo2.data",sep="\t",check.names = F)
+round(DMLHAGE(izo,350),2)
+
+```
+
+

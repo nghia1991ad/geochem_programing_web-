@@ -143,8 +143,8 @@ print(izo[,9:12])</code></pre>
 </div>
 <div id="epsilon-delta-and-gamma-values" class="section level3">
 <h3>Epsilon, Delta and Gamma Values</h3>
-<p>The initial Nd isotopic ratios do not differ much among inidividual rock samples, therefore they are compared to undifferentiated mantle (which is equal to chondiritic meteorites CHUR) at the time of their generation. Geochemists define the term <span class="math inline">\(\epsilon_{Nd}\)</span> to express this comparison:
-<span class="math display">\[\epsilon^{i}_{Nd} = ({\frac{(\frac{^{143}Nd}{^{144}Nd})_{isample}}{(\frac{^{143}Nd}{^{144}Nd})_{iCHUR}}-1})\times10^4\]</span>
+<p>The initial Nd isotopic ratios do not differ much among inidividual rock samples, therefore they are compared to undifferentiated mantle (which is equal to chondiritic meteorites CHUR) at the time of their generation. Geochemists define the term <span class="math inline">\(\epsilon_{Nd}\)</span> to express this comparison:</p>
+<p><span class="math display">\[\epsilon^{i}_{Nd} = ({\frac{(\frac{^{143}Nd}{^{144}Nd})_{isample}}{(\frac{^{143}Nd}{^{144}Nd})_{iCHUR}}-1})\times10^4\]</span>
 * t: intrusion age, indexes i decipher initial isotopic ratios</p>
 <p>The present-day composition of the CHUR is <span class="math inline">\(^{147}Sm/^{144}Nd_{CHUR} = 0.1967\)</span> and <span class="math inline">\(^{143}Nd/^{144}Nd_{CHUR} = 0.512638\)</span> (Jacobsen and Wasserburg 1980) or <span class="math inline">\(^{147}Sm/^{144}Nd_{CHUR} = 0.1960\)</span> and <span class="math inline">\(^{143}Nd/^{144}Nd_{CHUR} = 0.512630\)</span> (Bouvier et al. 2008). For an overview of alternatives, as well as of error propagation, see Ickert (2013).</p>
 <p><img src="/post/2020-06-23-geochemical-modelling-of-ig-processes-chapter-5-radiogenic-isotopes_files/Screen%20Shot%202020-06-24%20at%202.14.48%20PM.png" /></p>
@@ -153,8 +153,8 @@ print(izo[,9:12])</code></pre>
 <p>The geochemical-reservoir normalized compositions can be also expressed as <span class="math inline">\(\gamma\)</span> values, as is customary for the Re-Os system:</p>
 <p><span class="math display">\[\gamma^{i}_{Os} =({\frac{(\frac{^{187}Os}{^{188}Os})_{isample}}{(\frac{^{187}Os}{^{188}Nd})_{iCHUR}}-1})\times10^2\]</span></p>
 <p>The present-day mantle values are <span class="math inline">\(^{187}Re/^{188}Os\)</span> = 0.422 and <span class="math inline">\(^{187}Os/^{188}Os = 0.1283\)</span> (Walker et al. 2002).</p>
-<p><strong>NOTICE!</strong>
-The <span class="math inline">\(\delta\)</span> notation, used for stable isotopes, is analogous (just multiply by <span class="math inline">\(10^3\)</span> rather than <span class="math inline">\(10^2\)</span>).
+<p><strong>NOTICE!</strong></p>
+<p>The <span class="math inline">\(\delta\)</span> notation, used for stable isotopes, is analogous (just multiply by <span class="math inline">\(10^3\)</span> rather than <span class="math inline">\(10^2\)</span>).
 In fact, this forms a logic system, whereby <span class="math inline">\(10^n\)</span> is expressed by <span class="math inline">\((n+1)^{th}\)</span> letter in the Greek alphabet.</p>
 <div id="exercise-5.2-epsilon-nd-values" class="section level4">
 <h4>Exercise 5.2: Epsilon Nd values</h4>
@@ -250,7 +250,7 @@ RDM &lt;- 0.222; IDM &lt;- 0.513114 #Current DM ratios
 DM &lt;- IDM - RDM*(exp(lambda*t*10^6)-1) #Initial DM
 
 
-plot(t,CHUR,type=&quot;l&quot;,xlim=c(1000,0),ylim=c(0.511,0.5128), xlab = &quot;Age (Ma.)&quot;, ylab=expression(&quot;&quot;^143*Nd/&quot;&quot;^144*Nd))
+plot(t,CHUR,type=&quot;l&quot;,xlim=c(1000,0),ylim=c(0.511,0.5133), xlab = &quot;Age (Ma.)&quot;, ylab=expression(&quot;&quot;^143*Nd/&quot;&quot;^144*Nd))
 
 lines(t,SAMP,col=&quot;red&quot;)
 
@@ -263,11 +263,49 @@ text(t[length(t)/5]-0.04,DM[length(DM)/5]+0.00009,labels = &quot;DM&quot;,cex = 
 
 points(t[10],DM[10])
 points(t[4],CHUR[4])
-text(t[10],DM[10]+0.00009,labels = expression(&#39;T&#39;[DM]),cex=0.6)
-text(t[4],CHUR[4]+0.00009,labels = expression(&#39;T&#39;[CHUR]),cex=0.6)</code></pre>
-<p><img src="/post/2020-06-23-geochemical-modelling-of-ig-processes-chapter-5-radiogenic-isotopes_files/figure-html/unnamed-chunk-5-1.png" width="576" /></p>
+text(t[10],DM[10]+0.00014,labels = expression(&#39;T&#39;[DM]),cex=0.8)
+text(t[4],CHUR[4]+0.00014,labels = expression(&#39;T&#39;[CHUR]),cex=0.8)
+
+points(t[1],DM[1],pch=16)
+points(t[1],CHUR[1],pch=16)
+points(t[1],SAMP[1],pch=16)
+text(t[1],DM[1]+0.00014,labels = expression(&#39;I&#39;[DM]),cex=0.8,)
+text(t[1],CHUR[1]+0.00014,labels = expression(&#39;I&#39;[CHUR]),cex=0.8)
+text(t[1],SAMP[1]-0.00014,labels = expression(&#39;I&#39;[sample]),cex=0.8)</code></pre>
+<p><img src="/post/2020-06-23-geochemical-modelling-of-ig-processes-chapter-5-radiogenic-isotopes_files/figure-html/unnamed-chunk-5-1.png" width="576" />
+#### Two-stage Nd model ages</p>
+<p>For crustally-derived rocks, the two-stage model can be used to compensate for the effects of possible second Sm/Nd fractionation (first having occurred at mantle melting) in course of the intracrustal partial melting. We have the modfied equation:</p>
+<p><span class="math display">\[T=\frac{1}{\lambda}(\frac{I_{sample}^0-(e^{\lambda t}-1)(R_{sample}^0-R_{CC}^0)-I_{DM}^0}{R_{CC}^0-R_{DM}^0}+1)\]</span></p>
+<ul>
+<li><p>DM: Depleted Mantle</p></li>
+<li><p>CC: average Continental Crust</p></li>
+<li><p>T: two-stage Nd model age; t: crystallization age of the sample</p></li>
+</ul>
+<p><span class="math inline">\(\left( \frac{^{143}Nd}{^{144}Nd} \right)_{DM}^0= 0.513151\)</span>; <span class="math inline">\(\left( \frac{^{147}Sm}{^{144}Nd} \right)_{DM}^0= 0.219\)</span>; <span class="math inline">\(\left( \frac{^{147}Sm}{^{144}Nd} \right)_{CC}^0= 0.12\)</span></p>
 </div>
-<div id="two-stage-nd-model-ages" class="section level4">
-<h4>Two-stage Nd model ages</h4>
+<div id="exercise-5.4-two-stage-nd-model-ages" class="section level4">
+<h4>Exercise 5.4: Two-stage Nd model ages</h4>
+<ul>
+<li><p>Design a function returning two-stage Depleted Mantle Nd model ages.</p></li>
+<li><p>Calculate these for the granitoids of the CBPC.</p></li>
+</ul>
+<pre class="r"><code>DMLHAGE &lt;- function(data,age){
+  R &lt;- data[,&quot;147Sm/144Nd&quot;]
+  I &lt;- data[,&quot;143Nd/144Nd&quot;]
+  IDM &lt;- 0.513151
+  RDM &lt;- 0.219
+  RCC &lt;- 0.12
+  lambda &lt;- 6.54e-12
+  A &lt;- I - (exp(lambda*age*1e6)-1)*(R-RCC)-IDM
+  B &lt;- RCC-RDM
+  X &lt;- 1/lambda*log(A/B+1)/10^9
+  names(X) &lt;- rownames(data)
+  return(X)
+}
+
+izo &lt;- read.table(&quot;data/cbpizo2.data&quot;,sep=&quot;\t&quot;,check.names = F)
+round(DMLHAGE(izo,350),2)</code></pre>
+<pre><code>##  Sa-1 Koz-2  Bl-2  Se-9  Ri-1  CR-1  CR-5 
+##  1.02  1.42  1.52  1.66  1.62  1.66  1.92</code></pre>
 </div>
 </div>
