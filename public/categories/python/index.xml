@@ -6,10 +6,19 @@
     <description>Recent content in Python on Geosciences Programming</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 16 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 27 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Epsilon Nd curve vs Age</title>
+      <link>/post/epsilon-nd-curve-vs-age/</link>
+      <pubDate>Sat, 27 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/epsilon-nd-curve-vs-age/</guid>
+      <description>The epsilon Nd curve   The epsilon Nd (\(\epsilon_{Nd}\)) is a widely used parameter to understand the processes of rock forming, i.e. petrogenetic processes from both geochemical and geochronological approach. By definition, \(\epsilon_{Nd}\) is the difference of \(^{143}Nd/^{144}Nd\) of rock sample and ‘chondritic uniform reservoir’ at the time in the past T. For a rock of age T, \(\epsilon_{Nd}(T)\) is the ‘initial’ value of \(\epsilon_{Nd}\); the value at the time of crystallization of the rock, and \(\epsilon_{Nd}(0)\) is the measured value (dePaolo, 1981).</description>
+    </item>
     
     <item>
       <title>Create hillshade in Python using earthpy</title>

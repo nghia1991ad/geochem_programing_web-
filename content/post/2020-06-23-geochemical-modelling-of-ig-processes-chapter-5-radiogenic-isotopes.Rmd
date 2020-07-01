@@ -26,6 +26,7 @@ $$^{87}Rb\rightarrow^{87}Sr$$
 $$^{147}Sm\rightarrow^{143}Nd$$
 $$^{176}Lu\rightarrow^{176}Hf$$
 $$^{187}Re\rightarrow^{187}Os$$
+
 Do note that while the **I** ratios are measured directly with the mass spectrometer (TIMS or ICP-MS), **R** ratios must be calculated from elemental concentration obtained by isotope dilution, ICP-MS, XRF or other analytcal methods.
 
 The formula based on Faure (1986)
@@ -34,7 +35,7 @@ $$\frac{^{87}Rb}{^{86}Sr}=(\frac{C_{Rb}}{C_{Sr}})[2.6939 + 0.2832 \frac{^{87}Sr}
 
 $$\frac{^{147}Sm}{^{144}Nd}=(\frac{C_{Sm}}{C_{Nd}})[0.53151 + 0.14252 \frac{^{143}Nd}{^{144}Nd}]$$
 
-### Calculation of Initial Ratios or Ages
+## Calculation of Initial Ratios or Ages
 
 Relationship between daughter and parent ratios:
 
@@ -56,7 +57,7 @@ From this, if the age is known, the isotopic ratios can be easily 'age-corrected
 
 $$t=\frac{1}{\lambda}ln(\frac{I-I_i}{R}+1)$$
 
-#### Exercise 5.1: Initial ratios and ages
+### Exercise 5.1: Initial ratios and ages
 
 The Sr–Nd isotopic study of the Central Bohemian Plutonic Complex (CBPC) (Janoušek et al. 1995) has proven a diversity of sources and processes involved in genesis of individual intrusions and suites. The file contains an excerpt from the data for several granitoid types and two country rocks.
 
@@ -129,7 +130,7 @@ print(izo[,9:12])
 ```
 
 
-### Epsilon, Delta and Gamma Values
+## Epsilon, Delta and Gamma Values
 
 The initial Nd isotopic ratios do not differ much among inidividual rock samples, therefore they are compared to undifferentiated mantle (which is equal to chondiritic meteorites CHUR) at the time of their generation. Geochemists define the term $\epsilon_{Nd}$ to express this comparison:
 
@@ -155,7 +156,7 @@ The present-day mantle values are $^{187}Re/^{188}Os$ = 0.422 and $^{187}Os/^{18
 The $\delta$ notation, used for stable isotopes, is analogous (just multiply by $10^3$ rather than $10^2$).
 In fact, this forms a logic system, whereby $10^n$ is expressed by $(n+1)^{th}$ letter in the Greek alphabet.
 
-#### Exercise 5.2: Epsilon Nd values
+### Exercise 5.2: Epsilon Nd values
 
 * Write a function returning the initial $\epsilon_{Nd}$ values.
 
@@ -193,11 +194,11 @@ Summary of the steps to get epsilon values:
 
 * Calculate the epsilon Nd, which is relative to an age. 
 
-### Model Ages
+## Model Ages
 
 The model ages represent an apparent age of extraction from a model geochemical reservoir. These include, for instance, intercepts with various mantle evolution models (often CHUR or Depleted Mantle - DM). The age is the time in the past when the given sample had the isotopic composition identical to its presumed model source reservoir. This age can be interpreted as "crust-formation ages" for a given crustal segment.
 
-#### Single-stage Nd model ages
+### Single-stage Nd model ages
 
 Single-stage Nd model age can be derived by setting:
 $$I^{T}_{sample}=I^{T}_{DM}$$
@@ -208,9 +209,7 @@ $$T=\frac{1}{\lambda}ln(\frac{I_{sample}-I_{DM}}{R_{sample}-R_{DM}}+1)$$
 
 The present-day composition of the DM is $^{147}Sm/^{144}Nd$ = 0.222 and $^{143}Nd/^{144}Nd$ = 0.513114
 
-
-
-#### Exercise 5.3: Single-stage Nd model ages
+### Exercise 5.3: Single-stage Nd model ages
 
 Design a function yielding single-stage Depleted Mantle Nd model ages. Calculate these for the granitoids of the CBPC. Use the data from the previous exercises or load them from the file
 
@@ -271,7 +270,8 @@ text(t[1],SAMP[1]-0.00014,labels = expression('I'[sample]),cex=0.8)
 
 
 ```
-#### Two-stage Nd model ages
+
+### Two-stage Nd model ages
 
 For crustally-derived rocks, the two-stage model can be used to compensate for the effects of possible second Sm/Nd fractionation (first having occurred at mantle melting) in course of the intracrustal partial melting. We have the modfied equation:
 
@@ -285,7 +285,7 @@ $$T=\frac{1}{\lambda}(\frac{I_{sample}^0-(e^{\lambda t}-1)(R_{sample}^0-R_{CC}^0
 
 $\left( \frac{^{143}Nd}{^{144}Nd} \right)_{DM}^0= 0.513151$; $\left( \frac{^{147}Sm}{^{144}Nd} \right)_{DM}^0= 0.219$; $\left( \frac{^{147}Sm}{^{144}Nd} \right)_{CC}^0= 0.12$
 
-#### Exercise 5.4: Two-stage Nd model ages
+### Exercise 5.4: Two-stage Nd model ages
 
 * Design a function returning two-stage Depleted Mantle Nd model ages.
 
@@ -309,6 +309,57 @@ DMLHAGE <- function(data,age){
 izo <- read.table("data/cbpizo2.data",sep="\t",check.names = F)
 round(DMLHAGE(izo,350),2)
 
+```
+
+## Isochron Ages
+
+When there is a cogenetic suite of whole-rock or mineral samples, the isochron ages can be determined. When consider equation $I = I_i + R(e^{\lambda t} -1)$ with a suite of rock formed at the same age, the equation becomes:
+
+$$y = a + bx$$
+
+where a is an intercept and b is the slope of the isochron:
+
+$$b=tg\alpha = (e^{\lambda t}-1)$$
+
+which gives a formular for the isochron age:
+
+$t=\frac{1}{\lambda}ln(b+1)$
+
+The isochrons are usually fitted using software to uilize weighted linear regression. Here are some:
+
+* Isoplot: http://www.bgc.org/isoplot_etc/isoplot.html
+
+Ludwig, K.R., 2003. Isoplot 3.00: A geochronological toolkit for Microsoft Excel. Berkeley Geochronology Center Special Publication, 4, p.70.
+
+* Isoplotr: https://www.ucl.ac.uk/~ucfbpve/isoplotr/
+
+Vermeesch, P., 2018. IsoplotR: A free and open toolbox for geochronology. Geoscience Frontiers, 9(5), pp.1479-1493.
+
+* UPbplot.py: https://github.com/anoda/UPbplot.py/
+
+Sakata et al., 2017, A new approach for constraining the magnitude of initial disequilibrium in {Quaternary} zircons by coupled uranium and thorium decay series dating. Quaternary Geochronology, vol. 38, p. 1--12
+
+Here is a simple example of making isochron without weighted linear:
+
+### Exercise 5.5: Isochrons
+
+* Read the data acari.data and plot an isochron diagam $^{87}Rb/^{86}Sr$ - $^{87}Sr/^{86}Sr$
+
+* Fit the data by straight line, calculate age and initial Sr ratio for the granite
+
+```{r, fig.width=5,fig.height=5}
+acari <- read.table("data/acari.data", sep="\t")
+colnames(acari) <- c("87Sr/86Sr","er.x","87Sr/86Sr","er.y")
+plot(acari[,1],acari[,3],
+     xlab=expression(""^87*Rb/""^86*Sr),
+     ylab=expression(""^87*Sr/""^86*Sr),
+     pch=15,cex=1.5
+)
+izoch <- lm(acari[,3]~acari[,1])
+print(izoch)
+abline(izoch,lty="dashed")
+age <- 1/1.42e-11*log(izoch$coeff[2]+1)
+print(age/1e6)
 ```
 
 

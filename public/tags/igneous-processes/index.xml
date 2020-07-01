@@ -6,10 +6,19 @@
     <description>Recent content in Igneous processes on Geosciences Programming</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 23 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 27 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/igneous-processes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Epsilon Nd curve vs Age</title>
+      <link>/post/epsilon-nd-curve-vs-age/</link>
+      <pubDate>Sat, 27 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/epsilon-nd-curve-vs-age/</guid>
+      <description>The epsilon Nd curve   The epsilon Nd (\(\epsilon_{Nd}\)) is a widely used parameter to understand the processes of rock forming, i.e. petrogenetic processes from both geochemical and geochronological approach. By definition, \(\epsilon_{Nd}\) is the difference of \(^{143}Nd/^{144}Nd\) of rock sample and ‘chondritic uniform reservoir’ at the time in the past T. For a rock of age T, \(\epsilon_{Nd}(T)\) is the ‘initial’ value of \(\epsilon_{Nd}\); the value at the time of crystallization of the rock, and \(\epsilon_{Nd}(0)\) is the measured value (dePaolo, 1981).</description>
+    </item>
     
     <item>
       <title>Geochemical modelling of Ig. processes - Chapter 5: Radiogenic Isotopes</title>
@@ -17,8 +26,7 @@
       <pubDate>Tue, 23 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>/post/geochemical-modelling-of-ig-processes-chapter-5-radiogenic-isotopes/</guid>
-      <description>Calculation of Initial Ratios or Ages Epsilon, Delta and Gamma Values Model Ages   This post is a compilation of the exercises from Chapter 5: Radiogenic Isotopes from the book Geochemical Modelling of Igneous Processes - Principles and Recipes in R language by Vojtěch Janoušek, Jean Hervé Martin, Vojtěch Erban and Colin Farrow.
-Many of the parent-daughter dating methods are based on similar principles. The parent (radioactive) isotope decayse to ther daughter (radiogenic) isotope:</description>
+      <description>Calculation of Initial Ratios or Ages Exercise 5.1: Initial ratios and ages  Epsilon, Delta and Gamma Values Exercise 5.2: Epsilon Nd values  Model Ages Single-stage Nd model ages Exercise 5.3: Single-stage Nd model ages Two-stage Nd model ages Exercise 5.4: Two-stage Nd model ages  Isochron Ages Exercise 5.5: Isochrons    This post is a compilation of the exercises from Chapter 5: Radiogenic Isotopes from the book Geochemical Modelling of Igneous Processes - Principles and Recipes in R language by Vojtěch Janoušek, Jean Hervé Martin, Vojtěch Erban and Colin Farrow.</description>
     </item>
     
     <item>

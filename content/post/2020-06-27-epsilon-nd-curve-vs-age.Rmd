@@ -23,8 +23,4 @@ The epsilon Nd ($\epsilon_{Nd}$) is a widely used parameter to understand the pr
 
 $$\epsilon_{Nd}(T)=10^4 \left[ \frac{(^{143}Nd/^{144}Nd)_{rock}(T)}{(^{143}Nd/^{144}Nd)_{CHUR}(T)} -1 \right]$$
 
-
-
-
-
 ### The epsilon Nd curve

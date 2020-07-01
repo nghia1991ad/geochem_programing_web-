@@ -21,8 +21,8 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2020",
-        "datePublished": "2020-06-23 00:00:00 \u002b0000 UTC",
-        "dateModified" : "2020-06-23 00:00:00 \u002b0000 UTC",
+        "datePublished": "2020-06-27 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2020-06-27 00:00:00 \u002b0000 UTC",
         "url" : "\/",
         "wordCount" : "0",
         "keywords" : [ "Blog" ]
@@ -70,7 +70,7 @@
 <meta property="og:description" content="Learn geosciences, learn programming." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="/" />
-<meta property="og:updated_time" content="2020-06-23T00:00:00+00:00" />
+<meta property="og:updated_time" content="2020-06-27T00:00:00+00:00" />
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
@@ -223,11 +223,11 @@
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/post/geochemical-modelling-of-ig-processes-chapter-5-radiogenic-isotopes/">Geochemical modelling of Ig. processes - Chapter 5: Radiogenic Isotopes</a></h3>
+                                <h3><a href="/post/epsilon-nd-curve-vs-age/">Epsilon Nd curve vs Age</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-06-23'>
-                                    June 23, 2020</time>
+                                    '2020-06-27'>
+                                    June 27, 2020</time>
                             </header>
                             
 
@@ -236,6 +236,18 @@
                         <article class="mini-post">
                             <header>
                                 <h3><a href="/post/">Post</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-06-27'>
+                                    June 27, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/post/geochemical-modelling-of-ig-processes-chapter-5-radiogenic-isotopes/">Geochemical modelling of Ig. processes - Chapter 5: Radiogenic Isotopes</a></h3>
                                 
                                 <time class="published" datetime=
                                     '2020-06-23'>
@@ -269,18 +281,6 @@
 
                         </article>
                 
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/post/geochemical-modelling-of-ig-processes-chapter-3/">Geochemical Modelling of Ig. Processes - Chapter 3</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-06-16'>
-                                    June 16, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
 
                 
                     <a href=
@@ -303,7 +303,7 @@
   <header>
     <div class="title">
         
-            <h2><a href="/post/geochemical-modelling-of-ig-processes-chapter-5-radiogenic-isotopes/">Geochemical modelling of Ig. processes - Chapter 5: Radiogenic Isotopes</a></h2>
+            <h2><a href="/post/epsilon-nd-curve-vs-age/">Epsilon Nd curve vs Age</a></h2>
         
         
     </div>
@@ -311,11 +311,11 @@
         
 
         <time class="published"
-            datetime='2020-06-23'>
-            June 23, 2020</time>
+            datetime='2020-06-27'>
+            June 27, 2020</time>
         <span class="author">Nguyen Cong Nghia</span>
         
-            <p>9 minute read</p>
+            <p>1 minute read</p>
         
         
     </div>
@@ -331,292 +331,14 @@
 
 <div id="TOC">
 <ul>
-<li><a href="#calculation-of-initial-ratios-or-ages">Calculation of Initial Ratios or Ages</a></li>
-<li><a href="#epsilon-delta-and-gamma-values">Epsilon, Delta and Gamma Values</a></li>
-<li><a href="#model-ages">Model Ages</a></li>
+<li><a href="#the-epsilon-nd-curve">The epsilon Nd curve</a></li>
 </ul>
 </div>
 
-<p>This post is a compilation of the exercises from Chapter 5: Radiogenic Isotopes from the book Geochemical Modelling of Igneous Processes - Principles and Recipes in R language by Vojtěch Janoušek, Jean Hervé Martin, Vojtěch Erban and Colin Farrow.</p>
-<p>Many of the parent-daughter dating methods are based on similar principles. The parent (radioactive) isotope decayse to ther daughter (radiogenic) isotope:</p>
-<p><span class="math display">\[^{87}Rb\rightarrow^{87}Sr\]</span>
-<span class="math display">\[^{147}Sm\rightarrow^{143}Nd\]</span>
-<span class="math display">\[^{176}Lu\rightarrow^{176}Hf\]</span>
-<span class="math display">\[^{187}Re\rightarrow^{187}Os\]</span>
-Do note that while the <strong>I</strong> ratios are measured directly with the mass spectrometer (TIMS or ICP-MS), <strong>R</strong> ratios must be calculated from elemental concentration obtained by isotope dilution, ICP-MS, XRF or other analytcal methods.</p>
-<p>The formula based on Faure (1986)</p>
-<p><span class="math display">\[\frac{^{87}Rb}{^{86}Sr}=(\frac{C_{Rb}}{C_{Sr}})[2.6939 + 0.2832 \frac{^{87}Sr}{^{86}Sr}]\]</span></p>
-<p><span class="math display">\[\frac{^{147}Sm}{^{144}Nd}=(\frac{C_{Sm}}{C_{Nd}})[0.53151 + 0.14252 \frac{^{143}Nd}{^{144}Nd}]\]</span></p>
-<div id="calculation-of-initial-ratios-or-ages" class="section level3">
-<h3>Calculation of Initial Ratios or Ages</h3>
-<p>Relationship between daughter and parent ratios:</p>
-<p><span class="math display">\[I=R(e^{\lambda t}-1)\]</span>
-* I: ratio of daughter isotope to a stable, non-radiogenic isotope (e.g: <span class="math inline">\(^{87}Sr/^{86}Sr\)</span>, <span class="math inline">\(^{143}Nd/^{144}Nd\)</span> or <span class="math inline">\(^{176}Hf/^{177}Hf\)</span>)</p>
-<ul>
-<li><p>R: ratio of parental isotope to the same non-radiogenic isotope in I (e.g: <span class="math inline">\(^{87}Rb/^{86}Sr\)</span>, <span class="math inline">\(^{147}Sm/^{144}Nd\)</span> or <span class="math inline">\(^{176}Lu/^{177}Hf\)</span>)</p></li>
-<li><p><span class="math inline">\(\lambda\)</span>: decay constant</p></li>
-<li><p>t: time (Ma or ka)</p></li>
-</ul>
-<p>However, due to the presence of <em>common</em> element present, the formula to correct the initial ratio, is modified as:
-<span class="math display">\[I=I_{i}+R(e^{\lambda t}-1)\]</span></p>
-<ul>
-<li><span class="math inline">\(I_{i}\)</span>: the initial ratio of common daughter-stable isotope</li>
-</ul>
-<p>From this, if the age is known, the isotopic ratios can be easily ‘age-corrected’ and used in petrogenetic considerations. On the other hand, knowing the initial ratio, we can determined the age by solving for t:</p>
-<p><span class="math display">\[t=\frac{1}{\lambda}ln(\frac{I-I_i}{R}+1)\]</span></p>
-<div id="exercise-5.1-initial-ratios-and-ages" class="section level4">
-<h4>Exercise 5.1: Initial ratios and ages</h4>
-<p>The Sr–Nd isotopic study of the Central Bohemian Plutonic Complex (CBPC) (Janoušek et al. 1995) has proven a diversity of sources and processes involved in genesis of individual intrusions and suites. The file contains an excerpt from the data for several granitoid types and two country rocks.</p>
-<p><img src="/post/2020-06-23-geochemical-modelling-of-ig-processes-chapter-5-radiogenic-isotopes_files/Screen%20Shot%202020-06-23%20at%205.50.56%20PM.png" /></p>
-<p>Import the data file into a matrix <em>izo</em>, calculate the <span class="math inline">\(^{87}Rb/^{86}Sr\)</span> and <span class="math inline">\(^{147}Sm/^{144}Nd\)</span> ratios and attach them to the matrix as the last data columns.</p>
-<p>Design functions yielding Sr and Nd initial ratios; back-calculate these at 350 and 300 Ma ago; can you program a single function with an argument identifying the isotopic system (Sr or Nd)?</p>
-<p>Calculate the age of the sample Koz-2 assuming that its initial ratio is 0.705.</p>
-<pre class="r"><code># Part a
-izo &lt;- read.table(&quot;data/cbpizo.data&quot;, sep= &quot;\t&quot;, check.names=F)
-izo$&quot;87Rb/86Sr&quot; = izo$Rb/izo$Sr*(2.6939 + 0.2832*izo$`87Sr/86Sr`)
-izo$&quot;147Sm/144Nd&quot; = izo$Sm/izo$Nd*(0.53151 + 0.14252*izo$`143Nd/144Nd`)
-izo</code></pre>
-<pre><code>##          Rb    Sr 87Sr/86Sr   Sm   Nd 143Nd/144Nd 87Rb/86Sr 147Sm/144Nd
-## Sa-1   76.0 555.8   0.70700 4.57 24.2    0.512476 0.3957418  0.11416466
-## Koz-2 164.1 486.9   0.71258 5.91 31.7    0.512210 0.9759392  0.11270205
-## Bl-2  185.0 439.1   0.71434 6.85 43.8    0.512101 1.2202168  0.09453854
-## Se-9  308.1 307.8   0.72620 8.17 40.2    0.512080 2.9023859  0.12285315
-## Ri-1  310.7 374.1   0.72154 4.06 24.1    0.512053 2.4070655  0.10183487
-## CR-1  110.0  80.4   0.72596 3.30 17.3    0.512061 3.9669665  0.11530714
-## CR-5  160.0  86.4   0.74670 9.40 50.6    0.511880 5.3803064  0.11229157</code></pre>
-<pre class="r"><code>#Part b
-initial &lt;- function(data, system=&quot;Sr&quot;,age){
-  if (system == &quot;Sr&quot;){
-    lambda = 1.42e-11
-    I = data[,&quot;87Sr/86Sr&quot;]
-    R = data[,&quot;87Rb/86Sr&quot;]
-  } else if (system == &quot;Nd&quot;){
-    lambda = 6.54e-12
-    I = data[,&quot;143Nd/144Nd&quot;]
-    R = data[,&quot;147Sm/144Nd&quot;]
-  }
-  Ii = I - R * (exp(lambda*age*10^6)-1)
-  return(Ii)
-}
-izo$&quot;87Sr/86Sr_i300&quot; = initial(izo,system=&quot;Sr&quot;, age= 300)
-izo$&quot;87Sr/86Sr_i350&quot; = initial(izo,system=&quot;Sr&quot;, age= 350)
-izo$&quot;143Nd/144Nd_i300&quot; = initial(izo,system=&quot;Nd&quot;, age= 300)
-izo$&quot;143Nd/144Nd_i350&quot; = initial(izo,system=&quot;Nd&quot;, age= 350)
-izo[,c(&quot;87Sr/86Sr_i300&quot;,&quot;87Sr/86Sr_i350&quot;,&quot;143Nd/144Nd_i300&quot;,&quot;143Nd/144Nd_i350&quot;)]</code></pre>
-<pre><code>##       87Sr/86Sr_i300 87Sr/86Sr_i350 143Nd/144Nd_i300 143Nd/144Nd_i350
-## Sa-1       0.7053105      0.7050283        0.5122518        0.5122144
-## Koz-2      0.7084136      0.7077175        0.5119887        0.5119517
-## Bl-2       0.7091308      0.7082604        0.5119153        0.5118844
-## Se-9       0.7138095      0.7117392        0.5118387        0.5117985
-## Ri-1       0.7112640      0.7095471        0.5118530        0.5118196
-## CR-1       0.7090247      0.7061951        0.5118345        0.5117968
-## CR-5       0.7237310      0.7198933        0.5116595        0.5116227</code></pre>
-<pre class="r"><code>#Part c
-ini87Sr_86Sr = 0.705
-lambda = 1.42e-11
-age_Koz2 = 1/lambda*log((izo[&quot;Koz-2&quot;,&quot;87Sr/86Sr&quot;]-ini87Sr_86Sr)/izo[&quot;Koz-2&quot;,&quot;87Rb/86Sr&quot;] + 1)
-age_Koz2/10^6</code></pre>
-<pre><code>## [1] 544.85</code></pre>
-<p>An alternative solution for part b (authors’ solution):</p>
-<pre class="r"><code>izo &lt;- read.table(&quot;data/cbpizo.data&quot;, sep= &quot;\t&quot;, check.names=F)
-izo$&quot;87Rb/86Sr&quot; = izo$Rb/izo$Sr*(2.6939 + 0.2832*izo$`87Sr/86Sr`)
-izo$&quot;147Sm/144Nd&quot; = izo$Sm/izo$Nd*(0.53151 + 0.14252*izo$`143Nd/144Nd`)
-initial &lt;- function(data,system=&quot;Sr&quot;,age){
-  # data = matrix to be recalculated
-  # system = &quot;Sr&quot; or &quot;Nd&quot;, age = age in Ma
-  lambda &lt;- c(1.42*10^-11,6.54*10^-12)
-  names(lambda) &lt;- c(&quot;Sr&quot;,&quot;Nd&quot;)
-  R &lt;- cbind(data[,&quot;147Sm/144Nd&quot;],data[,&quot;87Rb/86Sr&quot;])
-  colnames(R) &lt;- c(&quot;Nd&quot;,&quot;Sr&quot;)
-  I &lt;- cbind(data[,&quot;143Nd/144Nd&quot;],data[,&quot;87Sr/86Sr&quot;])
-  colnames(I) &lt;- c(&quot;Nd&quot;,&quot;Sr&quot;)
-  X &lt;- I[,system]-R[,system]*(exp(lambda[system]*
-    age*10^6)-1)
-return(X) 
-}
-izo &lt;- cbind(izo,initial(izo,&quot;Sr&quot;,350),
-  initial(izo,&quot;Sr&quot;,300),initial(izo,&quot;Nd&quot;,350),
-  initial(izo,&quot;Nd&quot;,300))
-colnames(izo)[9:12] &lt;- c(&quot;87Sr/86Sr.350&quot;,&quot;87Sr/86Sr.300&quot;,
-  &quot;143Nd/144Nd.350&quot;,&quot;143Nd/144Nd.300&quot;) 
-print(izo[,9:12])</code></pre>
-<pre><code>##       87Sr/86Sr.350 87Sr/86Sr.300 143Nd/144Nd.350 143Nd/144Nd.300
-## Sa-1      0.7050283     0.7053105       0.5122144       0.5122518
-## Koz-2     0.7077175     0.7084136       0.5119517       0.5119887
-## Bl-2      0.7082604     0.7091308       0.5118844       0.5119153
-## Se-9      0.7117392     0.7138095       0.5117985       0.5118387
-## Ri-1      0.7095471     0.7112640       0.5118196       0.5118530
-## CR-1      0.7061951     0.7090247       0.5117968       0.5118345
-## CR-5      0.7198933     0.7237310       0.5116227       0.5116595</code></pre>
-</div>
-</div>
-<div id="epsilon-delta-and-gamma-values" class="section level3">
-<h3>Epsilon, Delta and Gamma Values</h3>
-<p>The initial Nd isotopic ratios do not differ much among inidividual rock samples, therefore they are compared to undifferentiated mantle (which is equal to chondiritic meteorites CHUR) at the time of their generation. Geochemists define the term <span class="math inline">\(\epsilon_{Nd}\)</span> to express this comparison:</p>
-<p><span class="math display">\[\epsilon^{i}_{Nd} = ({\frac{(\frac{^{143}Nd}{^{144}Nd})_{isample}}{(\frac{^{143}Nd}{^{144}Nd})_{iCHUR}}-1})\times10^4\]</span>
-* t: intrusion age, indexes i decipher initial isotopic ratios</p>
-<p>The present-day composition of the CHUR is <span class="math inline">\(^{147}Sm/^{144}Nd_{CHUR} = 0.1967\)</span> and <span class="math inline">\(^{143}Nd/^{144}Nd_{CHUR} = 0.512638\)</span> (Jacobsen and Wasserburg 1980) or <span class="math inline">\(^{147}Sm/^{144}Nd_{CHUR} = 0.1960\)</span> and <span class="math inline">\(^{143}Nd/^{144}Nd_{CHUR} = 0.512630\)</span> (Bouvier et al. 2008). For an overview of alternatives, as well as of error propagation, see Ickert (2013).</p>
-<p><img src="/post/2020-06-23-geochemical-modelling-of-ig-processes-chapter-5-radiogenic-isotopes_files/Screen%20Shot%202020-06-24%20at%202.14.48%20PM.png" /></p>
-<p>As Nd is more incompatible than Sm, partial metling of a mantle peridotite would produce melts with Sm/Nd ratios lower than the source. On the other hand, the residue would be enriched in Sm and yield a higher Sm/Nd ratio.</p>
-<p>In contrast, the Rb-Sr system behaves in an opposite way. Rb is more incompatible than Sr in the course of mantle melting and thus the crust is characterized by high Rb/Sr, therefore, high <span class="math inline">\(^{87}Sr/^{86}Sr\)</span> ratios.</p>
-<p>The geochemical-reservoir normalized compositions can be also expressed as <span class="math inline">\(\gamma\)</span> values, as is customary for the Re-Os system:</p>
-<p><span class="math display">\[\gamma^{i}_{Os} =({\frac{(\frac{^{187}Os}{^{188}Os})_{isample}}{(\frac{^{187}Os}{^{188}Nd})_{iCHUR}}-1})\times10^2\]</span></p>
-<p>The present-day mantle values are <span class="math inline">\(^{187}Re/^{188}Os\)</span> = 0.422 and <span class="math inline">\(^{187}Os/^{188}Os = 0.1283\)</span> (Walker et al. 2002).</p>
-<p><strong>NOTICE!</strong></p>
-<p>The <span class="math inline">\(\delta\)</span> notation, used for stable isotopes, is analogous (just multiply by <span class="math inline">\(10^3\)</span> rather than <span class="math inline">\(10^2\)</span>).
-In fact, this forms a logic system, whereby <span class="math inline">\(10^n\)</span> is expressed by <span class="math inline">\((n+1)^{th}\)</span> letter in the Greek alphabet.</p>
-<div id="exercise-5.2-epsilon-nd-values" class="section level4">
-<h4>Exercise 5.2: Epsilon Nd values</h4>
-<ul>
-<li><p>Write a function returning the initial <span class="math inline">\(\epsilon_{Nd}\)</span> values.</p></li>
-<li><p>Calculate these for the CBPC granitoids from the previous excercise at 350 Ma.</p></li>
-<li><p>Plot a binary diagram of initial <span class="math inline">\(^{87}Sr/^{86}Sr\)</span> isotopic ratios versus initial <span class="math inline">\(\epsilon_{Nd}\)</span> values.</p></li>
-</ul>
-<pre class="r"><code>izo &lt;- read.table(&quot;data/cbpizo.data&quot;, sep= &quot;\t&quot;, check.names=F)
-izo$&quot;87Rb/86Sr&quot; = izo$Rb/izo$Sr*(2.6939 + 0.2832*izo$`87Sr/86Sr`)
-izo$&quot;147Sm/144Nd&quot; = izo$Sm/izo$Nd*(0.53151 + 0.14252*izo$`143Nd/144Nd`)
-
-# Part a
-epsNd &lt;- function(data, age){
-  RCHUR &lt;- 0.1967; ICHUR &lt;- 0.512638;  lambda &lt;- 6.54e-12
-  CHUR &lt;- ICHUR - RCHUR*(exp(lambda*age*10^6)-1) #Calculate Initial CHUR ratio
-  eps &lt;- (initial(data,&quot;Nd&quot;,age)/CHUR-1)*10^4 #Make use of &quot;initial&quot; function
-  return(eps)
-}
-
-izo$epsilonNd_350 = round(epsNd(izo,350),2)
-izo</code></pre>
-<pre><code>##          Rb    Sr 87Sr/86Sr   Sm   Nd 143Nd/144Nd 87Rb/86Sr 147Sm/144Nd
-## Sa-1   76.0 555.8   0.70700 4.57 24.2    0.512476 0.3957418  0.11416466
-## Koz-2 164.1 486.9   0.71258 5.91 31.7    0.512210 0.9759392  0.11270205
-## Bl-2  185.0 439.1   0.71434 6.85 43.8    0.512101 1.2202168  0.09453854
-## Se-9  308.1 307.8   0.72620 8.17 40.2    0.512080 2.9023859  0.12285315
-## Ri-1  310.7 374.1   0.72154 4.06 24.1    0.512053 2.4070655  0.10183487
-## CR-1  110.0  80.4   0.72596 3.30 17.3    0.512061 3.9669665  0.11530714
-## CR-5  160.0  86.4   0.74670 9.40 50.6    0.511880 5.3803064  0.11229157
-##       epsilonNd_350
-## Sa-1           0.53
-## Koz-2         -4.60
-## Bl-2          -5.91
-## Se-9          -7.59
-## Ri-1          -7.18
-## CR-1          -7.62
-## CR-5         -11.02</code></pre>
-<pre class="r"><code>plot(initial(izo,age=350),epsNd(izo,350),
-     xlab=expression(&quot; &quot;^87*Sr/&quot;&quot;^86*Sr[i]),
-     ylab=expression(epsilon[Nd]^i),
-     pch=0, cex=1.5, cex.lab=1.5, cex.axis=1.5)</code></pre>
-<p><img src="/post/2020-06-23-geochemical-modelling-of-ig-processes-chapter-5-radiogenic-isotopes_files/figure-html/unnamed-chunk-3-1.png" width="576" /></p>
-<p>Summary of the steps to get epsilon values:</p>
-<ul>
-<li><p>Step 1: Get the Initial CHUR</p></li>
-<li><p>Step 2: Get the Initial ratio of <span class="math inline">\(^{143}Nd/^{144}Nd\)</span></p></li>
-<li><p>Calculate the epsilon Nd, which is relative to an age.</p></li>
-</ul>
-</div>
-</div>
-<div id="model-ages" class="section level3">
-<h3>Model Ages</h3>
-<p>The model ages represent an apparent age of extraction from a model geochemical reservoir. These include, for instance, intercepts with various mantle evolution models (often CHUR or Depleted Mantle - DM). The age is the time in the past when the given sample had the isotopic composition identical to its presumed model source reservoir. This age can be interpreted as “crust-formation ages” for a given crustal segment.</p>
-<div id="single-stage-nd-model-ages" class="section level4">
-<h4>Single-stage Nd model ages</h4>
-<p>Single-stage Nd model age can be derived by setting:
-<span class="math display">\[I^{T}_{sample}=I^{T}_{DM}\]</span>
-where DM is the appropriate model reservoir.</p>
-<p><span class="math display">\[I_{sample}-R_{sample}(e^{\lambda T}-1)=I_{DM}-R_{DM}(e^{\lambda T}-1)\]</span>
-<span class="math display">\[T=\frac{1}{\lambda}ln(\frac{I_{sample}-I_{DM}}{R_{sample}-R_{DM}}+1)\]</span></p>
-<p>The present-day composition of the DM is <span class="math inline">\(^{147}Sm/^{144}Nd\)</span> = 0.222 and <span class="math inline">\(^{143}Nd/^{144}Nd\)</span> = 0.513114</p>
-</div>
-<div id="exercise-5.3-single-stage-nd-model-ages" class="section level4">
-<h4>Exercise 5.3: Single-stage Nd model ages</h4>
-<p>Design a function yielding single-stage Depleted Mantle Nd model ages. Calculate these for the granitoids of the CBPC. Use the data from the previous exercises or load them from the file</p>
-<pre class="r"><code>DMAGE &lt;- function(data) {
-  IDM &lt;- 0.513114
-  RDM &lt;- 0.222
-  lambda &lt;- 6.54e-12
-  R &lt;- data[,&quot;147Sm/144Nd&quot;]
-  I &lt;- data[,&quot;143Nd/144Nd&quot;]
-  X &lt;- 1/lambda*log((I-IDM)/(R-RDM)+1)/10^9
-  names(X) &lt;- rownames(data)
-  return(X)
-}
-
-izo &lt;- read.table(&quot;data/cbpizo2.data&quot;,sep=&quot;\t&quot;,check.names = F)
-round(DMAGE(izo),2)</code></pre>
-<pre><code>##  Sa-1 Koz-2  Bl-2  Se-9  Ri-1  CR-1  CR-5 
-##  0.90  1.26  1.21  1.59  1.34  1.50  1.71</code></pre>
-<p>Let’s test the visualization of the solution for one sample Sa-1 with <span class="math inline">\(^{143}Nd/^{144}Nd = 0.512476\)</span> and <span class="math inline">\(^{147}Sm/^{144}Nd = 0.11416466\)</span>. From the figure, we can roughly estimate the single-stage DM model age is about 900 Ma while single-stage CHUR model age is about 300 Ma. The difference in these two values should be closer when the age is older.</p>
-<pre class="r"><code>t = seq(0,4600,100)
-  lambda &lt;- 6.54e-12
-
-RCHUR &lt;- 0.1967; ICHUR &lt;- 0.512638 #Current CHUR ratios
-CHUR &lt;- ICHUR - RCHUR*(exp(lambda*t*10^6)-1) # Initial CHUR 
-
-R &lt;- 0.11416466; I &lt;- 0.512476 #Current sample ratios
-SAMP &lt;- I - R*(exp(lambda*t*10^6)-1) #Initial Sample
-
-RDM &lt;- 0.222; IDM &lt;- 0.513114 #Current DM ratios
-DM &lt;- IDM - RDM*(exp(lambda*t*10^6)-1) #Initial DM
-
-
-plot(t,CHUR,type=&quot;l&quot;,xlim=c(1000,0),ylim=c(0.511,0.5133), xlab = &quot;Age (Ma.)&quot;, ylab=expression(&quot;&quot;^143*Nd/&quot;&quot;^144*Nd))
-
-lines(t,SAMP,col=&quot;red&quot;)
-
-lines(t,DM,col=&quot;blue&quot;)
-
-text(t[length(t)/5]-0.04,CHUR[length(CHUR)/5]+0.00009,labels = &quot;CHUR&quot;,cex = 0.8, srt = 20)
-
-text(t[length(t)/5]-0.04,DM[length(DM)/5]+0.00009,labels = &quot;DM&quot;,cex = 0.8, srt = 20, col=&quot;blue&quot;)
-
-
-points(t[10],DM[10])
-points(t[4],CHUR[4])
-text(t[10],DM[10]+0.00014,labels = expression(&#39;T&#39;[DM]),cex=0.8)
-text(t[4],CHUR[4]+0.00014,labels = expression(&#39;T&#39;[CHUR]),cex=0.8)
-
-points(t[1],DM[1],pch=16)
-points(t[1],CHUR[1],pch=16)
-points(t[1],SAMP[1],pch=16)
-text(t[1],DM[1]+0.00014,labels = expression(&#39;I&#39;[DM]),cex=0.8,)
-text(t[1],CHUR[1]+0.00014,labels = expression(&#39;I&#39;[CHUR]),cex=0.8)
-text(t[1],SAMP[1]-0.00014,labels = expression(&#39;I&#39;[sample]),cex=0.8)</code></pre>
-<p><img src="/post/2020-06-23-geochemical-modelling-of-ig-processes-chapter-5-radiogenic-isotopes_files/figure-html/unnamed-chunk-5-1.png" width="576" />
-#### Two-stage Nd model ages</p>
-<p>For crustally-derived rocks, the two-stage model can be used to compensate for the effects of possible second Sm/Nd fractionation (first having occurred at mantle melting) in course of the intracrustal partial melting. We have the modfied equation:</p>
-<p><span class="math display">\[T=\frac{1}{\lambda}(\frac{I_{sample}^0-(e^{\lambda t}-1)(R_{sample}^0-R_{CC}^0)-I_{DM}^0}{R_{CC}^0-R_{DM}^0}+1)\]</span></p>
-<ul>
-<li><p>DM: Depleted Mantle</p></li>
-<li><p>CC: average Continental Crust</p></li>
-<li><p>T: two-stage Nd model age; t: crystallization age of the sample</p></li>
-</ul>
-<p><span class="math inline">\(\left( \frac{^{143}Nd}{^{144}Nd} \right)_{DM}^0= 0.513151\)</span>; <span class="math inline">\(\left( \frac{^{147}Sm}{^{144}Nd} \right)_{DM}^0= 0.219\)</span>; <span class="math inline">\(\left( \frac{^{147}Sm}{^{144}Nd} \right)_{CC}^0= 0.12\)</span></p>
-</div>
-<div id="exercise-5.4-two-stage-nd-model-ages" class="section level4">
-<h4>Exercise 5.4: Two-stage Nd model ages</h4>
-<ul>
-<li><p>Design a function returning two-stage Depleted Mantle Nd model ages.</p></li>
-<li><p>Calculate these for the granitoids of the CBPC.</p></li>
-</ul>
-<pre class="r"><code>DMLHAGE &lt;- function(data,age){
-  R &lt;- data[,&quot;147Sm/144Nd&quot;]
-  I &lt;- data[,&quot;143Nd/144Nd&quot;]
-  IDM &lt;- 0.513151
-  RDM &lt;- 0.219
-  RCC &lt;- 0.12
-  lambda &lt;- 6.54e-12
-  A &lt;- I - (exp(lambda*age*1e6)-1)*(R-RCC)-IDM
-  B &lt;- RCC-RDM
-  X &lt;- 1/lambda*log(A/B+1)/10^9
-  names(X) &lt;- rownames(data)
-  return(X)
-}
-
-izo &lt;- read.table(&quot;data/cbpizo2.data&quot;,sep=&quot;\t&quot;,check.names = F)
-round(DMLHAGE(izo,350),2)</code></pre>
-<pre><code>##  Sa-1 Koz-2  Bl-2  Se-9  Ri-1  CR-1  CR-5 
-##  1.02  1.42  1.52  1.66  1.62  1.66  1.92</code></pre>
-</div>
+<p>The epsilon Nd (<span class="math inline">\(\epsilon_{Nd}\)</span>) is a widely used parameter to understand the processes of rock forming, i.e. petrogenetic processes from both geochemical and geochronological approach. By definition, <span class="math inline">\(\epsilon_{Nd}\)</span> is the difference of <span class="math inline">\(^{143}Nd/^{144}Nd\)</span> of rock sample and ‘chondritic uniform reservoir’ at the time in the past T. For a rock of age T, <span class="math inline">\(\epsilon_{Nd}(T)\)</span> is the ‘initial’ value of <span class="math inline">\(\epsilon_{Nd}\)</span>; the value at the time of crystallization of the rock, and <span class="math inline">\(\epsilon_{Nd}(0)\)</span> is the measured value (dePaolo, 1981). We use the same form as in (dePaolo, 1981) as we will the author’s propose of <span class="math inline">\(\epsilon_{Nd}\)</span> curve, therefore, the value of <span class="math inline">\(\epsilon_{Nd}\)</span> is :</p>
+<p><span class="math display">\[\epsilon_{Nd}(T)=10^4 \left[ \frac{(^{143}Nd/^{144}Nd)_{rock}(T)}{(^{143}Nd/^{144}Nd)_{CHUR}(T)} -1 \right]\]</span></p>
+<div id="the-epsilon-nd-curve" class="section level3">
+<h3>The epsilon Nd curve</h3>
 </div>
 
   </div>
@@ -629,6 +351,9 @@ round(DMLHAGE(izo,350),2)</code></pre>
             
             
                 <i class="fa fa-folder"></i>
+                
+                
+                <li><a class="article-category-link" href="/categories/python">Python</a></li>
                 
                 
                 <li><a class="article-category-link" href="/categories/r">R</a></li>
@@ -689,8 +414,8 @@ round(DMLHAGE(izo,350),2)</code></pre>
 
 <ul class="actions pagination">
     
-        <li><a href="/post/geochemical-modelling-of-ig-processes-chapter-4/"
-                class="button big previous">Geochemical modelling of Ig. processes - Chapter 4: Specialized Plots</a></li>
+        <li><a href="/post/geochemical-modelling-of-ig-processes-chapter-5-radiogenic-isotopes/"
+                class="button big previous">Geochemical modelling of Ig. processes - Chapter 5: Radiogenic Isotopes</a></li>
     
 
     
@@ -860,11 +585,11 @@ round(DMLHAGE(izo,350),2)</code></pre>
           <article class="mini-post">
             <header>
               <h3>
-                <a href="/post/geochemical-modelling-of-ig-processes-chapter-5-radiogenic-isotopes/">Geochemical modelling of Ig. processes - Chapter 5: Radiogenic Isotopes</a>
+                <a href="/post/epsilon-nd-curve-vs-age/">Epsilon Nd curve vs Age</a>
               </h3>
               
-              <time class="published" datetime='2020-06-23'>
-                June 23, 2020
+              <time class="published" datetime='2020-06-27'>
+                June 27, 2020
               </time>
             </header>
             
@@ -875,6 +600,20 @@ round(DMLHAGE(izo,350),2)</code></pre>
             <header>
               <h3>
                 <a href="/post/">Post</a>
+              </h3>
+              
+              <time class="published" datetime='2020-06-27'>
+                June 27, 2020
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/post/geochemical-modelling-of-ig-processes-chapter-5-radiogenic-isotopes/">Geochemical modelling of Ig. processes - Chapter 5: Radiogenic Isotopes</a>
               </h3>
               
               <time class="published" datetime='2020-06-23'>
@@ -903,20 +642,6 @@ round(DMLHAGE(izo,350),2)</code></pre>
             <header>
               <h3>
                 <a href="/post/create-hillshade-in-python-using-earthpy/">Create hillshade in Python using earthpy</a>
-              </h3>
-              
-              <time class="published" datetime='2020-06-16'>
-                June 16, 2020
-              </time>
-            </header>
-            
-
-          </article>
-        
-          <article class="mini-post">
-            <header>
-              <h3>
-                <a href="/post/geochemical-modelling-of-ig-processes-chapter-3/">Geochemical Modelling of Ig. Processes - Chapter 3</a>
               </h3>
               
               <time class="published" datetime='2020-06-16'>
@@ -960,7 +685,7 @@ round(DMLHAGE(izo,350),2)</code></pre>
             <header>
               
                 <a href="/categories/r/">r</a>
-                <span style="float:right;">7</span>
+                <span style="float:right;">8</span>
               
             </header>
           </article>
@@ -971,7 +696,7 @@ round(DMLHAGE(izo,350),2)</code></pre>
             <header>
               
                 <a href="/categories/python/">python</a>
-                <span style="float:right;">2</span>
+                <span style="float:right;">3</span>
               
             </header>
           </article>
